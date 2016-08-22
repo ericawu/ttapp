@@ -1,0 +1,44 @@
+.topPlayer {
+	height: 10%;
+}
+
+.topPlayer h1 {
+	display: inline-block;
+	float: left;
+	color: white;
+	vertical-align: center;
+	text-align: center;
+	position: absolute;
+}
+
+.playerBox {
+	display: inline-block;
+	height: 100%;
+	width: 90%;
+	float: right;
+	margin-right: 1%;
+	background-color: white;
+}
+
+.playerBox img {
+	max-height: 100%;
+}
+
+.playerBox p {
+	display: inline;
+}
+
+.playerBoxThumbnail {
+	height: 100%;
+	float: leftx;
+}
+
+.playerBoxInfo {
+	height: 100%;
+}
+.playerName {
+	height: 50%;
+}
+.playerName p {
+	vertical-align: center;
+}

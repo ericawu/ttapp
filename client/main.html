@@ -1,25 +1,62 @@
+<template name="home">
+{{> main}}
+</template>
+
+<!--
 <head>
   <title>ttapp</title>
 </head>
 
 <body>
-  <h1>Welcome to Meteor!</h1>
+-->
+<template name="main">
+  <div class="container-fluid">
+    <div class="row main-page">
 
-  {{> hello}}
-  {{> info}}
+      <div class="col-sm-2 main-sidemenu">
+        <div class="row">
+        <div class="col-sm-8 col-sm-offset-2">
+          <div id="main-logo">
+            <img src="\RyderCupLogo.png" class="img-responsive">
+          </div>
+          </div>
+        </div>
+        {{> MainSideMenu}}
+        {{> loginButtons}}
+        {{#if currentUser}}
+          <a class="sidemenuitem" href="{{pathFor route='register'}}"> PROFILE</a>
+        {{/if}}
+        <a class="sidemenuitem">PLAYERS</a>
+        <a class="sidemenuitem">MATCHES</a>
+      </div>
+
+      <div class="col-sm-7 main-center">
+        <p>Display the picture slideshow (if possible), recent matches, and if applicable, current matches here. Extra text to see how big it looks.</p>
+      </div>
+
+      <div class="col-sm-3 main-right">
+        <h1>The Top 8</h1>
+        {{> playerContainer}}
+        {{#each topPlayers}}
+          {{> topPlayersTest}}
+        {{/each}}
+      </div>
+
+    </div>
+  </div>
+  </template>
+<!--  
 </body>
+-->
 
-<template name="hello">
-  <button>Click Me</button>
-  <p>You've pressed the button {{counter}} times. Let's get started! Is this working?</p>
+
+
+<template name="MainSideMenu">
+  <div id="main-sidemenu1">
+    <p>This is the main side menu.</p>
+  </div>  
 </template>
 
-<template name="info">
-  <h2>Learn Meteor!</h2>
-  <ul>
-    <li><a href="https://www.meteor.com/try" target="_blank">Do the Tutorial</a></li>
-    <li><a href="http://guide.meteor.com" target="_blank">Follow the Guide</a></li>
-    <li><a href="https://docs.meteor.com" target="_blank">Read the Docs</a></li>
-    <li><a href="https://forums.meteor.com" target="_blank">Discussions</a></li>
-  </ul>
+<template name="Register">
+<h2>Register</h2>
 </template>
