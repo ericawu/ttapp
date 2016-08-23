@@ -1,5 +1,6 @@
-Router.route('/register');
+Router.route('/profile');
 
 Router.route('/', {
-	template: 'home'
+	template: 'home',
+	name: 'home'
 });

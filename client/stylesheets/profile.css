@@ -1,0 +1,10 @@
+.profile-pic {
+	display: inline-block;
+	width: 20%;
+	margin: 1%;
+}
+
+h1.profile-name {
+	margin-left:1%;
+	display: inline-block;
+}
