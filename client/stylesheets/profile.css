@@ -8,3 +8,36 @@ h1.profile-name {
 	margin-left:1%;
 	display: inline-block;
 }
+
+.point-input {
+	display: inline-block;
+	width: 3em;
+	margin-left: 1em;
+	margin-bottom: 1em;
+}
+.match-names {
+	height: 100%;
+	display: inline-block;
+	margin-bottom: 1em;
+}
+.match-names p {
+	margin-bottom: 2em;
+}
+.game-input {
+	display: inline-block;
+	position: relative;
+}
+.point-input p {
+	display: inline-block;
+	width: 100%;
+	margin-left: 1em;
+	text-align: center;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+-webkit-appearance: none;
+margin: 0;
+}
+
+input[type=number] {-moz-appearance: textfield;}
