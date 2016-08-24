@@ -14,7 +14,6 @@
 						</div>
 					</div>
 				</div>
-				{{> MainSideMenu}}
 				{{> loginButtons}}
 				{{#if currentUser}}
 				<a class="sidemenuitem" href="{{pathFor route='profile'}}"> PROFILE</a>
@@ -51,9 +50,8 @@
 </template>
 
 <template name="scoreInput">
+<form class="score-form">
 	
-
-	<div class="game-input">
 		<div class="match-names">
 			<p>Name</p>
 			<p>Name2</p>
@@ -61,48 +59,51 @@
 	
 		<div class="point-input">
 			<p>G1</p>
-			<input class="form-control point-input" id="tg1" type="number"  min="0">
-			<input class="form-control point-input" id="bg1" type="number"  min="0">
+			<input class="form-control point-input gg" name="tg1" type="number" min="0" max="99">
+			<input class="form-control point-input" name="bg1" type="number"  min="0" max="99">
 		</div>
 
 		<div class="point-input">
 			<p>G2</p>
-			<input class="form-control point-input" id="tg2" type="number"  min="0">
-			<input class="form-control point-input" id="bg2" type="number"  min="0">
+			<input class="form-control point-input" name="tg2" type="number"  min="0" max="99">
+			<input class="form-control point-input" name="bg2" type="number"  min="0" max="99">
 		</div>
 
 		<div class="point-input">
 			<p>G3</p>
-			<input class="form-control point-input" id="tg3" type="number"  min="0">
-			<input class="form-control point-input" id="bg3" type="number"  min="0">
+			<input class="form-control point-input" name="tg3" type="number"  min="0" max="99">
+			<input class="form-control point-input" name="bg3" type="number"  min="0" max="99">
 		</div>
 
 		<div class="point-input">
 			<p>G4</p>
-			<input class="form-control point-input" id="tg4" type="number"  min="0">
-			<input class="form-control point-input" id="bg4" type="number"  min="0">
+			<input class="form-control point-input" name="tg4" type="number"  min="0" max="99">
+			<input class="form-control point-input" name="bg4" type="number"  min="0" max="99">
 		</div>
 
 		<div class="point-input">
 			<p>G5</p>
-			<input class="form-control point-input" id="tg5" type="number"  min="0">
-			<input class="form-control point-input" id="bg5" type="number"  min="0">
+			<input class="form-control point-input" name="tg5" type="number"  min="0" max="99">
+			<input class="form-control point-input" name="bg5" type="number"  min="0" max="99">
 		</div>
 
 		<div class="point-input">
 			<p>G6</p>
-			<input class="form-control point-input" id="tg6" type="number"  min="0">
-			<input class="form-control point-input" id="bg6" type="number"  min="0">
+			<input class="form-control point-input" name="tg6" type="number"  min="0" max="99">
+			<input class="form-control point-input" name="bg6" type="number"  min="0" max="99">
 		</div>
 
 		<div class="point-input">
 			<p>G7</p>
-			<input class="form-control point-input" id="tg7" type="number"  min="0">
-			<input class="form-control point-input" id="bg7" type="number"  min="0">
+			<input class="form-control point-input" name="tg7" type="number"  min="0" max="99">
+			<input class="form-control point-input" name="bg7" type="number"  min="0" max="99">
 		</div>
-
-
-	</div>
+		<!--TODO: add update functionality-->
+		<div>
+			<button type="submit" class="btn btn-primary" >Submit</button>
+		</div>
+	
+	</form>
 </template>
 
 

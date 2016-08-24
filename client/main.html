@@ -14,7 +14,6 @@
           </div>
           </div>
         </div>
-        {{> MainSideMenu}}
         {{> loginButtons}}
         {{#if currentUser}}
           <a class="sidemenuitem" href="{{pathFor route='profile'}}"> PROFILE</a>
@@ -27,6 +26,7 @@
 
       <div class="col-xs-7 main-center">
         <p>Display the picture slideshow (if possible), recent matches, and if applicable, current matches here. Extra text to see how big it looks.</p>
+        {{> scoreInput}}
       </div>
 
       <div class="col-xs-3 main-right">
@@ -41,11 +41,4 @@
   </div>
   </template>
 
-
-
-<template name="MainSideMenu">
-  <div id="main-sidemenu1">
-    <p>This is the main side menu.</p>
-  </div>  
-</template>
 
