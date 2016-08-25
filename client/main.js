@@ -91,6 +91,7 @@ Template.register.onRendered(function(){
 			Accounts.createUser({
 				email: email,
 				password: password
+
 			}, function(error){
 				if(error) {
 					if(error.reason == "Email already exists."){
@@ -109,6 +110,9 @@ Template.register.onRendered(function(){
 
 Template.register.onDestroyed(function(){
 	console.log("The 'register' template was just destroyed.");
+	Meteor.users.update(Meteor.userId(), {$set: {"profile.rating": 200}});
+	Session.set('login', false);
+	Session.set('createaccount', false);
 });
 
 
@@ -142,6 +146,8 @@ Template.login.onRendered(function(){
 
 Template.login.onDestroyed(function(){
 	console.log("The 'login' template was just destroyed.");
+	Session.set('login', false);
+	Session.set('createaccount', false);
 });
 
 Template.login.events({
@@ -195,6 +201,10 @@ Template.profileHeader.helpers({
 		//TODO: Return name once users are stored
 		return Meteor.user().emails[0].address;
 	},
+	rating: function() {
+		console.log("hey");
+		return Meteor.user().profile.rating;
+	}
 });
 
 Template.scoreInput.events({
