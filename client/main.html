@@ -14,19 +14,32 @@
             </div>
           </div>
         </div>
-        {{> loginButtons}}
-        {{#if currentUser}}
-        <a class="sidemenuitem" href="{{pathFor route='profile'}}"> PROFILE</a>
-        {{/if}}
-        <a class="sidemenuitem" href="{{pathFor route='home'}}">HOME</a>
+        
+        <a class="sidemenuitem" id="topitem" href="{{pathFor route='home'}}">HOME</a>
         <a class="sidemenuitem">PLAYERS</a>
         <a class="sidemenuitem">MATCHES</a>
+        {{#if currentUser}}
+            <a class="sidemenuitem" href="{{pathFor route='profile'}}"> PROFILE</a>
+        {{/if}}
         <a class="sidemenuitem">ABOUT</a>
+        {{#if currentUser}}
+            <a href='#' class="sidemenuitem logout-item">LOGOUT</a>
+        {{else}}
+            <a href='#' class="sidemenuitem login-item">LOGIN</a>
+        {{#if loginClicked}}
+            {{> login}}
+        {{/if}}
+        <a href='#' class="sidemenuitem createaccount-item">CREATE ACCOUNT</a>
+        {{#if createAccountClicked}}
+            {{> register}}
+        {{/if}}
+        {{/if}}
       </div>
 
       <div class="col-xs-7 main-center">
         <p>Note: Display the picture slideshow (if possible), recent matches, and if applicable, current matches here. </p>
         <p>FIX THIS UI IT LOOKS AWFUL</p>
+        {{> register}}
         {{> displayScore}}
       </div>
 
@@ -34,7 +47,7 @@
         <h1>The Top 8</h1>
         {{> playerContainer}}
         {{#each topPlayers}}
-          {{> topPlayersTest}}
+        {{> topPlayersTest}}
         {{/each}}
       </div>
 
@@ -79,6 +92,24 @@
     </div>
   </div>
   {{/each}}
+</template>
+
+<template name="register">
+  <h3>Register</h3>
+  <form class="register">
+    <p>Email: <input type="email" name="email"></p>
+    <p>Password: <input type="password" name="password"></p>
+    <p><input type="submit" value="Register"></p>
+  </form>
+</template>
+
+<template name="login">
+  <h3>Login</h3>
+  <form class="login">
+   <p>Email: <input type="email" name="email"></p>
+   <p>Password: <input type="password" name="password"></p>
+   <p><input type="submit" value="Login"></p>
+ </form>
 </template>
 
 
