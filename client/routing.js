@@ -11,3 +11,8 @@ Router.route('/', {
 		return Meteor.subscribe('allMatches');
 	}
 });
+
+Router.route('/newmatch', {
+	template: 'newMatch',
+	name: 'newmatch'
+});

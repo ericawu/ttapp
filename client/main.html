@@ -1,5 +1,5 @@
 <template name="home">
-{{> main}}
+  {{> main}}
 </template>
 
 <template name="main">
@@ -8,15 +8,15 @@
 
       <div class="col-xs-2 main-sidemenu">
         <div class="row">
-        <div class="col-xs-8 col-xs-offset-2">
-          <div id="main-logo">
-            <img src="\RyderCupLogo.png" class="img-responsive">
-          </div>
+          <div class="col-xs-8 col-xs-offset-2">
+            <div id="main-logo">
+              <img src="\RyderCupLogo.png" class="img-responsive">
+            </div>
           </div>
         </div>
         {{> loginButtons}}
         {{#if currentUser}}
-          <a class="sidemenuitem" href="{{pathFor route='profile'}}"> PROFILE</a>
+        <a class="sidemenuitem" href="{{pathFor route='profile'}}"> PROFILE</a>
         {{/if}}
         <a class="sidemenuitem" href="{{pathFor route='home'}}">HOME</a>
         <a class="sidemenuitem">PLAYERS</a>
@@ -25,8 +25,9 @@
       </div>
 
       <div class="col-xs-7 main-center">
-        <p>Display the picture slideshow (if possible), recent matches, and if applicable, current matches here. Extra text to see how big it looks.</p>
-        {{> scoreInput}}
+        <p>Note: Display the picture slideshow (if possible), recent matches, and if applicable, current matches here. </p>
+        <p>FIX THIS UI IT LOOKS AWFUL</p>
+        {{> displayScore}}
       </div>
 
       <div class="col-xs-3 main-right">
@@ -39,6 +40,45 @@
 
     </div>
   </div>
-  </template>
+</template>
+
+<template name="displayScore">
+  {{#each recentMatches}}
+  <div class="display-match">
+    <div class=display-names>
+      <p>{{P1}}</p>
+      <p>{{P2}}</p>
+    </div>
+    <div class="display-points">
+      <p>{{G1P1}}</p>
+      <p>{{G1P2}}</p>
+    </div>
+    <div class="display-points">
+      <p>{{G2P1}}</p>
+      <p>{{G2P2}}</p>
+    </div>
+    <div class="display-points">
+      <p>{{G3P1}}</p>
+      <p>{{G3P2}}</p>
+    </div>
+    <div class="display-points">
+      <p>{{G4P1}}</p>
+      <p>{{G4P2}}</p>
+    </div>
+    <div class="display-points">
+      <p>{{G5P1}}</p>
+      <p>{{G5P2}}</p>
+    </div>
+    <div class="display-points">
+      <p>{{G6P1}}</p>
+      <p>{{G6P2}}</p>
+    </div>
+    <div class="display-points">
+      <p>{{G7P1}}</p>
+      <p>{{G7P2}}</p>
+    </div>
+  </div>
+  {{/each}}
+</template>
 
 

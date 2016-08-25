@@ -5,7 +5,6 @@
 <template name="profileMain">
 	<div class="container-fluid">
 		<div class="row main-page">
-
 			<div class="col-xs-2 main-sidemenu">
 				<div class="row">
 					<div class="col-xs-8 col-xs-offset-2">
@@ -29,10 +28,16 @@
 				<p>Display the picture slideshow (if possible), recent matches, and if applicable, current matches here. Extra text to see how big it looks.</p>
 				<div class="form-group row">
 					<label for="example-text-input" class="col-xs-1 col-form-label">Opponent Name</label>
-					<div class="col-xs-5">
-						<input class="form-control" type="text" value="" id="example-text-input">
-					</div>
-					<button type="submit" class="btn btn-primary">Start Match</button>
+
+					<form class="start-match">
+						<div class="col-xs-5">
+							<input class="form-control" name="opponent" type="text" value="" id="example-text-input">
+						</div>
+
+						<button type="submit" class="btn btn-primary">Start Match</button>
+
+					</form>
+
 				</div>	
 				{{> scoreInput}}
 			</div>
@@ -50,16 +55,16 @@
 </template>
 
 <template name="scoreInput">
-<form class="score-form">
-	
+	<form class="score-form">
+
 		<div class="match-names">
 			<p>Name</p>
 			<p>Name2</p>
 		</div>
-	
+
 		<div class="point-input">
 			<p>G1</p>
-			<input class="form-control point-input gg" name="tg1" type="number" min="0" max="99">
+			<input class="form-control point-input" name="tg1" type="number" min="0" max="99">
 			<input class="form-control point-input" name="bg1" type="number"  min="0" max="99">
 		</div>
 
@@ -100,9 +105,10 @@
 		</div>
 		<!--TODO: add update functionality-->
 		<div>
-			<button type="submit" class="btn btn-primary" >Submit</button>
+			<button type="submit" class="btn btn-primary" name="ahhhhhh" id="btn-update">Update</button>
+			<button type="submit" class="btn btn-primary" id="btn-submit">Submit</button>
 		</div>
-	
+
 	</form>
 </template>
 

@@ -23,10 +23,7 @@ h1.profile-name {
 .match-names p {
 	margin-bottom: 2em;
 }
-.game-input {
-	display: inline-block;
-	position: relative;
-}
+
 .point-input p {
 	display: inline-block;
 	width: 100%;
