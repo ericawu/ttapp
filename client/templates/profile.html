@@ -13,13 +13,26 @@
 						</div>
 					</div>
 				</div>
+
+				<a class="sidemenuitem" id="topitem" href="{{pathFor route='home'}}">HOME</a>
+				<a class="sidemenuitem">PLAYERS</a>
+				<a class="sidemenuitem">MATCHES</a>
 				{{#if currentUser}}
 				<a class="sidemenuitem" href="{{pathFor route='profile'}}"> PROFILE</a>
 				{{/if}}
-				<a class="sidemenuitem" href="{{pathFor route='home'}}">HOME</a>
-				<a class="sidemenuitem">PLAYERS</a>
-				<a class="sidemenuitem">MATCHES</a>
 				<a class="sidemenuitem">ABOUT</a>
+				{{#if currentUser}}
+				<a href='#' class="sidemenuitem logout-item">LOGOUT</a>
+				{{else}}
+				<a href='#' class="sidemenuitem login-item">LOGIN</a>
+				{{#if loginClicked}}
+				{{> login}}
+				{{/if}}
+				<a href='#' class="sidemenuitem createaccount-item">CREATE ACCOUNT</a>
+				{{#if createAccountClicked}}
+				{{> register}}
+				{{/if}}
+				{{/if}}
 			</div>
 
 			<div class="col-xs-10 main-center">
@@ -48,9 +61,31 @@
 
 <template name="profileHeader">
 	<div class="row">
-		<img src="\grumpycat.jpg" class="img-responsive profile-pic">
-		<h1 class=profile-name>{{name}}</h1>
-		<!--<h1 class=profile-rating>{{rating}}</h1> -->
+		<div class="col-xs-3">
+			<img src="\grumpycat.jpg" class="img-responsive profile-pic">
+		</div>
+		<div class="col-xs-9 ">
+			<div class="profile-header-info">
+				<div class="namedisplay">
+					{{#if editClicked}}
+					<form class="edit-display-name">
+						<div class="col-xs-5">
+							<input class="form-control" name="name" type="text" value="" id="example-text-input">
+						</div>
+						<button type="submit" class="btn btn-primary">Update Name</button>
+					</form>
+					{{else}}
+					<h1 class=profile-name>{{name}}</h1>
+					<button type="button" class="btn btn-default editbutton2" aria-label="Left Align">
+						<span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit
+					</button>
+
+
+					{{/if}}
+				</div>
+				<h1 class=profile-rating>Rating: {{rating}}</h1> 
+			</div>
+		</div>
 	</div>
 </template>
 

@@ -1,0 +1,14 @@
+0000000000000000000000000000000000000000 2fba89c534e9b947c440f34773663e9721e0cd8a ericawu <erica15wu@gmail.com> 1471715641 -0700	commit (initial): first commit
+2fba89c534e9b947c440f34773663e9721e0cd8a 18ce6a4d2c13517d1ca15011da10e29c97cc3337 ericawu <erica15wu@gmail.com> 1471716541 -0700	pull: Fast-forward
+18ce6a4d2c13517d1ca15011da10e29c97cc3337 8b219cf58fc760d7fa8ffa3495fd6cfd2b340077 ericawu <erica15wu@gmail.com> 1471849793 -0700	pull: Fast-forward
+8b219cf58fc760d7fa8ffa3495fd6cfd2b340077 794defc356d66aea240a719175ed908dc7e54d8b ericawu <erica15wu@gmail.com> 1471852173 -0700	commit: add new side menu
+794defc356d66aea240a719175ed908dc7e54d8b f206d055803735fec19e1ff3a8676348c1f5261f ericawu <erica15wu@gmail.com> 1471880448 -0700	pull: Fast-forward
+f206d055803735fec19e1ff3a8676348c1f5261f f086a2b0d776bd9a7531d57e3062ab3335df0e69 ericawu <erica15wu@gmail.com> 1471884394 -0700	commit: lists all user emails
+f086a2b0d776bd9a7531d57e3062ab3335df0e69 68075965e82abc5a80ae1c22639a2dace3ca7b72 ericawu <erica15wu@gmail.com> 1471913312 -0700	commit: improved profile page
+68075965e82abc5a80ae1c22639a2dace3ca7b72 24dc31038ce159b8a1b80b012ffc3c89b7b7f459 ericawu <erica15wu@gmail.com> 1471966879 -0700	pull: Fast-forward
+24dc31038ce159b8a1b80b012ffc3c89b7b7f459 fdcf51e9c23c109c98909b016977bd5fcf9aaef0 ericawu <erica15wu@gmail.com> 1472010190 -0700	commit: added matches collection
+fdcf51e9c23c109c98909b016977bd5fcf9aaef0 9c87e3304281627fafd023a751fd70c1dd1a2a8a ericawu <erica15wu@gmail.com> 1472098355 -0700	commit: added update vs submit
+9c87e3304281627fafd023a751fd70c1dd1a2a8a f39fabe47e5944bb3780e1b1fb6749b4993423d7 ericawu <erica15wu@gmail.com> 1472104775 -0700	commit: db changes
+f39fabe47e5944bb3780e1b1fb6749b4993423d7 a2b48f69551383dfc108a8381518c986acb21e36 ericawu <erica15wu@gmail.com> 1472140405 -0700	pull: Fast-forward
+a2b48f69551383dfc108a8381518c986acb21e36 82a079651bbedcd55dcb0db019ac494fcc7a9172 ericawu <erica15wu@gmail.com> 1472157824 -0700	commit: added login and create account
+82a079651bbedcd55dcb0db019ac494fcc7a9172 00cf9189a67670f30657558e968b226dcb0c024a ericawu <erica15wu@gmail.com> 1472164739 -0700	commit: started adding ratings

@@ -1,6 +1,5 @@
 .profile-pic {
 	display: inline-block;
-	width: 20%;
 	margin: 1%;
 }
 
@@ -8,6 +7,21 @@ h1.profile-name {
 	margin-left:1%;
 	display: inline-block;
 }
+.edit-button {
+	display: inline-block;
+	margin-left: 1em;
+}
+
+
+.profile-header-info {
+	vertical-align: middle;
+	width: 100%;
+}
+
+.namedisplay.h1 {
+	display: inline-block;
+}
+
 
 .point-input {
 	display: inline-block;
@@ -29,6 +43,10 @@ h1.profile-name {
 	width: 100%;
 	margin-left: 1em;
 	text-align: center;
+}
+
+.edit-button {
+	display: inline-block;
 }
 
 input[type=number]::-webkit-inner-spin-button,

@@ -60,21 +60,6 @@ Template.displayScore.helpers({
 Template.register.events({
 	'submit form': function() {
 		event.preventDefault();
-		/*
-		var email = $('[name=email]').val();
-		var password = $('[name=password]').val();
-		Accounts.createUser({
-			email: email,
-			password: password
-		}, function(error){
-			if(error) {
-				console.log(error.reason);
-			}
-			else {
-
-			}
-		})
-		*/
 	},
 });
 
@@ -110,7 +95,10 @@ Template.register.onRendered(function(){
 
 Template.register.onDestroyed(function(){
 	console.log("The 'register' template was just destroyed.");
-	Meteor.users.update(Meteor.userId(), {$set: {"profile.rating": 200}});
+	Meteor.users.update(Meteor.userId(), {$set: {
+		"profile.rating": 200,
+		"profile.displayname": Meteor.user().emails[0].address 
+	}});
 	Session.set('login', false);
 	Session.set('createaccount', false);
 });
@@ -153,13 +141,6 @@ Template.login.onDestroyed(function(){
 Template.login.events({
 	'submit form': function(event){
 		event.preventDefault();
-		/*
-		var email = $('[name=email]').val();
-		var password = $('[name=password]').val();
-		Meteor.loginWithPassword(email, password, function(error) {
-			console.log(error.reason);
-		});
-		*/
 
 	},
 
@@ -199,11 +180,34 @@ Template.profileMain.events({
 Template.profileHeader.helpers({
 	name: function() {
 		//TODO: Return name once users are stored
-		return Meteor.user().emails[0].address;
+		console.log("hey");
+		console.log(Meteor.user().profile.rating);
+		return Meteor.user().profile.displayname;
 	},
 	rating: function() {
 		console.log("hey");
 		return Meteor.user().profile.rating;
+	},
+	editClicked: function() {
+		if (Session.get('editButtonClicked')) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+});
+
+Template.profileHeader.events({
+	'click .editbutton2': function(e) {
+		console.log("hiiiii");
+		var flag = Session.set('editButtonClicked', true);		
+	},
+	'submit .edit-display-name': function(e) {
+		console.log(e.target.name.value);
+		Session.set('editButtonClicked', false);
+		Meteor.users.update(Meteor.userId(), {$set:{"profile.displayname": e.target.name.value}});
+		return false;
 	}
 });
 
