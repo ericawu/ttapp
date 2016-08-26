@@ -143,21 +143,30 @@ Template.login.events({
 		event.preventDefault();
 
 	},
+});
 
+Template.topPlayersTest.helpers({
+	username: function() {
+		return Meteor.user().profile.displayname;
+	}
 })
-
+Meteor.subscribe('allUsers');
 /********* Profile Page *********/
 Template.profileMain.events({
 	'submit .start-match': function(e) {
 		console.log("submitted");
+
 		var p2 = e.target.opponent.value;
+		console.log(p2);
+		var x = Meteor.users.find({"profile.rating": 200});
+		console.log(x);
 		var id = Matches.insert({
-			P1: "Player 1",
+			P1: Meteor.user().profile.displayname,
 			P2: p2,
 			Date: new Date(),
 			completed: "false",	
-			G1P1: "",
-			G1P2: "",
+			G1P1: "0",
+			G1P2: "0",
 			G2P1: "",
 			G2P2: "",
 			G3P1: "",
