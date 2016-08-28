@@ -1,41 +1,13 @@
 <template name="Profile">
+  	{{> header}}
 	{{> profileMain}}
 </template>
 
 <template name="profileMain">
 	<div class="container-fluid">
 		<div class="row main-page">
-			<div class="col-xs-2 main-sidemenu">
-				<div class="row">
-					<div class="col-xs-8 col-xs-offset-2">
-						<div id="main-logo">
-							<img src="\RyderCupLogo.png" class="img-responsive">
-						</div>
-					</div>
-				</div>
 
-				<a class="sidemenuitem" id="topitem" href="{{pathFor route='home'}}">HOME</a>
-				<a class="sidemenuitem">PLAYERS</a>
-				<a class="sidemenuitem">MATCHES</a>
-				{{#if currentUser}}
-				<a class="sidemenuitem" href="{{pathFor route='profile'}}"> PROFILE</a>
-				{{/if}}
-				<a class="sidemenuitem">ABOUT</a>
-				{{#if currentUser}}
-				<a href='#' class="sidemenuitem logout-item">LOGOUT</a>
-				{{else}}
-				<a href='#' class="sidemenuitem login-item">LOGIN</a>
-				{{#if loginClicked}}
-				{{> login}}
-				{{/if}}
-				<a href='#' class="sidemenuitem createaccount-item">CREATE ACCOUNT</a>
-				{{#if createAccountClicked}}
-				{{> register}}
-				{{/if}}
-				{{/if}}
-			</div>
-
-			<div class="col-xs-10 main-center">
+			<div class="col-xs-12 main-center">
 				{{> profileHeader}}
 				<p>Display the picture slideshow (if possible), recent matches, and if applicable, current matches here. Extra text to see how big it looks.</p>
 
@@ -68,22 +40,20 @@
 			<div class="profile-header-info">
 				<div class="namedisplay">
 					{{#if editClicked}}
-					<form class="edit-display-name">
-						<div class="col-xs-5">
-							<input class="form-control" name="name" type="text" value="" id="example-text-input">
-						</div>
-						<button type="submit" class="btn btn-primary">Update Name</button>
-					</form>
+						<form class="edit-display-name">
+							<div class="col-xs-5">
+								<input class="form-control" name="name" type="text" value="" id="example-text-input">
+							</div>
+							<button type="submit" class="btn btn-primary">Update Name</button>
+						</form>
 					{{else}}
-					<h1 class=profile-name>{{name}}</h1>
-					<button type="button" class="btn btn-default editbutton2" aria-label="Left Align">
-						<span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit
-					</button>
-
-
+						<h1 class=profile-name>{{currentUser.profile.displayname}}</h1>
+						<button type="button" class="btn btn-default editbutton2" aria-label="Left Align">
+							<span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit
+						</button>
 					{{/if}}
 				</div>
-				<h1 class=profile-rating>Rating: {{rating}}</h1> 
+				<h1 class=profile-rating>Rating: {{currentUser.profile.rating}}</h1> 
 			</div>
 		</div>
 	</div>

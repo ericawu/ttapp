@@ -3,21 +3,15 @@ import { ReactiveVar } from 'meteor/reactive-var';
 
 import './main.html';
 
-
-
 submitForms = function() {
 	console.log("it's working pt 2");
 };
 
 Meteor.subscribe('topUsers');
-//Meteor.subscribe('allMatches');
+Meteor.subscribe('allMatches');
 
-/********** Main Page **************/
-Template.main.helpers({
-	topPlayers: function() {
-		//Meteor.subscribe('allEmails');		
-		return Meteor.users.find();
-	},
+/********** Header Page ************/
+Template.header.helpers({
 	loginClicked: function() {
 		return Session.get('login');
 	},
@@ -26,7 +20,7 @@ Template.main.helpers({
 	}
 });
 
-Template.main.events({
+Template.header.events({
 	'click .logout-item': function(event){
 		event.preventDefault();
 		Meteor.logout();
@@ -34,6 +28,7 @@ Template.main.events({
 	'click .login-item': function(event) {
 		var flag = Session.get('login');
 		if (flag != null) {
+			Session.set('createaccount', false);
 			Session.set('login', !flag)
 		}
 		else {
@@ -43,11 +38,22 @@ Template.main.events({
 	'click .createaccount-item': function() {
 		var flag = Session.get('createaccount');
 		if (flag != null) {
+			Session.set('login', false);
 			Session.set('createaccount', !flag);
 		}
 		else {
 			Session.set('createaccount', true);
 		} 
+	}
+});
+
+/********** Main Page **************/
+Template.main.helpers({
+	topPlayers: function() {		
+		return Meteor.users.find({}, {sort: {"profile.rating": -1}}).map(function(player, index) {
+			player.profile.rank = index+1;
+			return player;
+		});
 	}
 });
 
@@ -88,18 +94,19 @@ Template.register.onRendered(function(){
 
 					}
 				};
-			})
+			});
 		}
 	});
 });
 
 Template.register.onDestroyed(function(){
+	if (Meteor.user()) {
+		Meteor.users.update(Meteor.userId(), {$set: {
+			"profile.rating": 200,
+			"profile.displayname": Meteor.user().emails[0].address 
+		}});
+	}
 	console.log("The 'register' template was just destroyed.");
-	Meteor.users.update(Meteor.userId(), {$set: {
-		"profile.rating": 200,
-		"profile.displayname": Meteor.user().emails[0].address 
-	}});
-	Session.set('login', false);
 	Session.set('createaccount', false);
 });
 
@@ -135,22 +142,16 @@ Template.login.onRendered(function(){
 Template.login.onDestroyed(function(){
 	console.log("The 'login' template was just destroyed.");
 	Session.set('login', false);
-	Session.set('createaccount', false);
 });
 
 Template.login.events({
 	'submit form': function(event){
 		event.preventDefault();
-
 	},
 });
 
-Template.topPlayersTest.helpers({
-	username: function() {
-		return Meteor.user().profile.displayname;
-	}
-})
 Meteor.subscribe('allUsers');
+
 /********* Profile Page *********/
 Template.profileMain.events({
 	'submit .start-match': function(e) {
@@ -187,16 +188,6 @@ Template.profileMain.events({
 });
 
 Template.profileHeader.helpers({
-	name: function() {
-		//TODO: Return name once users are stored
-		console.log("hey");
-		console.log(Meteor.user().profile.rating);
-		return Meteor.user().profile.displayname;
-	},
-	rating: function() {
-		console.log("hey");
-		return Meteor.user().profile.rating;
-	},
 	editClicked: function() {
 		if (Session.get('editButtonClicked')) {
 			return true;

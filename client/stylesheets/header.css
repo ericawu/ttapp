@@ -1,0 +1,137 @@
+.header {
+    width: 100%;
+    height: 100px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: url('/header_bg.png');
+    z-index: 1;
+}
+
+.header-bg {
+    background: linear-gradient(to right, #000, rgba(0,0,0,0.7), rgba(60,60,60,0));
+}
+
+.header-logo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100px;
+    width: 100px;
+    padding: 15px;
+}
+
+.header-propic {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    height: 70px;
+    width: 70px;
+    background: url('/nick.jpg') center no-repeat;
+    background-size: cover;
+    border: 2px solid #fff;
+    box-sizing: border-box;
+}
+
+.header-hello {
+    position: fixed;
+    right: 100px;
+    color: #fff;
+    height: 50px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    flex-direction: column;
+    letter-spacing: 1px;
+}
+
+.header-hello .window-rel {
+    position: absolute;
+    top: 55px;
+    padding: 10px 10px 3px 10px;
+    box-sizing: border-box;
+    background: #043267;
+}
+
+.header-hello .window-rel table td {
+    min-width: 85px;
+}
+
+.header-hello .window-rel table td input[type="email"],
+.header-hello .window-rel table td input[type="password"] {
+    background: transparent !important;
+    border: none;
+    border-bottom: 1px solid #fff;
+    outline: none;
+    -webkit-text-fill-color: #fff !important
+}
+
+.header-hello .window-rel table td input[type="submit"] {
+    background: transparent !important;
+    border: none;
+    outline: none;
+    color: #337ab7;
+    font-size: 0.9em;
+}
+
+.header-hello .window-rel table td input[type="submit"]:hover {
+    color: #23527c;
+    text-decoration: underline;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+.header-hello .window-rel table td.align-right {
+    text-align: right;
+}
+
+.header-hello-sign {
+    font-size: 0.7em;
+}
+
+.header-title {
+    width: 100%;
+    height: 50px;
+    padding-left: 100px;
+    display: flex;
+    align-items: center;
+    font-size: 2.5em;
+    letter-spacing: 5px;
+    color: #fff;
+}
+
+.header-title i {
+    width: 100%;
+}
+
+.header-title span {
+    font-size: 0.5em;
+    color: #337ab7;
+}
+
+.header-nav {
+    width: 100%;
+    height: 50px;
+    padding: 0 100px;
+    border-top: solid 2px #043267;
+    box-sizing: border-box;
+    background: linear-gradient(rgba(4,50,103,0.4), rgba(4,50,103,0.1));
+    display: flex;
+    align-items: center;
+}
+
+.header-nav-item {
+    margin-left: 5%;
+    display: inline-block;
+    font-size: 2em;
+    color: white;
+}
+
+.header-nav-item.first {
+    margin-left: 0;
+}

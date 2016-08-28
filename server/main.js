@@ -3,7 +3,7 @@ import { Meteor } from 'meteor/meteor';
 Meteor.startup(() => {
   // code to run on server at startup
   Meteor.publish('topUsers', function() {
-  	return Meteor.users.find({}, {fields: {profile: 1}});
+  	return Meteor.users.find({}, {limit: 8}, {fields: {profile: 1}});
   });
 
   Meteor.publish('allUsers', function() {
@@ -13,6 +13,5 @@ Meteor.startup(() => {
   Meteor.publish('allMatches', function() {
   	return Matches.find();
   });
-
   
 });

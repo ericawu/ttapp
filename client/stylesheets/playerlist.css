@@ -1,50 +1,29 @@
-.topPlayer {
-	height: 10%;
+.playerList {
+	height: 100%;
+	width: 100%;
 }
 
-.topPlayer h1 {
-	display: inline-block;
-	float: left;
-	color: white;
-	vertical-align: center;
+.playerList h2 {
 	text-align: center;
-	position: absolute;
+	color: #fff;
+	margin: 0;
+	padding: 10px 0;
+	box-sizing: border-box;
+	border-bottom: 2px solid #666;
 }
 
 .playerBox {
 	display: inline-block;
-	height: 100%;
-	width: 90%;
-	float: right;
-	margin-right: 1%;
-	background-color: white;
-	margin-top: 2%;
+	height: 10%;
+	width: 100%;
+	background-color: #666;
+	padding: 5px 10px;
+	margin-top: 10px;
 }
 
-.playerBox img {
+.playerBox-img {
 	max-height: 100%;
-}
-
-.playerBox p {
-	display: inline;
-}
-
-.playerBoxThumbnail {
-	height: 100%;
-	float: leftx;
-}
-
-.playerBoxInfo {
-	height: 100%;
-	font-size: 2em;
-}
-.playerName {
-	height: 50%;
-}
-.playerName p {
-	vertical-align: center;
-}
-
-.topPlayer h1 {
-	vertical-align: center;
+    border: 2px solid #fff;
+    box-sizing: border-box;
+    margin: 0 10px;
 }

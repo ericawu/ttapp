@@ -20,16 +20,12 @@ h1, h2, p {
 }
 .container-fluid {
 	height: 100%;
+	padding-top: 100px;
+	box-sizing: border-box;
 }
 
 .main-page {
 	height: 100%;
-}
-
-.main-sidemenu {
-	background-color: #043267;
-	height: 100%;
-	min-height: 100%;
 }
 
 .main-center {
@@ -38,16 +34,10 @@ h1, h2, p {
 	min-height: 100%;
 }
 
-
 .main-right {
-	background-color: #043267;
+	background-color: #333;
 	height: 100%;
 	min-height: 100%;
-}
-
-.main-right h1 {
-	text-align: center;
-	color: white;
 }
 
 #main-logo {
