@@ -13,5 +13,4 @@ Meteor.startup(() => {
   Meteor.publish('allMatches', function() {
   	return Matches.find();
   });
-  
 });

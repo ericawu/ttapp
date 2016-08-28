@@ -12,18 +12,32 @@
 	border-bottom: 2px solid #666;
 }
 
-.playerBox {
-	display: inline-block;
+.playerBox-container {
+	min-height: 80px;
 	height: 10%;
 	width: 100%;
+	display: flex;
+	align-items: center;
 	background-color: #666;
 	padding: 5px 10px;
 	margin-top: 10px;
 }
 
+.playerBox-rank {
+	width: 10%;
+	padding-right: 10px;
+}
+
 .playerBox-img {
 	max-height: 100%;
+	width: 30%;
+	height: auto;
     border: 2px solid #fff;
     box-sizing: border-box;
-    margin: 0 10px;
+    /*margin: 0 10px;*/
+}
+
+.playerBox-info {
+	width: 60%;
+	padding-left: 10px;
 }

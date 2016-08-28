@@ -1,11 +1,10 @@
-<template name="playerlist">
-	<!-- for each loop through the players? -->
-</template>
-
-<template name="topPlayersList">
-	<div class="playerBox">
-		{{profile.rank}}
+<template name="playerBox">
+	<div class="playerBox-container">
+		<span class="playerBox-rank">{{profile.rank}}</span>
 		<img src="\nick.jpg" class="playerBox-img">
-		<span class="playerBox-name">{{profile.displayname}}</span>
+		<span class="playerBox-info">
+			<div>{{profile.displayname}}</div>
+			<div>Rating: {{profile.rating}}</div>
+		</span>
 	</div>
 </template>
