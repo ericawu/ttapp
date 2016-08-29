@@ -6,3 +6,33 @@
 	{{/if}}
 </template>
 
+<template name="scoreInput">
+    {{> header}}
+    <div class="container-fluid">
+        <form class="score-form">
+            <div class="match-names">
+                <p>{{name1}}</p>
+                <p>{{name2}}</p>
+            </div>
+
+            {{#each games}}
+                {{> pointInput}}
+            {{/each}}
+
+            <!--TODO: add update functionality-->
+            <div>
+                <button type="submit" class="btn btn-primary" id="btn-done">Done</button>
+                <button type="submit" class="btn btn-primary" id="btn-delete">Delete</button>
+                <button type="submit" class="btn btn-primary" id="btn-add">Add Game</button>
+            </div>
+
+        </form>
+    </div>
+</template>
+
+<template name="pointInput">
+    <div class="point-input">
+        <input class="form-control point-input" name="p1" type="number" min="0" max="99" placeholder="0">
+        <input class="form-control point-input" name="p2" type="number"  min="0" max="99" placeholder="0">
+    </div>
+</template>

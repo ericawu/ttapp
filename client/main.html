@@ -57,7 +57,9 @@
       <div class="col-xs-10 main-center">
         <p>Note: Display the picture slideshow (if possible), recent matches, and if applicable, current matches here. </p>
         <p>FIX THIS UI IT LOOKS AWFUL</p>
-        {{> displayScore}}
+        {{#each recentMatches}}
+          {{> displayScore}}
+        {{/each}}
       </div>
 
       <div class="col-xs-2 main-right">
@@ -74,107 +76,16 @@
 </template>
 
 <template name="displayScore">
-  {{#each recentMatches}}
-    <div class="display-match">
-      <div class=display-names>
-        <p>{{P1}}</p>
-        <p>{{P2}}</p>
-      </div>
-      <div class="display-points">
-        <p>{{G1P1}}</p>
-        <p>{{G1P2}}</p>
-      </div>
-      <div class="display-points">
-        <p>{{G2P1}}</p>
-        <p>{{G2P2}}</p>
-      </div>
-      <div class="display-points">
-        <p>{{G3P1}}</p>
-        <p>{{G3P2}}</p>
-      </div>
-      <div class="display-points">
-        <p>{{G4P1}}</p>
-        <p>{{G4P2}}</p>
-      </div>
-      <div class="display-points">
-        <p>{{G5P1}}</p>
-        <p>{{G5P2}}</p>
-      </div>
-      <div class="display-points">
-        <p>{{G6P1}}</p>
-        <p>{{G6P2}}</p>
-      </div>
-      <div class="display-points">
-        <p>{{G7P1}}</p>
-        <p>{{G7P2}}</p>
-      </div>
+  <div class="display-match">
+    <div class=display-names>
+      <p>{{p1.profile.displayname}}</p>
+      <p>{{p2.profile.displayname}}</p>
     </div>
-  {{/each}}
-</template>
-
-<template name="register">
-  <div class="window-rel">
-    <form class="register">
-      <table>
-        <tr>
-          <td>
-            Email:
-          </td>
-          <td>
-            <input type="email" name="email" required>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            Password:
-          </td>
-          <td>
-            <input type="password" name="password" required>
-          </td>
-        </tr>
-        <tr>
-          <td>
-          </td>
-          <td class="align-right">
-            <input type="submit" value="Register">
-          </td>
-        </tr>
-      </table>
-    </form>
+    {{#each games}}
+      <div class="display-points">
+        <p>{{points1}}</p>
+        <p>{{points2}}</p>
+      </div>
+    {{/each}}
   </div>
 </template>
-
-<template name="login">
-  <div class="window-rel">
-    <div class="window-rel-bg"></div>
-    <form class="login">
-      <table>
-        <tr>
-          <td>
-            Email:
-          </td>
-          <td>
-            <input type="email" name="email" required>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            Password:
-          </td>
-          <td>
-            <input type="password" name="password" required>
-          </td>
-        </tr>
-        <tr>
-          <td>
-          </td>
-          <td class="align-right">
-            <input type="submit" value="Login">
-          </td>
-        </tr>
-      </table>
-    </form>
-  </div>
-</template>
-
-

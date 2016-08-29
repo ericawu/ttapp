@@ -49,6 +49,9 @@ Template.header.events({
 
 /********** Main Page **************/
 Template.main.helpers({
+	recentMatches: function() {
+		return Matches.find({}, {sort: {Date: -1}});
+	},
 	topPlayers: function() {		
 		return Meteor.users.find({}, {sort: {"profile.rating": -1}}).map(function(player, index) {
 			player.profile.rank = index+1;
@@ -58,9 +61,6 @@ Template.main.helpers({
 });
 
 Template.displayScore.helpers({
-	recentMatches: function() {
-		return Matches.find({}, {sort: {Date: -1}});
-	}
 });
 
 Template.register.events({
@@ -110,7 +110,6 @@ Template.register.onDestroyed(function(){
 	Session.set('createaccount', false);
 });
 
-
 Template.login.onCreated(function(){
 	console.log("The 'login' template was just created.");
 });
@@ -155,52 +154,33 @@ Meteor.subscribe('allUsers');
 /********* Profile Page *********/
 Template.profileMain.events({
 	'submit .start-match': function(e) {
-		console.log("submitted");
-
-		var p2 = e.target.opponent.value;
-		console.log(p2);
-		var x = Meteor.users.find({"profile.rating": 200});
-		console.log(x);
+		var p2 = Meteor.users.findOne({'profile.displayname': e.target.opponent.value});
+		if (!p2) {
+			alert("No player with that name found");
+			return false;
+		}
 		var id = Matches.insert({
-			P1: Meteor.user().profile.displayname,
-			P2: p2,
-			Date: new Date(),
-			completed: "false",	
-			G1P1: "0",
-			G1P2: "0",
-			G2P1: "",
-			G2P2: "",
-			G3P1: "",
-			G3P2: "",
-			G4P1: "",
-			G4P2: "",
-			G5P1: "",
-			G5P2: "",
-			G6P1: "",
-			G6P2: "",
-			G7P1: "",
-			G7P2: ""		
+			p1: Meteor.user(),
+			p2: p2,
+			date: new Date(),
+			completed: "false",
+			games: [{points1: 0, points2: 0, num: 1}],
 		});
-		Session.set('currentMatch', id);
-		Router.go('newmatch');	
+		Session.set('p2', p2);
+		Session.set('currentMatchId', id);
+		Router.go('newmatch');
 		return false;
 	}
 });
 
 Template.profileHeader.helpers({
 	editClicked: function() {
-		if (Session.get('editButtonClicked')) {
-			return true;
-		}
-		else {
-			return false;
-		}
+		return Session.get('editButtonClicked');
 	}
 });
 
 Template.profileHeader.events({
-	'click .editbutton2': function(e) {
-		console.log("hiiiii");
+	'click .editbutton': function(e) {
 		var flag = Session.set('editButtonClicked', true);		
 	},
 	'submit .edit-display-name': function(e) {
@@ -211,84 +191,43 @@ Template.profileHeader.events({
 	}
 });
 
+Template.scoreInput.helpers({
+	name1: function() {
+		return Meteor.user().profile.displayname;
+	},
+	name2: function() {
+		return Session.get('p2').profile.displayname;
+	},
+	games: function() {
+		return  Matches.findOne({_id: Session.get('currentMatchId')}).games;
+	}
+});
+
 Template.scoreInput.events({
 	'click button[type="submit"]': function(e) {
-		console.log("hiiiii");
-		if ($(e.target).prop("id") == "btn-submit") {			
-			var tg1 = e.target.form.tg1.value;
-			var bg1 = e.target.form.bg1.value;
-			var tg2 = e.target.form.tg2.value;
-			var bg2 = e.target.form.bg2.value;
-			var tg3 = e.target.form.tg3.value;
-			var bg3 = e.target.form.bg3.value;
-			var tg4 = e.target.form.tg4.value;
-			var bg4 = e.target.form.bg4.value;
-			var tg5 = e.target.form.tg5.value;
-			var bg5 = e.target.form.bg5.value;
-			var tg6 = e.target.form.tg6.value;
-			var bg6 = e.target.form.bg6.value;
-			var tg7 = e.target.form.tg7.value;
-			var bg7 = e.target.form.bg7.value;
-			Matches.update({_id: Session.get('currentMatch')}, {$set:{
-				Date: new Date(),
-				completed: "true",
-				G1P1: tg1,
-				G1P2: bg1,
-				G2P1: tg2,
-				G2P2: bg2,
-				G3P1: tg3,
-				G3P2: bg3,
-				G4P1: tg4,
-				G4P2: bg4,
-				G5P1: tg5,
-				G5P2: bg5,
-				G6P1: tg6,
-				G6P2: bg6,
-				G7P1: tg7,
-				G7P2: bg7
-			}});
-			console.log("submitted");
-			Router.go('home');
-		}
-		else {
-			var tg1 = e.target.form.tg1.value;
-			var bg1 = e.target.form.bg1.value;
-			var tg2 = e.target.form.tg2.value;
-			var bg2 = e.target.form.bg2.value;
-			var tg3 = e.target.form.tg3.value;
-			var bg3 = e.target.form.bg3.value;
-			var tg4 = e.target.form.tg4.value;
-			var bg4 = e.target.form.bg4.value;
-			var tg5 = e.target.form.tg5.value;
-			var bg5 = e.target.form.bg5.value;
-			var tg6 = e.target.form.tg6.value;
-			var bg6 = e.target.form.bg6.value;
-			var tg7 = e.target.form.tg7.value;
-			var bg7 = e.target.form.bg7.value;
-			Matches.update({_id: Session.get('currentMatch')}, {$set:{
-				Date: new Date(),
-				completed: "true",
-				G1P1: tg1,
-				G1P2: bg1,
-				G2P1: tg2,
-				G2P2: bg2,
-				G3P1: tg3,
-				G3P2: bg3,
-				G4P1: tg4,
-				G4P2: bg4,
-				G5P1: tg5,
-				G5P2: bg5,
-				G6P1: tg6,
-				G6P2: bg6,
-				G7P1: tg7,
-				G7P2: bg7
-			}});
-			console.log("updated db");
+		if (e.target.id == "btn-done") {
+			Matches.update({_id: Session.get('currentMatchId')}, {$set: {completed: true}});
+			Router.go('profile');
+		} else if (e.target.id == "btn-delete") {
+			Matches.remove({_id: Session.get('currentMatchId')});
+			Router.go('profile');
+		} else if (e.target.id == "btn-add") {
+			var num = Matches.findOne({_id: Session.get('currentMatchId')}).games.length + 1;
+			Matches.upsert({_id: Session.get('currentMatchId')}, {$push: {games: {points1: 0, points2: 0, num: num}}});
 		}
 		return false;
 	}
-
 });
 
+Template.pointInput.events({
+	'change .point-input': function(e) {
+		var gameNum = Template.currentData().num;
+		if (e.target.name == "p1") {
+			Meteor.call('matches.update', Session.get('currentMatchId'), gameNum, 1, e.target.value);
+		} else if (e.target.name == "p2") {
+			Meteor.call('matches.update', Session.get('currentMatchId'), gameNum, 2, e.target.value);
+		}
+	}
+});
 
 
