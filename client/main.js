@@ -23,6 +23,7 @@ Template.header.helpers({
 Template.header.events({
 	'click .logout-item': function(event){
 		event.preventDefault();
+
 		Meteor.logout();
 	},
 	'click .login-item': function(event) {
@@ -207,6 +208,7 @@ Template.scoreInput.events({
 	'click button[type="submit"]': function(e) {
 		if (e.target.id == "btn-done") {
 			Matches.update({_id: Session.get('currentMatchId')}, {$set: {completed: true}});
+			Meteor.call('calculate-rating', Session.get('currentMatchId'));
 			Router.go('profile');
 		} else if (e.target.id == "btn-delete") {
 			Matches.remove({_id: Session.get('currentMatchId')});
