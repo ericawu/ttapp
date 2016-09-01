@@ -57,6 +57,10 @@
       <div class="col-xs-10 main-center">
         <p>Note: Display the picture slideshow (if possible), recent matches, and if applicable, current matches here. </p>
         <p>FIX THIS UI IT LOOKS AWFUL</p>
+        <h3> Current Matches </h3>
+        {{#each currentMatches}}
+          {{> displayScore}}
+        {{/each}}
         <h3> Recent Matches </h3>
         {{#each recentMatches}}
           {{> displayScore}}
