@@ -2,6 +2,7 @@ import { Meteor } from 'meteor/meteor';
 
 Meteor.methods({
     'matches.update': function(matchId, gameNum, playerNum, value) {
+        value = value ? value : 0;
         if (playerNum == 1) {
             Matches.update(
                 {_id: matchId, "games.num": gameNum}, 

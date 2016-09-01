@@ -12,15 +12,16 @@
 				<p>Display the picture slideshow (if possible), recent matches, and if applicable, current matches here. Extra text to see how big it looks.</p>
 				
 				<div class="form-group row">
-					<label for="example-text-input" class="col-xs-1 col-form-label">Opponent Name</label>
-
 					<form class="start-match">
 						<div class="col-xs-5">
-							<input class="form-control" name="opponent" type="text" value="" id="example-text-input">
+							<input id="opponent-searchbar" class="form-control" name="opponent" type="text" value="{{oppEntry}}" autocomplete="off" placeholder="Opponent name or email">
 						</div>
 						<button type="submit" class="btn btn-primary">Start Match</button>
 					</form>
-				</div>	
+				</div>
+				{{#each opponentMatch}}
+					{{> opponentEntry}}
+				{{/each}}
 			</div>
 
 		</div>
@@ -55,3 +56,8 @@
 	</div>
 </template>
 
+<template name="opponentEntry">
+	<div class="opponentEntry" email={{email}}>
+		{{profile.displayname}} ({{email}})
+	</div>
+</template>

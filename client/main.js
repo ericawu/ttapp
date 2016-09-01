@@ -153,24 +153,74 @@ Template.login.events({
 Meteor.subscribe('allUsers');
 
 /********* Profile Page *********/
+Template.profileMain.helpers({
+	'opponentMatch': function() {
+	    var key = Session.get('searchKey');
+	    if (key == null || key == "") {
+	      return;
+	    }
+	    var query = new RegExp("^" + key, 'i');
+	    var opponents = Meteor.users.find(
+      		{$and: [
+      			{_id: {$ne: Meteor.userId()}},
+  				{'profile.displayname': query}
+      		]},
+      		{sort: {'profile.displayname': 1}}).map(function(opp) {
+      			opp.email = opp.emails[0].address;
+      			return opp;
+      		});
+	    var query2 = new RegExp(key, 'i');
+	    var opponents = opponents.concat(Meteor.users.find(
+      		{$and: [
+      			{_id: {$ne: Meteor.userId()}},
+  				{$and: [
+      				{'profile.displayname': {$not: query}},
+	      			{$or: [
+	      				{'profile.displayname': query2},
+	      				{'emails.address': query2}
+	      			]}
+      			]}
+      		]},
+      		{sort: {'profile.displayname': 1}}).map(function(opp) {
+      			opp.email = opp.emails[0].address;
+      			return opp;
+      		}));
+	    return opponents;
+	},
+	'oppEntry': function() {
+		var opp = Session.get('opponent');
+		return opp.profile.displayname + " (" + opp.emails[0].address + ")";
+	},
+});
+
 Template.profileMain.events({
+	'keyup #opponent-searchbar': function(e) {
+    	Session.set('searchKey', e.target.value);
+		Session.set('opponent', undefined);
+	},
 	'submit .start-match': function(e) {
-		var p2 = Meteor.users.findOne({'profile.displayname': e.target.opponent.value});
-		if (!p2) {
-			alert("No player with that name found");
+		var opp = Session.get('opponent');
+		if (!opp) {
+			alert("No player selected");
 			return false;
 		}
 		var id = Matches.insert({
 			p1: Meteor.user(),
-			p2: p2,
+			p2: opp,
 			date: new Date(),
 			completed: "false",
 			games: [{points1: 0, points2: 0, num: 1}],
 		});
-		Session.set('p2', p2);
 		Session.set('currentMatchId', id);
 		Router.go('newmatch');
 		return false;
+	}
+});
+
+Template.opponentEntry.events({
+	'click .opponentEntry': function(e) {
+		var opp = Meteor.users.findOne({'emails.address': e.target.getAttribute('email')});
+		Session.set('opponent', opp);
 	}
 });
 
@@ -185,7 +235,6 @@ Template.profileHeader.events({
 		var flag = Session.set('editButtonClicked', true);		
 	},
 	'submit .edit-display-name': function(e) {
-		console.log(e.target.name.value);
 		Session.set('editButtonClicked', false);
 		Meteor.users.update(Meteor.userId(), {$set:{"profile.displayname": e.target.name.value}});
 		return false;
@@ -197,7 +246,7 @@ Template.scoreInput.helpers({
 		return Meteor.user().profile.displayname;
 	},
 	name2: function() {
-		return Session.get('p2').profile.displayname;
+		return Session.get('opponent').profile.displayname;
 	},
 	games: function() {
 		return  Matches.findOne({_id: Session.get('currentMatchId')}).games;
