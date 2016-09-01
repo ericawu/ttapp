@@ -50,8 +50,11 @@ Template.header.events({
 
 /********** Main Page **************/
 Template.main.helpers({
+	currentMatches: function() {
+		return Matches.find({completed: false}, {sort: {date: -1}});
+	},
 	recentMatches: function() {
-		return Matches.find({}, {sort: {Date: -1}});
+		return Matches.find({completed: true}, {sort: {date: -1}});
 	},
 	topPlayers: function() {		
 		return Meteor.users.find({}, {sort: {"profile.rating": -1}}).map(function(player, index) {
@@ -164,7 +167,7 @@ Template.profileMain.events({
 			p1: Meteor.user(),
 			p2: p2,
 			date: new Date(),
-			completed: "false",
+			completed: false,
 			games: [{points1: 0, points2: 0, num: 1}],
 		});
 		Session.set('p2', p2);
