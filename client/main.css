@@ -7,21 +7,11 @@ h1, h2, p {
 	font-family: Segoe Ui;
 }
 
-.sidemenuitem {
-	color: white;
-	font-size: 2em;
-	text-align: center;
-	display: block;
-	width: 100%;
-	margin-top: 1em;
-}
-#topitem {
-	margin-top: 2em;
-}
 .container-fluid {
 	height: 100%;
 	padding-top: 100px;
 	box-sizing: border-box;
+	overflow-y: hidden;
 }
 
 .main-page {
@@ -44,8 +34,19 @@ h1, h2, p {
 	margin-top: 10%;
 }
 
+.header-nav-item {
+	background-color: transparent;
+}
+.btn-lnk:hover {
+	color: #ffffff;
+}
+.recent-matches {
+	overflow-y: hidden;
+}
+
 .display-names {
 	height: 100%;
+	width: 8em;
 	display: inline-block;
 	margin-bottom: 1em;
 }
