@@ -85,8 +85,10 @@
 <template name="displayScore">
   <div class="display-match">
     <div class="display-match-playerbox">
-      <div class="display-match-playerbox-pic"></div>
-      <div class="display-match-playerbox-name">{{p1.profile.displayname}}</div>
+      {{#with playerFromId id1}}
+        <div class="display-match-playerbox-pic"></div>
+        <div class="display-match-playerbox-name">{{profile.displayname}}</div>
+      {{/with}}
     </div>
     <div class="display-match-games">
       <h5>Bo{{boNum}}</h5>
@@ -98,8 +100,10 @@
       </div>
     </div>
     <div class="display-match-playerbox">
-      <div class="display-match-playerbox-pic"></div>
-      <div class="display-match-playerbox-name">{{p2.profile.displayname}}</div>
+      {{#with playerFromId id2}}
+        <div class="display-match-playerbox-pic"></div>
+        <div class="display-match-playerbox-name">{{profile.displayname}}</div>
+      {{/with}}
     </div>
   </div>
 </template>
@@ -110,18 +114,3 @@
     <p class="{{#if isGreater points2 points1}}bold{{/if}}">{{points2}}</p>
   </div>
 </template>
-
-<!-- <template name="displayScore">
-  <div class="display-match">
-    <div class=display-names>
-      <p>{{p1.profile.displayname}}</p>
-      <p>{{p2.profile.displayname}}</p>
-    </div>
-    {{#each games}}
-      <div class="display-points">
-        <p>{{points1}}</p>
-        <p>{{points2}}</p>
-      </div>
-    {{/each}}
-  </div>
-</template> -->

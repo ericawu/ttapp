@@ -64,12 +64,19 @@ Template.main.helpers({
 	}
 });
 
+function greater(x, y) {
+	return parseInt(x) > parseInt(y);
+}
+
 Template.displayScore.helpers({
+	'playerFromId': function(id) {
+		return Meteor.users.findOne({_id: id});
+	},
 	'games1': function() {
 		var games = Template.currentData().games;
 		var counter = 0;
 		for (var i = 0; i < games.length; i++) {
-			if (games[i].points1 > games[i].points2) {
+			if (greater(games[i].points1, games[i].points2)) {
 				counter++;
 			}
 		}
@@ -79,7 +86,7 @@ Template.displayScore.helpers({
 		var games = Template.currentData().games;
 		var counter = 0;
 		for (var i = 0; i < games.length; i++) {
-			if (games[i].points2 > games[i].points1) {
+			if (greater(games[i].points2, games[i].points1)) {
 				counter++;
 			}
 		}
@@ -90,7 +97,7 @@ Template.displayScore.helpers({
 		var counter1 = 0;
 		var counter2 = 0;
 		for (var i = 0; i < games.length; i++) {
-			if (games[i].points2 > games[i].points1) {
+			if (greater(games[i].points1, games[i].points2)) {
 				counter1++;
 			} else {
 				counter2++;
@@ -102,7 +109,7 @@ Template.displayScore.helpers({
 
 Template.displayPoints.helpers({
 	'isGreater': function(x, y) {
-		return x > y;
+		return greater(x, y);
 	}
 });
 
@@ -198,6 +205,8 @@ Meteor.subscribe('allUsers');
 Template.profileMain.onCreated(function() {
 	Session.set('searchKey', undefined);
 	Session.set('opponent', undefined);
+	Session.set('oppSelected', false);
+	Session.set('searchLength', 0);
 	Session.set('oppNum', 0);
 });
 
@@ -244,21 +253,28 @@ Template.profileMain.helpers({
 		return opp ? opp.profile.displayname + " (" + opp.emails[0].address + ")" : "";
 	},
 	'showDropdown': function() {
-		if (Session.get('searchLength') > 0) {
+		if (!Session.get('oppSelected') && Session.get('searchLength') > 0) {
 			return true;
-		}
-		else {
+		} else {
 			return false;
 		}
 	}
 });
 
 Template.profileMain.events({
+	'click #opponent-searchbar': function(e) {
+		if (Session.get('oppSelected')) {
+	    	Session.set('searchKey', undefined);
+			Session.set('opponent', undefined);
+			Session.set('searchLength', 0);
+			Session.set('oppSelected', false);
+		}
+	},
 	'keyup #opponent-searchbar': function(e) {
     	Session.set('searchKey', e.target.value);
 		Session.set('opponent', undefined);
 		Session.set('searchLength', e.target.value.length);
-		console.log(Session.get('searchLength'));
+		Session.set('oppSelected', false);
 	},
 	'submit .start-match': function(e) {
 		var opp = Session.get('opponent');
@@ -267,8 +283,8 @@ Template.profileMain.events({
 			return false;
 		}
 		var id = Matches.insert({
-			p1: Meteor.user(),
-			p2: opp,
+			id1: Meteor.userId(),
+			id2: opp._id,
 			date: new Date(),
 			completed: false,
 			games: [{points1: 0, points2: 0, num: 1}],
@@ -283,6 +299,7 @@ Template.opponentEntry.events({
 	'click .opponentEntry': function(e) {
 		var opp = Meteor.users.findOne({'emails.address': e.target.getAttribute('email')});
 		Session.set('opponent', opp);
+		Session.set('oppSelected', true);
 	}
 });
 

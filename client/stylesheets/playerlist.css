@@ -40,20 +40,3 @@
 	width: 60%;
 	padding-left: 10px;
 }
-
-#opponent-searchbar {
-	border-radius: 0;
-}
-
-#opponent-searchbar-dropdown {
-	position: static;
-	width: 100%;
-	margin: -1px 0 0 0;
-	border-radius: 0;
-	display: block;
-}
-
-.dropdown-entry {
-	padding: 3px 12px;
-	box-sizing: border-box;
-}
