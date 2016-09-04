@@ -40,11 +40,11 @@
         <i>T<span>able </span>T<span>ennis </span>A<span>nd </span>P<span>ing </span>P<span>ong</span></i>
       </div>
       <div class="header-nav">
-          <a class="header-nav-item first" href="{{pathFor route='home'}}">Home</a>
-          <a class="header-nav-item">Players</a>
-          <a class="header-nav-item">Matches</a>
+          <button type="button" class="btn btn-lnk header-nav-item btn-home">Home</button>
+          <button type="button" class="btn btn-lnk header-nav-item btn-players">Players</button>
+          <button type="button" class="btn btn-lnk header-nav-item btn-matches">Matches</button>
           {{#if currentUser}}
-              <a class="header-nav-item" href="{{pathFor route='profile'}}"> Profile</a>
+              <button type="button" class="btn btn-lnk header-nav-item btn-profile"> Profile</button>
           {{/if}}
       </div>
     </div>
@@ -55,16 +55,18 @@
   <div class="container-fluid">
     <div class="row main-page">
       <div class="col-xs-10 main-center">
-        <p>Note: Display the picture slideshow (if possible), recent matches, and if applicable, current matches here. </p>
+        <p>Note: hiding overflow makes sense for a static display but is weird on my comp when i resize the window. if this becomes a public site it's not the best way to do it but if it's just going to be displayed on a surface hub it could work. </p>
         <p>FIX THIS UI IT LOOKS AWFUL</p>
         <h3> Current Matches </h3>
         {{#each currentMatches}}
           {{> displayScore}}
         {{/each}}
+        <div class="recent-matches">
         <h3> Recent Matches </h3>
         {{#each recentMatches}}
           {{> displayScore}}
         {{/each}}
+        </div>
       </div>
 
       <div class="col-xs-2 main-right">

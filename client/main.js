@@ -45,7 +45,15 @@ Template.header.events({
 		else {
 			Session.set('createaccount', true);
 		} 
+	},
+	'click .btn-home': function() {
+		Router.go('home');
+	},
+	'click .btn-profile': function() {
+		console.log("profile");
+		Router.go('profile');
 	}
+
 });
 
 /********** Main Page **************/
