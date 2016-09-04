@@ -23,8 +23,8 @@ Template.header.helpers({
 Template.header.events({
 	'click .logout-item': function(event){
 		event.preventDefault();
-
 		Meteor.logout();
+		Router.go('home');
 	},
 	'click .login-item': function(event) {
 		var flag = Session.get('login');
@@ -52,6 +52,9 @@ Template.header.events({
 	'click .btn-profile': function() {
 		console.log("profile");
 		Router.go('profile');
+	},
+	'click .btn-players': function() {
+		Router.go('players');
 	}
 
 });
@@ -303,5 +306,14 @@ Template.pointInput.events({
 		}
 	}
 });
+
+Template.allPlayers.helpers({
+	allPlayers: function() {		
+		return Meteor.users.find({}, {sort: {"profile.rating": -1}}).map(function(player, index) {
+			player.profile.rank = index+1;
+			return player;
+		});
+	}
+})
 
 

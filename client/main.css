@@ -1,6 +1,7 @@
 /* CSS declarations go here */
 html, body {
 	height: 100%;
+	font-family: Segoe Ui;
 }
 
 h1, h2, p {
@@ -12,6 +13,7 @@ h1, h2, p {
 	padding-top: 100px;
 	box-sizing: border-box;
 	overflow-y: hidden;
+	font-family: Segoe Ui;
 }
 
 .main-page {

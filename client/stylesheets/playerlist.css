@@ -18,9 +18,10 @@
 	width: 100%;
 	display: flex;
 	align-items: center;
-	background-color: #666;
+	background-color: white;
 	padding: 5px 10px;
 	margin-top: 10px;
+	border-radius: 25%;
 }
 
 .playerBox-rank {
