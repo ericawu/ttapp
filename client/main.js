@@ -156,6 +156,11 @@ Template.login.events({
 Meteor.subscribe('allUsers');
 
 /********* Profile Page *********/
+Template.profileMain.onCreated(function() {
+	Session.set('searchKey', undefined);
+	Session.set('opponent', undefined);
+});
+
 Template.profileMain.helpers({
 	'opponentMatch': function() {
 	    var key = Session.get('searchKey');
