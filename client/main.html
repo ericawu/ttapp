@@ -40,11 +40,11 @@
         <i>T<span>able </span>T<span>ennis </span>A<span>nd </span>P<span>ing </span>P<span>ong</span></i>
       </div>
       <div class="header-nav">
-          <button type="button" class="btn btn-lnk header-nav-item btn-home">Home</button>
-          <button type="button" class="btn btn-lnk header-nav-item btn-players">Players</button>
-          <button type="button" class="btn btn-lnk header-nav-item btn-matches">Matches</button>
+          <a class="header-nav-item first" href="{{pathFor route='home'}}">Home</a>
+          <a class="header-nav-item">Players</a>
+          <a class="header-nav-item">Matches</a>
           {{#if currentUser}}
-              <button type="button" class="btn btn-lnk header-nav-item btn-profile"> Profile</button>
+              <a class="header-nav-item" href="{{pathFor route='profile'}}"> Profile</a>
           {{/if}}
       </div>
     </div>
@@ -62,10 +62,10 @@
           {{> displayScore}}
         {{/each}}
         <div class="recent-matches">
-        <h3> Recent Matches </h3>
-        {{#each recentMatches}}
-          {{> displayScore}}
-        {{/each}}
+          <h3> Recent Matches </h3>
+          {{#each recentMatches}}
+            {{> displayScore}}
+          {{/each}}
         </div>
       </div>
 

@@ -45,15 +45,7 @@ Template.header.events({
 		else {
 			Session.set('createaccount', true);
 		} 
-	},
-	'click .btn-home': function() {
-		Router.go('home');
-	},
-	'click .btn-profile': function() {
-		console.log("profile");
-		Router.go('profile');
 	}
-
 });
 
 /********** Main Page **************/
@@ -205,7 +197,7 @@ Template.profileMain.helpers({
 	},
 	'oppEntry': function() {
 		var opp = Session.get('opponent');
-		return opp.profile.displayname + " (" + opp.emails[0].address + ")";
+		return opp ? opp.profile.displayname + " (" + opp.emails[0].address + ")" : "";
 	},
 });
 
