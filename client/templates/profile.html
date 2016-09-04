@@ -1,5 +1,5 @@
 <template name="Profile">
-  	{{> header}}
+	{{> header}}
 	{{> profileMain}}
 </template>
 
@@ -14,16 +14,21 @@
 				<div class="form-group row">
 					<form class="start-match">
 						<div class="col-xs-5">
-							<input id="opponent-searchbar" class="form-control" name="opponent" type="text" value="{{oppEntry}}" autocomplete="off" placeholder="Opponent name or email">
+							<input id="opponent-searchbar" class="form-control" name="opponent" type="text" data-toggle="dropdown" value="{{oppEntry}}" autocomplete="off" placeholder="Opponent name or email">
+
+							{{#if showDropdown}}
+							<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+								{{#each opponentMatch}}
+									{{> opponentEntry}}
+								{{/each}}
+							</ul>
+							{{/if}}
+
 						</div>
 						<button type="submit" class="btn btn-primary">Start Match</button>
 					</form>
-				</div>
-				{{#each opponentMatch}}
-					{{> opponentEntry}}
-				{{/each}}
+				</div>				
 			</div>
-
 		</div>
 	</div>
 </template>
@@ -37,17 +42,19 @@
 			<div class="profile-header-info">
 				<div class="namedisplay">
 					{{#if editClicked}}
-						<form class="edit-display-name">
-							<div class="col-xs-5">
-								<input class="form-control" name="name" type="text" value="" id="example-text-input">
-							</div>
-							<button type="submit" class="btn btn-primary">Update Name</button>
-						</form>
+					<form class="edit-display-name">
+						<div class="col-xs-5">
+							<input class="form-control" name="name" type="text" value="" id="example-text-input">
+						</div>
+						<button type="submit" class="btn btn-primary">Update Name</button>
+					</form>
 					{{else}}
-						<h1 class=profile-name>{{currentUser.profile.displayname}}</h1>
-						<button type="button" class="btn btn-default editbutton" aria-label="Left Align">
-							<span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit
-						</button>
+					<h1 class=profile-name>{{currentUser.profile.displayname}}</h1>
+					<button type="button" class="btn btn-default editbutton" aria-label="Left Align">
+
+						<!-- Why is this edit button not aligning D: -->
+						<span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit
+					</button>
 					{{/if}}
 				</div>
 				<h1 class=profile-rating>Rating: {{currentUser.profile.rating}}</h1> 
@@ -57,7 +64,5 @@
 </template>
 
 <template name="opponentEntry">
-	<div class="opponentEntry" email={{email}}>
-		{{profile.displayname}} ({{email}})
-	</div>
+		<li><a href="#" email={{email}} class="opponentEntry">{{profile.displayname}} ({{email}})</a></li>
 </template>

@@ -202,12 +202,22 @@ Template.profileMain.helpers({
 		var opp = Session.get('opponent');
 		return opp.profile.displayname + " (" + opp.emails[0].address + ")";
 	},
+	'showDropdown': function() {
+		if (Session.get('searchLength') > 0) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
 });
 
 Template.profileMain.events({
 	'keyup #opponent-searchbar': function(e) {
     	Session.set('searchKey', e.target.value);
 		Session.set('opponent', undefined);
+		Session.set('searchLength', e.target.value.length);
+		console.log(Session.get('searchLength'));
 	},
 	'submit .start-match': function(e) {
 		var opp = Session.get('opponent');
@@ -235,10 +245,12 @@ Template.opponentEntry.events({
 	}
 });
 
+
 Template.profileHeader.helpers({
 	editClicked: function() {
 		return Session.get('editButtonClicked');
-	}
+	},
+
 });
 
 Template.profileHeader.events({
