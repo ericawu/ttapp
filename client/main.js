@@ -23,8 +23,8 @@ Template.header.helpers({
 Template.header.events({
 	'click .logout-item': function(event){
 		event.preventDefault();
-
 		Meteor.logout();
+		Router.go('home');
 	},
 	'click .login-item': function(event) {
 		var flag = Session.get('login');
@@ -44,7 +44,7 @@ Template.header.events({
 		}
 		else {
 			Session.set('createaccount', true);
-		} 
+		}
 	}
 });
 
@@ -65,6 +65,45 @@ Template.main.helpers({
 });
 
 Template.displayScore.helpers({
+	'games1': function() {
+		var games = Template.currentData().games;
+		var counter = 0;
+		for (var i = 0; i < games.length; i++) {
+			if (games[i].points1 > games[i].points2) {
+				counter++;
+			}
+		}
+		return counter;
+	},
+	'games2': function() {
+		var games = Template.currentData().games;
+		var counter = 0;
+		for (var i = 0; i < games.length; i++) {
+			if (games[i].points2 > games[i].points1) {
+				counter++;
+			}
+		}
+		return counter;
+	},
+	'boNum': function() {
+		var games = Template.currentData().games;
+		var counter1 = 0;
+		var counter2 = 0;
+		for (var i = 0; i < games.length; i++) {
+			if (games[i].points2 > games[i].points1) {
+				counter1++;
+			} else {
+				counter2++;
+			}
+		}
+		return counter1 > counter2 ? counter1 * 2 - 1 : counter2 * 2 - 1;
+	}
+});
+
+Template.displayPoints.helpers({
+	'isGreater': function(x, y) {
+		return x > y;
+	}
 });
 
 Template.register.events({
@@ -159,6 +198,7 @@ Meteor.subscribe('allUsers');
 Template.profileMain.onCreated(function() {
 	Session.set('searchKey', undefined);
 	Session.set('opponent', undefined);
+	Session.set('oppNum', 0);
 });
 
 Template.profileMain.helpers({
@@ -193,18 +233,32 @@ Template.profileMain.helpers({
       			opp.email = opp.emails[0].address;
       			return opp;
       		}));
+		Session.set('oppNum', opponents.length);
 	    return opponents;
+	},
+	'oppNum': function() {
+		return Session.get('oppNum');
 	},
 	'oppEntry': function() {
 		var opp = Session.get('opponent');
 		return opp ? opp.profile.displayname + " (" + opp.emails[0].address + ")" : "";
 	},
+	'showDropdown': function() {
+		if (Session.get('searchLength') > 0) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
 });
 
 Template.profileMain.events({
 	'keyup #opponent-searchbar': function(e) {
     	Session.set('searchKey', e.target.value);
 		Session.set('opponent', undefined);
+		Session.set('searchLength', e.target.value.length);
+		console.log(Session.get('searchLength'));
 	},
 	'submit .start-match': function(e) {
 		var opp = Session.get('opponent');
@@ -232,10 +286,12 @@ Template.opponentEntry.events({
 	}
 });
 
+
 Template.profileHeader.helpers({
 	editClicked: function() {
 		return Session.get('editButtonClicked');
-	}
+	},
+
 });
 
 Template.profileHeader.events({
@@ -288,5 +344,14 @@ Template.pointInput.events({
 		}
 	}
 });
+
+Template.allPlayers.helpers({
+	allPlayers: function() {		
+		return Meteor.users.find({}, {sort: {"profile.rating": -1}}).map(function(player, index) {
+			player.profile.rank = index+1;
+			return player;
+		});
+	}
+})
 
 

@@ -16,3 +16,8 @@ Router.route('/newmatch', {
 	template: 'newMatch',
 	name: 'newmatch'
 });
+
+Router.route('/players', {
+	template: 'allPlayers', 
+	name: 'players'
+});

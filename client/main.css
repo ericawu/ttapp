@@ -1,10 +1,11 @@
 /* CSS declarations go here */
 html, body {
 	height: 100%;
+	/*font-family: Segoe Ui;*/
 }
 
 h1, h2, p {
-	font-family: Segoe Ui;
+	/*font-family: Segoe Ui;*/
 }
 
 .container-fluid {
@@ -12,6 +13,7 @@ h1, h2, p {
 	padding-top: 100px;
 	box-sizing: border-box;
 	overflow-y: hidden;
+	font-family: Segoe Ui;
 }
 
 .main-page {
@@ -38,26 +40,6 @@ h1, h2, p {
 	overflow-y: hidden;
 }
 
-.display-names {
-	height: 100%;
-	width: 8em;
-	display: inline-block;
-	margin-bottom: 1em;
-}
-.display-names p {
-	font-weight: bold;	
-}
-
-.display-points {
-	height: 100%;
-	width: 3em;
-	display: inline-block;
-	margin-bottom: 1em;
-}
-
-.display-points p {
-	display: inline-block;
-	width: 100%;
-	margin-left: 1em;
-	text-align: center;
+.bold {
+	font-weight: bold;
 }

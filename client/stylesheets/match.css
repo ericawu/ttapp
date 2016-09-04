@@ -1,0 +1,82 @@
+.display-match {
+    max-width: 350px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    padding: 10px;
+    background: #666;
+    border: 1px solid #333;
+    color: #000;
+    margin-bottom: 20px;
+}
+
+.display-match-playerbox {
+    width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.display-match-playerbox-pic {
+    height: 70px;
+    width: 70px;
+    margin-bottom: 5px;
+    background: url('/nick.jpg') center no-repeat;
+    background-size: cover;
+    border: 2px solid #fff;
+    box-sizing: border-box;
+}
+
+.display-match-games {
+    width: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.display-match-games h2,
+.display-match-games h5 {
+    text-align: center;
+    margin: 0;
+}
+
+.display-match-games-breakdown{
+    margin-top: 5px;
+    font-size: 0.8em;
+}
+
+.display-match-points {
+    display: inline-block;
+    margin: 0 3px;
+}
+
+.display-match-points p {
+    margin: 0;
+}
+
+/*.display-names {
+    height: 100%;
+    width: 8em;
+    display: inline-block;
+    margin-bottom: 1em;
+}
+.display-names p {
+    font-weight: bold;  
+}
+
+.display-points {
+    height: 100%;
+    width: 3em;
+    display: inline-block;
+    margin-bottom: 1em;
+}
+
+.display-points p {
+    display: inline-block;
+    width: 100%;
+    margin-left: 1em;
+    text-align: center;
+}*/
