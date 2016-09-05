@@ -31,6 +31,11 @@ hr {
     justify-content: center;
 }
 
+.flex-row {
+    display: flex;
+    justify-content: center;
+}
+
 .main-page {
 	height: 100%;
 	background-color: #111;
@@ -67,24 +72,28 @@ hr {
 
 .container-matches {
 	width: 50%;
-	height: 37%;
+	height: 48%;
 	box-sizing: border-box;
-	padding: 0 15px 15px 15px;
 	background-color: rgba(0, 0, 0, 0.25);
 }
 
-.container-matches.title {
-	padding: 15px 15px 0 15px;
-	height: 9%;
+.container-matches.top {
+    margin-bottom: 10px;
 }
 
-.container-matches.top {
-	margin-bottom: 15px;
+.container-matches-header {
+    padding: 10px 10px 0 10px;
+    height: 15%;
 }
 
 .container-matches-title {
-	font-size: 1.5em;
-	margin-left: 10px;
+    font-size: 1.3em;
+    margin-left: 10px;
+}
+
+.container-matches-body {
+    padding: 0 10px 10px 10px;
+    height: 85%;
 }
 
 .container-matches-list {
