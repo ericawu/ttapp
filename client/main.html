@@ -3,54 +3,6 @@
   {{> main}}
 </template>
 
-<template name="header">
-  <div class="header">
-    <div class="header-bg">
-      <img src="\RyderCupLogo.png" class="header-logo">
-      <div class="header-propic"></div>
-      <div class="header-hello">
-        <div class="header-hello-welcome">
-          Welcome, <b>{{#if currentUser}}{{currentUser.profile.displayname}}{{else}}Guest{{/if}}!</b>
-        </div>
-        <div class="header-hello-sign">
-          {{#if currentUser}}
-            <a href='#' class="logout-item">
-              Logout
-            </a>
-          {{else}}
-            <a href='#' class="createaccount-item">
-              Create Account
-            </a>
-            or
-            <a href='#' class="login-item">
-                Login
-            </a>
-          {{/if}}
-        </div>
-        {{#unless currentUser}}
-          {{#if loginClicked}}
-            {{> login}}
-          {{/if}}
-          {{#if createAccountClicked}}
-            {{> register}}
-          {{/if}}
-        {{/unless}}
-      </div>
-      <div class="header-title">
-        <i>T<span>able </span>T<span>ennis </span>A<span>nd </span>P<span>ing </span>P<span>ong</span></i>
-      </div>
-      <div class="header-nav">
-          <a class="header-nav-item first" href="{{pathFor route='home'}}">Home</a>
-          <a class="header-nav-item " href="{{pathFor route='players'}}">Players</a>
-          <a class="header-nav-item">Matches</a>
-          {{#if currentUser}}
-              <a class="header-nav-item" href="{{pathFor route='profile'}}"> Profile</a>
-          {{/if}}
-      </div>
-    </div>
-  </div>
-</template>
-
 <template name="main">
   <div class="container-fluid">
     <div class="row main-page">
@@ -65,6 +17,11 @@
             {{#each currentMatches}}
               {{> displayScore}}
             {{/each}}
+            {{#if noCurrentMatches}}
+              <div class="noMatch-text">
+                No Current Matches.
+              </div>
+            {{/if}}
           </div>
         </div>
         <div class="container-matches title">
@@ -76,6 +33,11 @@
             {{#each recentMatches}}
               {{> displayScore}}
             {{/each}}
+            {{#if noRecentMatches}}
+              <div class="noMatch-text">
+                No Recent Matches.
+              </div>
+            {{/if}}
           </div>
         </div>
       </div>
@@ -92,38 +54,5 @@
       </div>
 
     </div>
-  </div>
-</template>
-
-<template name="displayScore">
-  <div class="display-match">
-    <div class="display-match-playerbox">
-      {{#with playerFromId id1}}
-        <div class="display-match-playerbox-pic"></div>
-        <div class="display-match-playerbox-name">{{profile.displayname}}</div>
-      {{/with}}
-    </div>
-    <div class="display-match-games">
-      <h5>Bo{{boNum}}</h5>
-      <h2>{{games1}} - {{games2}}</h2>
-      <div class="display-match-games-breakdown">
-        {{#each games}}
-          {{> displayPoints}}
-        {{/each}}
-      </div>
-    </div>
-    <div class="display-match-playerbox">
-      {{#with playerFromId id2}}
-        <div class="display-match-playerbox-pic"></div>
-        <div class="display-match-playerbox-name">{{profile.displayname}}</div>
-      {{/with}}
-    </div>
-  </div>
-</template>
-
-<template name="displayPoints">
-  <div class="display-match-points">
-    <p class="{{#if isGreater points1 points2}}bold{{/if}}">{{points1}}</p>
-    <p class="{{#if isGreater points2 points1}}bold{{/if}}">{{points2}}</p>
   </div>
 </template>

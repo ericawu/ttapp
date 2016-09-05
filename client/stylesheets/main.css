@@ -4,6 +4,14 @@ html, body {
 	color: #999;
 }
 
+html {
+    overflow: hidden;
+}
+
+body {
+    overflow: auto;
+}
+
 hr {
 	margin: 5px 0;
 	border-top: 1px solid rgba(100, 100, 100, 0.5);
@@ -81,8 +89,13 @@ hr {
 	overflow-y: auto;
 }
 
-.bold {
-	font-weight: bold;
+.noMatch-text {
+	text-align: center;
+}
+
+.img-border {
+    border: 2px solid #999;
+    box-sizing: border-box;
 }
 
 ::-webkit-scrollbar {

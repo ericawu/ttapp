@@ -32,8 +32,6 @@
     width: 70px;
     background: url('/nick.jpg') center no-repeat;
     background-size: cover;
-    border: 2px solid #fff;
-    box-sizing: border-box;
 }
 
 .header-hello {
