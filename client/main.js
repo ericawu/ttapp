@@ -57,7 +57,7 @@ Template.main.helpers({
 		return Matches.find({completed: false}, {sort: {date: -1}}).count() == 0;
 	},
 	recentMatches: function() {
-		return Matches.find({completed: true}, {limit: 8}, {sort: {date: -1}});
+		return Matches.find({completed: true}, {sort: {date: -1}, limit: 6});
 	},
 	noRecentMatches: function() {
 		return Matches.find({completed: true}, {sort: {date: -1}}).count() == 0;
@@ -86,9 +86,9 @@ Template.displayScore.helpers({
 		var games = match.games;
 		var counter = 0;
 		for (var i = 0 ; i < games.length; i++) {
-			if (games[i].points1 > games[i].points2) {
+			if (greater(games[i].points1, games[i].points2)) {
 				counter++;
-			} else if (games[i].points2 > games[i].points1) {
+			} else if (greater(games[i].points2, games[i].points1)) {
 				counter--;
 			}
 		}
@@ -102,9 +102,9 @@ Template.displayScore.helpers({
 		var games = match.games;
 		var counter = 0;
 		for (var i = 0 ; i < games.length; i++) {
-			if (games[i].points1 > games[i].points2) {
+			if (greater(games[i].points1, games[i].points2)) {
 				counter++;
-			} else if (games[i].points2 > games[i].points1) {
+			} else if (greater(games[i].points2, games[i].points1)) {
 				counter--;
 			}
 		}

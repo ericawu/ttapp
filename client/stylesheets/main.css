@@ -2,6 +2,7 @@
 html, body {
 	height: 100%;
 	color: #999;
+    /*font-family: Segoe Ui;*/
 }
 
 html {
@@ -22,7 +23,6 @@ hr {
 	padding-top: 100px;
 	box-sizing: border-box;
 	overflow-y: hidden;
-	/*font-family: Segoe Ui;*/
 }
 
 .flex-column {
@@ -98,7 +98,7 @@ hr {
 
 .pro-img-container {
     position: relative;
-    border: 2px solid #999;
+    border: 1px solid #999;
     box-sizing: content-box;
 }
 
