@@ -57,7 +57,7 @@ Template.main.helpers({
 		return Matches.find({completed: false}, {sort: {date: -1}}).count() == 0;
 	},
 	recentMatches: function() {
-		return Matches.find({completed: true}, {sort: {date: -1}});
+		return Matches.find({completed: true}, {limit: 8}, {sort: {date: -1}});
 	},
 	noRecentMatches: function() {
 		return Matches.find({completed: true}, {sort: {date: -1}}).count() == 0;
@@ -79,7 +79,11 @@ Template.displayScore.helpers({
 		return Meteor.users.findOne({_id: id});
 	},
 	'p1win': function() {
-		var games = Template.currentData().games;
+		var match = Template.currentData();
+		if (!match.completed) {
+			return false;
+		}
+		var games = match.games;
 		var counter = 0;
 		for (var i = 0 ; i < games.length; i++) {
 			if (games[i].points1 > games[i].points2) {
@@ -91,7 +95,11 @@ Template.displayScore.helpers({
 		return counter > 0;
 	},
 	'p2win': function() {
-		var games = Template.currentData().games;
+		var match = Template.currentData();
+		if (!match.completed) {
+			return false;
+		}
+		var games = match.games;
 		var counter = 0;
 		for (var i = 0 ; i < games.length; i++) {
 			if (games[i].points1 > games[i].points2) {

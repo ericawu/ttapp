@@ -2,7 +2,7 @@
   <div class="display-match">
     <div class="display-match-playerbox {{#if p1win}}win{{/if}}">
       {{#with playerFromId id1}}
-        <div class="display-match-playerbox-pic img-border"></div>
+        {{> profileImg}}
         <div class="display-match-playerbox-name">{{profile.displayname}}</div>
       {{/with}}
     </div>
@@ -13,7 +13,7 @@
     </div>
     <div class="display-match-playerbox {{#if p2win}}win{{/if}}">
       {{#with playerFromId id2}}
-        <div class="display-match-playerbox-pic img-border"></div>
+        {{> profileImg}}
         <div class="display-match-playerbox-name">{{profile.displayname}}</div>
       {{/with}}
     </div>

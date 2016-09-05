@@ -1,58 +1,71 @@
-<template name="home">
+<template name="wrapper">
   {{> header}}
-  {{> main}}
-</template>
-
-<template name="main">
   <div class="container-fluid">
     <div class="row main-page">
       <div class="main-bg"></div>
-      <div class="col-xs-10 main-center">
-        <div class="container-matches title">
-          <div class="container-matches-title"> Current Matches </div>
-          <hr>
-        </div>
-        <div class="container-matches top">
-          <div class="container-matches-list">
-            {{#each currentMatches}}
-              {{> displayScore}}
-            {{/each}}
-            {{#if noCurrentMatches}}
-              <div class="noMatch-text">
-                No Current Matches.
-              </div>
-            {{/if}}
-          </div>
-        </div>
-        <div class="container-matches title">
-          <div class="container-matches-title"> Recent Matches </div>
-          <hr>
-        </div>
-        <div class="container-matches">
-          <div class="container-matches-list">
-            {{#each recentMatches}}
-              {{> displayScore}}
-            {{/each}}
-            {{#if noRecentMatches}}
-              <div class="noMatch-text">
-                No Recent Matches.
-              </div>
-            {{/if}}
-          </div>
-        </div>
-      </div>
-
-      <div class="col-xs-2 main-right">
-        <div class="playerList">
-          <div class="playerList-title">THE TOP 8</div>
-          <hr>
-          {{#each topPlayers}}
-            {{> playerBox}}
-            <hr>
-          {{/each}}
-        </div>
-      </div>
-
+      {{> UI.contentBlock}}
     </div>
+  </div>
+</template>
+
+<template name="home">
+  {{#wrapper}}
+    {{> main}}
+  {{/wrapper}}
+</template>
+
+<template name="main">
+  <div class="col-xs-10 main-center flex-column">
+    <div class="container-matches title">
+      <div class="container-matches-title"> Current Matches </div>
+      <hr>
+    </div>
+    <div class="container-matches top">
+      <div class="container-matches-list">
+        {{#each currentMatches}}
+          {{> displayScore}}
+        {{/each}}
+        {{#if noCurrentMatches}}
+          <div class="noMatch-text">
+            No Current Matches.
+          </div>
+        {{/if}}
+      </div>
+    </div>
+
+    <div class="container-matches title">
+      <div class="container-matches-title"> Recent Matches </div>
+      <hr>
+    </div>
+    <div class="container-matches">
+      <div class="container-matches-list">
+        {{#each recentMatches}}
+          {{> displayScore}}
+        {{/each}}
+        {{#if noRecentMatches}}
+          <div class="noMatch-text">
+            No Recent Matches.
+          </div>
+        {{/if}}
+      </div>
+    </div>
+  </div>
+
+  <div class="col-xs-2 main-right">
+    <div class="playerList">
+      <div class="playerList-title">THE TOP 8</div>
+      <hr>
+      {{#each topPlayers}}
+        {{> playerBox}}
+        <hr>
+      {{/each}}
+    </div>
+  </div>
+</template>
+
+<template name="profileImg">
+  <div class="pro-img-container">
+    <img src="nick.jpg" class="pro-img">
+    <div class="pro-img-shadow"></div>
   </div>
 </template>

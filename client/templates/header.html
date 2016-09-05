@@ -2,7 +2,7 @@
   <div class="header">
     <div class="header-bg">
       <img src="\RyderCupLogo.png" class="header-logo">
-      <div class="header-propic img-border"></div>
+      {{> profileImg}}
       <div class="header-hello">
         <div class="header-hello-welcome">
           Welcome, <b>{{#if currentUser}}{{currentUser.profile.displayname}}{{else}}Guest{{/if}}!</b>

@@ -1,9 +1,20 @@
 <template name="allPlayers">
-{{> header}}
-<div class="container-fluid">
-    {{#each allPlayers}}
-    	{{> playerBox}}
-    {{/each}}
-</div>
+    {{#wrapper}}
+        <div class="col-xs-12 main-center">
+            {{#each allPlayers}}
+                {{> playerBox}}
+            {{/each}}
+        </div>
+    {{/wrapper}}
+</template>
 
+<template name="playerBox">
+    <div class="playerBox-container">
+        <span class="playerBox-rank">{{profile.rank}}</span>
+        {{> profileImg}}
+        <span class="playerBox-info">
+            <div>{{profile.displayname}}</div>
+            <div>Rating: {{profile.rating}}</div>
+        </span>
+    </div>
 </template>

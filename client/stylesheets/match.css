@@ -23,19 +23,12 @@
     font-weight: bold;
 }
 
-.display-match-playerbox.win .img-border {
+.display-match-playerbox.win .pro-img-container {
     border-color: #23527c;
 }
 
-.display-match-playerbox-pic {
-    height: 70px;
-    width: 70px;
-    margin-bottom: 5px;
-    background: url('/nick.jpg') center no-repeat;
-    background-size: cover;
-}
-
 .display-match-playerbox-name {
+    margin-top: 5px;
     max-width: 100%;
     white-space: nowrap;
     overflow-x: hidden;

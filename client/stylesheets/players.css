@@ -24,11 +24,9 @@
 	padding-right: 10px;
 }
 
-.playerBox-img {
-	max-height: 100%;
+.playerBox-container .pro-img-container {
 	width: 30%;
-	height: auto;
-    box-sizing: border-box;
+	max-width: 70px;
 }
 
 .playerBox-info {

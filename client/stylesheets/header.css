@@ -24,14 +24,10 @@
     padding: 15px;
 }
 
-.header-propic {
+.header-bg .pro-img-container {
     position: fixed;
     top: 15px;
     right: 15px;
-    height: 70px;
-    width: 70px;
-    background: url('/nick.jpg') center no-repeat;
-    background-size: cover;
 }
 
 .header-hello {
