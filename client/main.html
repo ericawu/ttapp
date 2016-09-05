@@ -54,26 +54,39 @@
 <template name="main">
   <div class="container-fluid">
     <div class="row main-page">
+      <div class="main-bg"></div>
       <div class="col-xs-10 main-center">
-        <p>Note: hiding overflow makes sense for a static display but is weird on my comp when i resize the window. if this becomes a public site it's not the best way to do it but if it's just going to be displayed on a surface hub it could work. </p>
-        <p>FIX THIS UI IT LOOKS AWFUL</p>
-        <h3> Current Matches </h3>
-        {{#each currentMatches}}
-          {{> displayScore}}
-        {{/each}}
-        <div class="recent-matches">
-          <h3> Recent Matches </h3>
-          {{#each recentMatches}}
-            {{> displayScore}}
-          {{/each}}
+        <div class="container-matches title">
+          <div class="container-matches-title"> Current Matches </div>
+          <hr>
+        </div>
+        <div class="container-matches top">
+          <div class="container-matches-list">
+            {{#each currentMatches}}
+              {{> displayScore}}
+            {{/each}}
+          </div>
+        </div>
+        <div class="container-matches title">
+          <div class="container-matches-title"> Recent Matches </div>
+          <hr>
+        </div>
+        <div class="container-matches">
+          <div class="container-matches-list">
+            {{#each recentMatches}}
+              {{> displayScore}}
+            {{/each}}
+          </div>
         </div>
       </div>
 
       <div class="col-xs-2 main-right">
         <div class="playerList">
-          <h2>The Top 8</h2>
+          <div class="playerList-title">THE TOP 8</div>
+          <hr>
           {{#each topPlayers}}
             {{> playerBox}}
+            <hr>
           {{/each}}
         </div>
       </div>

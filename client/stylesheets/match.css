@@ -1,14 +1,12 @@
 .display-match {
-    max-width: 350px;
+    width: 80%;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     box-sizing: border-box;
     padding: 10px;
-    background: #666;
-    border: 1px solid #333;
-    color: #000;
-    margin-bottom: 20px;
+    background-color: rgba(0, 0, 0, 0.3);
+    margin: 0 auto 20px auto;
 }
 
 .display-match-playerbox {
@@ -55,4 +53,5 @@
 
 .display-match-points p {
     margin: 0;
+    text-align: center;
 }
