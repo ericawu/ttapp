@@ -1,27 +1,43 @@
-Router.configure({
-  loadingTemplate: 'loading',
+BlazeLayout.setRoot('body');
+
+FlowRouter.route('/profile/:_id', {
+  name: 'profile',
+  action(params, queryParams) {
+    BlazeLayout.render('wrapper', {body: 'profile_page'});
+  }
 });
 
-Router.route('/profile', {
-	waitOn: function() {
-		return Meteor.subscribe('allMatches');
-	}
+FlowRouter.route('/', {
+  name: 'home',
+  action(params, queryParams) {
+    BlazeLayout.render('wrapper', {body: 'home_page'});
+  }
 });
 
-Router.route('/', {
-	template: 'home',
-	name: 'home',
-	waitOn: function() {
-		return Meteor.subscribe('allMatches');
-	}
+FlowRouter.route('/players', {
+  name: 'players',
+  action(params, queryParams) {
+    BlazeLayout.render('wrapper', {body: 'players_page'});
+  }
 });
 
-Router.route('/newmatch', {
-	template: 'newMatch',
-	name: 'newmatch'
-});
+// FlowRouter.route('/matches', {
+//   name: 'matches',
+//   action(params, queryParams) {
+//     BlazeLayout.render('wrapper', {body: 'matches_page'});
+//   }
+// });
 
-Router.route('/players', {
-	template: 'allPlayers', 
-	name: 'players'
+// FlowRouter.route('/match/:_id', {
+//   name: 'match',
+//   action(params, queryParams) {
+//     BlazeLayout.render('wrapper', {body: 'match_page'});
+//   }
+// });
+
+FlowRouter.route('/newmatch', {
+  name: 'newmatch',
+  action(params, queryParams) {
+    BlazeLayout.render('wrapper', {body: 'newmatch_page'});
+  }
 });

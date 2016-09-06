@@ -1,11 +1,9 @@
-<template name="allPlayers">
-    {{#wrapper}}
-        <div class="col-xs-12 full-height">
-            {{#each allPlayers}}
-                {{> playerBox}}
-            {{/each}}
-        </div>
-    {{/wrapper}}
+<template name="players_page">
+    <div class="col-xs-12 full-height">
+        {{#each allPlayers}}
+            {{> playerBox}}
+        {{/each}}
+    </div>
 </template>
 
 <template name="playerBox">

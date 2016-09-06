@@ -3,7 +3,7 @@
   <div class="container-fluid">
     <div class="main-bg"></div>
     <div class="row main-page">
-      {{> UI.contentBlock}}
+      {{> Template.dynamic template=body}}
     </div>
   </div>
 </template>
@@ -15,13 +15,7 @@
   </div>
 </template>
 
-<template name="home">
-  {{#wrapper}}
-    {{> main}}
-  {{/wrapper}}
-</template>
-
-<template name="main">
+<template name="home_page">
   <div class="col-xs-10 main-center full-height flex-column">
     <div class="container-matches top">
       <div class="container-matches-header">
