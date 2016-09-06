@@ -7,12 +7,12 @@ Meteor.methods({
             Matches.update(
                 {_id: matchId, "games.num": gameNum}, 
                 {$set: {'games.$.points1': value}}
-                );
+            );
         } else if (playerNum == 2) {
             Matches.update(
                 {_id: matchId, "games.num": gameNum}, 
                 {$set: {'games.$.points2': value}}
-                );
+            );
         } else {
             alert("Invalid player number");
         }
@@ -29,8 +29,8 @@ Meteor.methods({
             else if (status < 0) track--;
         }
 
-        var p1 = match.p1;
-        var p2 = match.p2;
+        var p1 = Meteor.users.findOne({_id: match.id1});
+        var p2 = Meteor.users.findOne({_id: match.id2});
         var ratingDiff = Math.abs(p1.profile.rating - p2.profile.rating);
         var upset = 0;
         var normal = 0;
@@ -39,44 +39,34 @@ Meteor.methods({
         if (ratingDiff <= 12) {
             normal = 8;
             upset = 8; 
-        }
-        else if (ratingDiff <= 37) {
+        } else if (ratingDiff <= 37) {
             normal = 7;
             upset = 10;
-        }
-        else if (ratingDiff <= 62) {
+        } else if (ratingDiff <= 62) {
             normal = 6;
             upset = 13;
-        }
-        else if (ratingDiff <= 87) {
+        } else if (ratingDiff <= 87) {
             normal = 5;
             upset = 16;
-        }
-        else if (ratingDiff <= 112) {
+        } else if (ratingDiff <= 112) {
             normal = 4;
             upset = 20;
-        }
-        else if (ratingDiff <= 137) {
+        } else if (ratingDiff <= 137) {
             normal = 3;
             upset = 25;
-        }
-        else if (ratingDiff <= 162) {
+        } else if (ratingDiff <= 162) {
             normal = 2;
             upset = 30;
-        }
-        else if (ratingDiff <= 187) {
+        } else if (ratingDiff <= 187) {
             normal = 2;
             upset = 35;
-        }
-        else if (ratingDiff <= 212) {
+        } else if (ratingDiff <= 212) {
             normal = 1;
             upset = 45;
-        }
-        else if (ratingDiff <= 237) {
+        } else if (ratingDiff <= 237) {
             normal = 1;
             upset = 45;
-        }
-        else {
+        } else {
             normal = 0;
             upset = 50;
         }
@@ -102,6 +92,6 @@ Meteor.methods({
                 "profile.rating": lowerP.profile.rating + upset
             }});
         }
-            //don't do anything if it's a tie (track == 0), add in point comparisons later
+        //don't do anything if it's a tie (track == 0), add in point comparisons later
     }
 });

@@ -24,7 +24,8 @@ h1.profile-name {
 
 .point-input {
 	display: inline-block;
-	width: 3em;
+	width: 50px;
+	text-align: right;
 	margin-left: 1em;
 	margin-bottom: 1em;
 }
