@@ -1,17 +1,20 @@
 <template name="displayScore">
   <div class="display-match">
-    <div class="display-match-playerbox {{#if p1win}}win{{/if}}">
+    <div class="col-xs-3 display-match-playerbox {{#if p1win}}win{{/if}}">
       {{#with playerFromId id1}}
         {{> profileImg}}
         <div class="display-match-playerbox-name">{{profile.displayname}}</div>
       {{/with}}
     </div>
-    <div class="display-match-games">
+    <div class="col-xs-6 display-match-games">
       <div class="display-match-games-breakdown">
         {{#each games}}{{> displayPoints}}{{/each}}
       </div>
+      <div class="display-match-games-date">
+        {{dateString}}
+      </div>
     </div>
-    <div class="display-match-playerbox {{#if p2win}}win{{/if}}">
+    <div class="col-xs-3 display-match-playerbox {{#if p2win}}win{{/if}}">
       {{#with playerFromId id2}}
         {{> profileImg}}
         <div class="display-match-playerbox-name">{{profile.displayname}}</div>
@@ -23,7 +26,7 @@
 <template name="displayPoints">
   <div class="display-match-points">
     <p class="display-match-points-gameNum">{{num}}</p>
-    <p class="{{#if isGreater points1 points2}}win{{else}}lose{{/if}} {{#if filler}}filler{{/if}}">{{points1}}</p>
-    <p class="{{#if isGreater points2 points1}}win{{else}}lose{{/if}} {{#if filler}}filler{{/if}}">{{points2}}</p>
+    <p class="{{#if isGreater points1 points2}}win{{/if}} {{#if filler}}filler{{/if}}">{{points1}}</p>
+    <p class="{{#if isGreater points2 points1}}win{{/if}} {{#if filler}}filler{{/if}}">{{points2}}</p>
   </div>
 </template>

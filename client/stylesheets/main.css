@@ -2,7 +2,7 @@
 html, body {
 	height: 100%;
 	color: #999;
-    /*font-family: Segoe Ui;*/
+    font-family: Verdana,Geneva,sans-serif; 
 }
 
 html {
@@ -21,6 +21,7 @@ hr {
 .container-fluid {
 	height: 100%;
 	padding-top: 100px;
+    background-color: #111;
 	box-sizing: border-box;
 	overflow-y: hidden;
 }
@@ -36,9 +37,13 @@ hr {
     justify-content: center;
 }
 
+.full-height {
+    height: 100%;
+    min-height: 100%;
+}
+
 .main-page {
 	height: 100%;
-	background-color: #111;
 }
 
 .main-bg {
@@ -54,14 +59,15 @@ hr {
 }
 
 .main-center {
-	height: 100%;
-	min-height: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .main-right {
-	background-color: rgba(60, 60, 60, 0.1);
+    background: -webkit-linear-gradient(left top, rgba(35, 82, 124, 0.05), rgba(35, 82, 124, 0.2), rgba(35, 82, 124, 0.1));
+    background: linear-gradient(left top, rgba(35, 82, 124, 0.05), rgba(35, 82, 124, 0.2), rgba(35, 82, 124, 0.1));
 	height: 100%;
-	box-shadow: -10px 0px 50px rgba(0,0,0,0.5);
+	box-shadow: -10px 0px 50px rgba(0,0,0,0.6);
 	padding: 20px 0 0 0;
 	box-sizing: border-box;
 }

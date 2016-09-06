@@ -109,6 +109,10 @@ Template.displayScore.helpers({
 			}
 		}
 		return counter < 0;
+	},
+	'dateString': function() {
+		var date = Template.currentData().date;
+		return date.getHours() + ":" + date.getMinutes() + " \u2013 " + (date.getMonth()+1) + "/" + date.getDate() + "/" + date.getFullYear();
 	}
 });
 

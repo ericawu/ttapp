@@ -1,10 +1,17 @@
 <template name="wrapper">
   {{> header}}
   <div class="container-fluid">
+    <div class="main-bg"></div>
     <div class="row main-page">
-      <div class="main-bg"></div>
       {{> UI.contentBlock}}
     </div>
+  </div>
+</template>
+
+<template name="loading">
+  {{> headerLoading}}
+  <div class="container-fluid">
+    <div class="main-bg"></div>
   </div>
 </template>
 
@@ -15,7 +22,7 @@
 </template>
 
 <template name="main">
-  <div class="col-xs-10 main-center flex-column">
+  <div class="col-xs-10 main-center full-height flex-column">
     <div class="container-matches top">
       <div class="container-matches-header">
         <div class="container-matches-title"> Current Matches </div>

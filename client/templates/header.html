@@ -36,11 +36,27 @@
       </div>
       <div class="header-nav">
           <a class="header-nav-item first" href="{{pathFor route='home'}}">Home</a>
-          <a class="header-nav-item " href="{{pathFor route='players'}}">Players</a>
+          <a class="header-nav-item" href="{{pathFor route='players'}}">Players</a>
           <a class="header-nav-item">Matches</a>
           {{#if currentUser}}
               <a class="header-nav-item" href="{{pathFor route='profile'}}"> Profile</a>
           {{/if}}
+      </div>
+    </div>
+  </div>
+</template>
+
+<template name="headerLoading">
+  <div class="header">
+    <div class="header-bg">
+      <img src="\RyderCupLogo.png" class="header-logo">
+      <div class="header-title">
+        <i>T<span>able </span>T<span>ennis </span>A<span>nd </span>P<span>ing </span>P<span>ong</span></i>
+      </div>
+      <div class="header-nav">
+          <a class="header-nav-item first">Home</a>
+          <a class="header-nav-item">Players</a>
+          <a class="header-nav-item">Matches</a>
       </div>
     </div>
   </div>
