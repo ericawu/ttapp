@@ -1,6 +1,13 @@
-Profile page with id:
-/profile/769108475
-Show/hide buttons based on current user matching profile id
+Things to do:
+    Profile page with id:
+        /profile/769108475
+        - Show/hide buttons based on current user matching profile id
 
-Match information page
-/match/27348572083
+    Match information page
+        /match/27348572083
+
+    Profile first/last name setup upon registration
+
+Things to fix:
+    - Current matches highlights greater points even if game is not finished
+    - Clicking a link does not reset the link color after clicking

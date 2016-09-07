@@ -1,43 +1,42 @@
 BlazeLayout.setRoot('body');
 
-FlowRouter.route('/profile/:_id', {
-  name: 'profile',
-  action(params, queryParams) {
-    BlazeLayout.render('wrapper', {body: 'profile_page'});
+function route_page(page_name) {
+  return function(params, queryParams) {
+    var pc = document.getElementById("page_container");
+    if (pc) pc.classList.add("page-transition");
+    setTimeout(function() {
+      if (pc) pc.classList.remove("page-transition");
+      BlazeLayout.render('wrapper', {body: page_name});
+    }, 500)
   }
-});
+}
 
 FlowRouter.route('/', {
   name: 'home',
-  action(params, queryParams) {
-    BlazeLayout.render('wrapper', {body: 'home_page'});
-  }
+  action: route_page('home_page')
+});
+
+FlowRouter.route('/profile/:_id', {
+  name: 'profile',
+  action: route_page('profile_page')
 });
 
 FlowRouter.route('/players', {
   name: 'players',
-  action(params, queryParams) {
-    BlazeLayout.render('wrapper', {body: 'players_page'});
-  }
+  action: route_page('players_page')
 });
 
 // FlowRouter.route('/matches', {
 //   name: 'matches',
-//   action(params, queryParams) {
-//     BlazeLayout.render('wrapper', {body: 'matches_page'});
-//   }
+//  action: route_page('matches_page')
 // });
 
 // FlowRouter.route('/match/:_id', {
 //   name: 'match',
-//   action(params, queryParams) {
-//     BlazeLayout.render('wrapper', {body: 'match_page'});
-//   }
+//  action: route_page('match_page')
 // });
 
 FlowRouter.route('/newmatch', {
   name: 'newmatch',
-  action(params, queryParams) {
-    BlazeLayout.render('wrapper', {body: 'newmatch_page'});
-  }
+  action: route_page('newmatch_page')
 });
