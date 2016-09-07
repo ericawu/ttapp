@@ -1,0 +1,63 @@
+<template name="header">
+  <div class="header">
+    <div class="header-bg">
+      <img src="\RyderCupLogo.png" class="header-logo">
+      <a class="header-img-link" href="{{pathFor 'profile' _id=currentUser._id}}">{{> profileImg}}</a>
+      <div class="header-hello">
+        <div class="header-hello-welcome">
+          Welcome, <b>{{#if currentUser}}{{currentUser.profile.displayname}}{{else}}Guest{{/if}}!</b>
+        </div>
+        <div class="header-hello-sign">
+          {{#if currentUser}}
+            <a href='#' class="logout-item">
+              Logout
+            </a>
+          {{else}}
+            <a href='#' class="createaccount-item">
+              Create Account
+            </a>
+            or
+            <a href='#' class="login-item">
+                Login
+            </a>
+          {{/if}}
+        </div>
+        {{#unless currentUser}}
+          {{#if loginClicked}}
+            {{> login}}
+          {{/if}}
+          {{#if createAccountClicked}}
+            {{> register}}
+          {{/if}}
+        {{/unless}}
+      </div>
+      <div class="header-title">
+        <i>T<span>able </span>T<span>ennis </span>A<span>nd </span>P<span>ing </span>P<span>ong</span></i>
+      </div>
+      <div class="header-nav">
+          <a class="header-nav-item first" href="{{pathFor 'home'}}">Home</a>
+          <a class="header-nav-item" href="{{pathFor 'players'}}">Players</a>
+          <a class="header-nav-item">Matches</a>
+          {{#if currentUser}}
+              <a class="header-nav-item" href="{{pathFor 'profile' _id=currentUser._id}}"> Profile</a>
+          {{/if}}
+      </div>
+    </div>
+  </div>
+</template>
+
+<template name="headerLoading">
+  <div class="header">
+    <div class="header-bg">
+      <img src="\RyderCupLogo.png" class="header-logo">
+      <div class="header-title">
+        <i>T<span>able </span>T<span>ennis </span>A<span>nd </span>P<span>ing </span>P<span>ong</span></i>
+      </div>
+      <div class="header-nav">
+          <a class="header-nav-item first">Home</a>
+          <a class="header-nav-item">Players</a>
+          <a class="header-nav-item">Matches</a>
+      </div>
+    </div>
+  </div>
+</template>

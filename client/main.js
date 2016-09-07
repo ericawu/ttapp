@@ -8,6 +8,7 @@ submitForms = function() {
 };
 
 Meteor.subscribe('topUsers');
+Meteor.subscribe('allUsers');
 Meteor.subscribe('allMatches');
 
 /********** Header Page ************/
@@ -24,7 +25,7 @@ Template.header.events({
 	'click .logout-item': function(event){
 		event.preventDefault();
 		Meteor.logout();
-		Router.go('home');
+		FlowRouter.go('home');
 	},
 	'click .login-item': function(event) {
 		var flag = Session.get('login');
@@ -49,12 +50,18 @@ Template.header.events({
 });
 
 /********** Main Page **************/
-Template.main.helpers({
+Template.home_page.helpers({
 	currentMatches: function() {
 		return Matches.find({completed: false}, {sort: {date: -1}});
 	},
+	noCurrentMatches: function() {
+		return Matches.find({completed: false}, {sort: {date: -1}}).count() == 0;
+	},
 	recentMatches: function() {
-		return Matches.find({completed: true}, {sort: {date: -1}});
+		return Matches.find({completed: true}, {sort: {date: -1}, limit: 6});
+	},
+	noRecentMatches: function() {
+		return Matches.find({completed: true}, {sort: {date: -1}}).count() == 0;
 	},
 	topPlayers: function() {		
 		return Meteor.users.find({}, {sort: {"profile.rating": -1}}).map(function(player, index) {
@@ -72,44 +79,51 @@ Template.displayScore.helpers({
 	'playerFromId': function(id) {
 		return Meteor.users.findOne({_id: id});
 	},
-	'games1': function() {
-		var games = Template.currentData().games;
+	'p1win': function() {
+		var match = Template.currentData();
+		if (!match.completed) {
+			return false;
+		}
+		var games = match.games;
 		var counter = 0;
-		for (var i = 0; i < games.length; i++) {
+		for (var i = 0 ; i < games.length; i++) {
 			if (greater(games[i].points1, games[i].points2)) {
 				counter++;
+			} else if (greater(games[i].points2, games[i].points1)) {
+				counter--;
 			}
 		}
-		return counter;
+		return counter > 0;
 	},
-	'games2': function() {
-		var games = Template.currentData().games;
+	'p2win': function() {
+		var match = Template.currentData();
+		if (!match.completed) {
+			return false;
+		}
+		var games = match.games;
 		var counter = 0;
-		for (var i = 0; i < games.length; i++) {
-			if (greater(games[i].points2, games[i].points1)) {
-				counter++;
-			}
-		}
-		return counter;
-	},
-	'boNum': function() {
-		var games = Template.currentData().games;
-		var counter1 = 0;
-		var counter2 = 0;
-		for (var i = 0; i < games.length; i++) {
+		for (var i = 0 ; i < games.length; i++) {
 			if (greater(games[i].points1, games[i].points2)) {
-				counter1++;
-			} else {
-				counter2++;
+				counter++;
+			} else if (greater(games[i].points2, games[i].points1)) {
+				counter--;
 			}
 		}
-		return counter1 > counter2 ? counter1 * 2 - 1 : counter2 * 2 - 1;
+		return counter < 0;
+	},
+	'dateString': function() {
+		var date = Template.currentData().date;
+		// return date.getHours() + ":" + date.getMinutes() + " \u2013 " + (date.getMonth()+1) + "/" + date.getDate() + "/" + date.getFullYear();
+		return (date.getMonth()+1) + "/" + date.getDate() + "/" + date.getFullYear();
 	}
 });
 
 Template.displayPoints.helpers({
 	'isGreater': function(x, y) {
 		return greater(x, y);
+	},
+	'isFirst': function(num) {
+		return num == 1;
 	}
 });
 
@@ -152,8 +166,8 @@ Template.register.onRendered(function(){
 Template.register.onDestroyed(function(){
 	if (Meteor.user()) {
 		Meteor.users.update(Meteor.userId(), {$set: {
-			"profile.rating": 200,
-			"profile.displayname": Meteor.user().emails[0].address 
+			'profile.rating': 200,
+			'profile.displayname': Meteor.user().emails[0].address 
 		}});
 	}
 	console.log("The 'register' template was just destroyed.");
@@ -199,10 +213,8 @@ Template.login.events({
 	},
 });
 
-Meteor.subscribe('allUsers');
-
 /********* Profile Page *********/
-Template.profileMain.onCreated(function() {
+Template.profile_page.onCreated(function() {
 	Session.set('searchKey', undefined);
 	Session.set('opponent', undefined);
 	Session.set('oppSelected', false);
@@ -210,7 +222,7 @@ Template.profileMain.onCreated(function() {
 	Session.set('oppNum', 0);
 });
 
-Template.profileMain.helpers({
+Template.profile_page.helpers({
 	'opponentMatch': function() {
 	    var key = Session.get('searchKey');
 	    if (key == null || key == "") {
@@ -261,7 +273,7 @@ Template.profileMain.helpers({
 	}
 });
 
-Template.profileMain.events({
+Template.profile_page.events({
 	'click #opponent-searchbar': function(e) {
 		if (Session.get('oppSelected')) {
 	    	Session.set('searchKey', undefined);
@@ -287,10 +299,10 @@ Template.profileMain.events({
 			id2: opp._id,
 			date: new Date(),
 			completed: false,
-			games: [{points1: 0, points2: 0, num: 1}],
+			games: [{points1: "0", points2: "0", num: 1, filler: false}],
 		});
 		Session.set('currentMatchId', id);
-		Router.go('newmatch');
+		FlowRouter.go('newmatch');
 		return false;
 	}
 });
@@ -304,14 +316,14 @@ Template.opponentEntry.events({
 });
 
 
-Template.profileHeader.helpers({
+Template.profile_header.helpers({
 	editClicked: function() {
 		return Session.get('editButtonClicked');
 	},
 
 });
 
-Template.profileHeader.events({
+Template.profile_header.events({
 	'click .editbutton': function(e) {
 		var flag = Session.set('editButtonClicked', true);		
 	},
@@ -334,18 +346,36 @@ Template.scoreInput.helpers({
 	}
 });
 
+function boNumFromGames(games) {
+	var counter1 = 0;
+	var counter2 = 0;
+	for (var i = 0; i < games.length; i++) {
+		if (greater(games[i].points1, games[i].points2)) {
+			counter1++;
+		} else {
+			counter2++;
+		}
+	}
+	return counter1 > counter2 ? counter1 * 2 - 1 : counter2 * 2 - 1;
+}
+
 Template.scoreInput.events({
 	'click button[type="submit"]': function(e) {
 		if (e.target.id == "btn-done") {
-			Matches.update({_id: Session.get('currentMatchId')}, {$set: {completed: true}});
+			var games = Matches.findOne({_id: Session.get('currentMatchId')}).games;
+			var fillerNum = boNumFromGames(games) - games.length;
+			for (var i = 0 ; i < fillerNum; i++) {
+				games.push({points1: "\u2013", points2: "\u2013", num: games.length+1, filler: true});
+			}
+			Matches.update({_id: Session.get('currentMatchId')}, {$set: {completed: true, games: games}});
 			Meteor.call('calculate-rating', Session.get('currentMatchId'));
-			Router.go('profile');
+			FlowRouter.go('profile', {_id: Meteor.userId()});
 		} else if (e.target.id == "btn-delete") {
 			Matches.remove({_id: Session.get('currentMatchId')});
-			Router.go('profile');
+			FlowRouter.go('profile', {_id: Meteor.userId()});
 		} else if (e.target.id == "btn-add") {
 			var num = Matches.findOne({_id: Session.get('currentMatchId')}).games.length + 1;
-			Matches.upsert({_id: Session.get('currentMatchId')}, {$push: {games: {points1: 0, points2: 0, num: num}}});
+			Matches.upsert({_id: Session.get('currentMatchId')}, {$push: {games: {points1: "0", points2: "0", num: num, filler: false}}});
 		}
 		return false;
 	}
@@ -362,7 +392,7 @@ Template.pointInput.events({
 	}
 });
 
-Template.allPlayers.helpers({
+Template.players_page.helpers({
 	allPlayers: function() {		
 		return Meteor.users.find({}, {sort: {"profile.rating": -1}}).map(function(player, index) {
 			player.profile.rank = index+1;
@@ -370,5 +400,3 @@ Template.allPlayers.helpers({
 		});
 	}
 })
-
-

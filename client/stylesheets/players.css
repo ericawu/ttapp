@@ -1,15 +1,12 @@
 .playerList {
 	height: 100%;
 	width: 100%;
+	overflow-y: auto;
 }
 
-.playerList h2 {
-	text-align: center;
-	color: #fff;
-	margin: 0;
-	padding: 10px 0;
-	box-sizing: border-box;
-	border-bottom: 2px solid #666;
+.playerList-title {
+	margin-left: 20px;
+	font-size: 1.2em;
 }
 
 .playerBox-container {
@@ -18,9 +15,7 @@
 	width: 100%;
 	display: flex;
 	align-items: center;
-	background-color: white;
 	padding: 5px 10px;
-	margin-top: 10px;
 }
 
 .playerBox-rank {
@@ -28,12 +23,9 @@
 	padding-right: 10px;
 }
 
-.playerBox-img {
-	max-height: 100%;
+.playerBox-container .pro-img-container {
 	width: 30%;
-	height: auto;
-    border: 2px solid #fff;
-    box-sizing: border-box;
+	max-width: 70px;
 }
 
 .playerBox-info {

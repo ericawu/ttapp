@@ -11,7 +11,6 @@ h1.profile-name {
 	margin-left: 1em;
 }
 
-
 .profile-header-info {
 	vertical-align: middle;
 	width: 100%;
@@ -24,7 +23,8 @@ h1.profile-name {
 
 .point-input {
 	display: inline-block;
-	width: 3em;
+	width: 50px;
+	text-align: right;
 	margin-left: 1em;
 	margin-bottom: 1em;
 }
@@ -35,45 +35,4 @@ h1.profile-name {
 }
 .match-names p {
 	margin-bottom: 2em;
-}
-
-.point-input p {
-	display: inline-block;
-	width: 100%;
-	margin-left: 1em;
-	text-align: center;
-}
-
-.edit-button {
-	display: inline-block;
-}
-
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
--webkit-appearance: none;
-margin: 0;
-}
-
-input[type=number] {-moz-appearance: textfield;}
-
-#opponent-searchbar {
-	border-radius: 0;
-}
-
-#opponent-searchbar-dropdown {
-	position: static;
-	width: 100%;
-	margin: -1px 0 0 0;
-	border-radius: 0;
-	display: block;
-}
-
-.dropdown-entry {
-	padding: 3px 12px;
-	box-sizing: border-box;
-	cursor: pointer;
-}
-
-.dropdown-entry:hover {
-	background: #ccc;
 }

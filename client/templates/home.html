@@ -1,0 +1,52 @@
+<template name="home_page">
+  <div class="col-xs-10 home-center full-height flex-column">
+    <div class="container-matches top">
+      <div class="container-matches-header">
+        <div class="container-matches-title"> Current Matches </div>
+        <hr>
+      </div>
+      <div class="container-matches-body">
+        <div class="container-matches-list">
+          {{#each currentMatches}}
+            {{> displayScore}}
+          {{/each}}
+          {{#if noCurrentMatches}}
+            <div class="noMatch-text">
+              No Current Matches.
+            </div>
+          {{/if}}
+        </div>
+      </div>
+    </div>
+
+    <div class="container-matches">
+      <div class="container-matches-header">
+        <div class="container-matches-title"> Recent Matches </div>
+        <hr>
+      </div>
+      <div class="container-matches-body">
+        <div class="container-matches-list">
+          {{#each recentMatches}}
+            {{> displayScore}}
+          {{/each}}
+          {{#if noRecentMatches}}
+            <div class="noMatch-text">
+              No Recent Matches.
+            </div>
+          {{/if}}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-xs-2 home-right">
+    <div class="playerList">
+      <div class="playerList-title">THE TOP 8</div>
+      <hr>
+      {{#each topPlayers}}
+        {{> playerBox}}
+        <hr>
+      {{/each}}
+    </div>
+  </div>
+</template>

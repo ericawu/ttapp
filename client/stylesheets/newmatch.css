@@ -1,0 +1,40 @@
+.point-input p {
+    display: inline-block;
+    width: 100%;
+    margin-left: 1em;
+    text-align: center;
+}
+
+.edit-button {
+    display: inline-block;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+-webkit-appearance: none;
+margin: 0;
+}
+
+input[type=number] {-moz-appearance: textfield;}
+
+#opponent-searchbar {
+    border-radius: 0;
+}
+
+#opponent-searchbar-dropdown {
+    position: static;
+    width: 100%;
+    margin: -1px 0 0 0;
+    border-radius: 0;
+    display: block;
+}
+
+.dropdown-entry {
+    padding: 3px 12px;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.dropdown-entry:hover {
+    background: #ccc;
+}

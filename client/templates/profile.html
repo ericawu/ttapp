@@ -1,40 +1,30 @@
-<template name="Profile">
-	{{> header}}
-	{{> profileMain}}
-</template>
+<template name="profile_page">
+	<div class="col-xs-12 full-height">
+		{{> profile_header}}
+		
+		<div class="form-group row">
+			<form class="start-match">
+				<div class="col-xs-5">
+					<input id="opponent-searchbar" class="form-control" name="opponent" type="text" value="{{oppEntry}}" autocomplete="off" placeholder="Opponent name or email">
+					{{#if showDropdown}}
+						<ul id="opponent-searchbar-dropdown" class="dropdown-menu">
+							{{#each opponentMatch}}
+								{{> opponentEntry}}
+							{{/each}}
+							{{#unless oppNum}}
+								<li><div class="dropdown-entry">No matching players found</div></li>
+							{{/unless}}
+						</ul>
+					{{/if}}
 
-<template name="profileMain">
-	<div class="container-fluid">
-		<div class="row main-page">
-
-			<div class="col-xs-12 main-center">
-				{{> profileHeader}}
-				
-				<div class="form-group row">
-					<form class="start-match">
-						<div class="col-xs-5">
-							<input id="opponent-searchbar" class="form-control" name="opponent" type="text" value="{{oppEntry}}" autocomplete="off" placeholder="Opponent name or email">
-							{{#if showDropdown}}
-								<ul id="opponent-searchbar-dropdown" class="dropdown-menu">
-									{{#each opponentMatch}}
-										{{> opponentEntry}}
-									{{/each}}
-									{{#unless oppNum}}
-										<li><div class="dropdown-entry">No matching players found</div></li>
-									{{/unless}}
-								</ul>
-							{{/if}}
-
-						</div>
-						<button type="submit" class="btn btn-primary">Start Match</button>
-					</form>
-				</div>				
-			</div>
-		</div>
+				</div>
+				<button type="submit" class="btn btn-primary">Start Match</button>
+			</form>
+		</div>				
 	</div>
 </template>
 
-<template name="profileHeader">
+<template name="profile_header">
 	<div class="row">
 		<div class="col-xs-3">
 			<img src="\grumpycat.jpg" class="img-responsive profile-pic">

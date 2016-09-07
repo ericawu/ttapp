@@ -1,116 +1,23 @@
-<template name="home">
+<template name="wrapper">
   {{> header}}
-  {{> main}}
-</template>
-
-<template name="header">
-  <div class="header">
-    <div class="header-bg">
-      <img src="\RyderCupLogo.png" class="header-logo">
-      <div class="header-propic"></div>
-      <div class="header-hello">
-        <div class="header-hello-welcome">
-          Welcome, <b>{{#if currentUser}}{{currentUser.profile.displayname}}{{else}}Guest{{/if}}!</b>
-        </div>
-        <div class="header-hello-sign">
-          {{#if currentUser}}
-            <a href='#' class="logout-item">
-              Logout
-            </a>
-          {{else}}
-            <a href='#' class="createaccount-item">
-              Create Account
-            </a>
-            or
-            <a href='#' class="login-item">
-                Login
-            </a>
-          {{/if}}
-        </div>
-        {{#unless currentUser}}
-          {{#if loginClicked}}
-            {{> login}}
-          {{/if}}
-          {{#if createAccountClicked}}
-            {{> register}}
-          {{/if}}
-        {{/unless}}
-      </div>
-      <div class="header-title">
-        <i>T<span>able </span>T<span>ennis </span>A<span>nd </span>P<span>ing </span>P<span>ong</span></i>
-      </div>
-      <div class="header-nav">
-          <a class="header-nav-item first" href="{{pathFor route='home'}}">Home</a>
-          <a class="header-nav-item " href="{{pathFor route='players'}}">Players</a>
-          <a class="header-nav-item">Matches</a>
-          {{#if currentUser}}
-              <a class="header-nav-item" href="{{pathFor route='profile'}}"> Profile</a>
-          {{/if}}
-      </div>
-    </div>
-  </div>
-</template>
-
-<template name="main">
   <div class="container-fluid">
+    <div class="main-bg"></div>
     <div class="row main-page">
-      <div class="col-xs-10 main-center">
-        <p>Note: hiding overflow makes sense for a static display but is weird on my comp when i resize the window. if this becomes a public site it's not the best way to do it but if it's just going to be displayed on a surface hub it could work. </p>
-        <p>FIX THIS UI IT LOOKS AWFUL</p>
-        <h3> Current Matches </h3>
-        {{#each currentMatches}}
-          {{> displayScore}}
-        {{/each}}
-        <div class="recent-matches">
-          <h3> Recent Matches </h3>
-          {{#each recentMatches}}
-            {{> displayScore}}
-          {{/each}}
-        </div>
-      </div>
-
-      <div class="col-xs-2 main-right">
-        <div class="playerList">
-          <h2>The Top 8</h2>
-          {{#each topPlayers}}
-            {{> playerBox}}
-          {{/each}}
-        </div>
-      </div>
-
+      {{> Template.dynamic template=body}}
     </div>
   </div>
 </template>
 
-<template name="displayScore">
-  <div class="display-match">
-    <div class="display-match-playerbox">
-      {{#with playerFromId id1}}
-        <div class="display-match-playerbox-pic"></div>
-        <div class="display-match-playerbox-name">{{profile.displayname}}</div>
-      {{/with}}
-    </div>
-    <div class="display-match-games">
-      <h5>Bo{{boNum}}</h5>
-      <h2>{{games1}} - {{games2}}</h2>
-      <div class="display-match-games-breakdown">
-        {{#each games}}
-          {{> displayPoints}}
-        {{/each}}
-      </div>
-    </div>
-    <div class="display-match-playerbox">
-      {{#with playerFromId id2}}
-        <div class="display-match-playerbox-pic"></div>
-        <div class="display-match-playerbox-name">{{profile.displayname}}</div>
-      {{/with}}
-    </div>
+<template name="loading">
+  {{> headerLoading}}
+  <div class="container-fluid">
+    <div class="main-bg"></div>
   </div>
 </template>
 
-<template name="displayPoints">
-  <div class="display-match-points">
-    <p class="{{#if isGreater points1 points2}}bold{{/if}}">{{points1}}</p>
-    <p class="{{#if isGreater points2 points1}}bold{{/if}}">{{points2}}</p>
+<template name="profileImg">
+  <div class="pro-img-container">
+    <img src="nick.jpg" class="pro-img">
+    <div class="pro-img-shadow"></div>
   </div>
 </template>
