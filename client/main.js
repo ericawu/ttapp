@@ -399,4 +399,28 @@ Template.players_page.helpers({
 			return player;
 		});
 	}
+});
+
+Template.uploadImage.events({
+	'change .uploadFile': function(event,template){
+	    var files = event.target.files;
+	    console.log("in client");
+	    var file = files[0];
+
+	    console.log(file);
+	    AzureFile.upload(
+            file,"uploadFile",
+            {},
+            function(error,success){
+                if (error) {
+                	console.log("there was an error");
+                	console.log(error);
+                }
+                else {
+                	console.log("success!");
+                	console.log(success);
+                }
+            }
+        );
+    }
 })
