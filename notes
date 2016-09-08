@@ -1,21 +1,30 @@
-Profile page with id:
-/profile/769108475
-Show/hide buttons based on current user matching profile id
+Things to do:
+    Profile page with id:
+        /profile/769108475
+        - Show/hide buttons based on current user matching profile id
 
-Match information page
-/match/27348572083
+    Match information page
+        /match/27348572083
 
--Fix edit username button alignment
--Error message if image doesn't upload correctly
--Loading animation when uploading picture? It takes a long time
--Stats like win %, lose % (Microsoft's PowerBI would be perfect if we can embed)
--Separated player profile page for personal profile page you can edit and public page
+    Profile first/last name setup upon registration
+    -Only can make an account if you're part of pga? Idk if that can work
 
--Picture slideshow! Makes the front page more interesting. Let ppl upload pics of themselves/friends playing and display them on main landing page.
-	-Make new container in azure
-	-Know which container you're uploading to in .js 
-	-Make new images collection, store url's in there and iterate through on main page
-	-Add and delete functionality from profile page? So only can add if you're logged in
+    -Error message if image doesn't upload correctly
+	-Loading animation when uploading picture? It takes a long time
+	-Stats like win %, lose % (Microsoft's PowerBI would be perfect if we can embed)
+	-Separated player profile page for personal profile page you can edit and public page
 
--Only can make an account if you're part of pga? Idk if that can work
--Make site more colorful (Microsoft likes colors) (low priority)
+	-Picture slideshow! Makes the front page more interesting. Let ppl upload pics of themselves/friends playing and display them on main landing page.
+		-Make new container in azure
+		-Know which container you're uploading to in .js 
+		-Make new images collection, store url's in there and iterate through on main page
+		-Add and delete functionality from profile page? So only can add if you're logged in
+
+
+	-Make site more colorful (Microsoft likes colors) (low priority)
+
+
+Things to fix:
+    - Current matches highlights greater points even if game is not finished
+    - Clicking a link does not reset the link color after clicking
+	-Fix edit username button alignment
