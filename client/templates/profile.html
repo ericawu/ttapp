@@ -21,14 +21,15 @@
 				<button type="submit" class="btn btn-primary">Start Match</button>
 			</form>
 			{{> uploadImage}}
-		</div>				
+
+		</div>	
 	</div>
 </template>
 
 <template name="profile_header">
 	<div class="row">
 		<div class="col-xs-3">
-			<img src="\grumpycat.jpg" class="img-responsive profile-pic">
+			<img src={{currentUser.profile.profpic}} class="img-responsive profile-pic">
 		</div>
 		<div class="col-xs-9 ">
 			<div class="profile-header-info">
@@ -60,14 +61,12 @@
 </template>
 
 <template name="uploadImage">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3>Upload Image</h3>
-            </div>
-            <div class="panel-body">
-                <form class="form-group">
-                    <input type="file" id="uploadFile" class="uploadFile" />
-                </form>
-            </div>
-        </div>
+        <!--<div class="panel panel-default">-->
+                <input type="file" name="file" id="file" class="uploadFile" />
+				<label class="uploadFileLabel" for="file">{{profBtnLabel}}</label>
+
+                <!--<form class="form-group">
+                <label class="btn btn-default btn-file">
+                    Change Profile Picture <input type="file" id="uploadFile" class="uploadFile" /> </label>
+                </form>-->
 </template>

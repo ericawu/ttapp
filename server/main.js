@@ -17,16 +17,28 @@ Meteor.startup(() => {
 
 Meteor.methods({
   'uploadFile': function(file) {
-
-  /* Remember the method name must match the method name from the client call. The parameters passed from the client can be referenced by file.paramname */
     var response;
     if (file === void 0) {
       throw new Meteor.Error(500, "Missing File", "", "");
     }
     console.log("in server");
     console.log(file.name);
-    response = file.azureUpload(file.name, "njiang", "autzeQkPG5Tg89rEtH24WWv7b8wgVWCUD3rC0OLvMZzDSxUSXko+rcJ7NT39sQDPNs2C/vXeOAZTGuwfijoFxA==", "blob-container");
+    //not secure, is there a better way to store keys?
+    response = file.azureUpload(file.name, "njiang", "autzeQkPG5Tg89rEtH24WWv7b8wgVWCUD3rC0OLvMZzDSxUSXko+rcJ7NT39sQDPNs2C/vXeOAZTGuwfijoFxA==", "profpics");
+    //var regex = new RegExp("^https?://");
+    //regex.test(response)
+    if (response != undefined) {
+      console.log(typeof(response));
+      console.log(typeof(response.url));
+      console.log(response.url);
+
+      Meteor.users.update(Meteor.userId(), {$set: {'profile.profpic': response.url}});
+      console.log("matches!");
+    }
+    else {
+      console.log("doesn't match");
+    }
+    
     return console.log(response);
-    /* Once file is completely uploaded you get a url in the response . Remember the file is uploaded in chunks so this function will be triggered multiple times. The response will contain the url parameter only if the file is completely uploaded */
   }
 });

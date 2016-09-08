@@ -167,7 +167,9 @@ Template.register.onDestroyed(function(){
 	if (Meteor.user()) {
 		Meteor.users.update(Meteor.userId(), {$set: {
 			'profile.rating': 200,
-			'profile.displayname': Meteor.user().emails[0].address 
+			'profile.displayname': Meteor.user().emails[0].address,
+			'profile.profpic': "/default-img.jpeg"
+
 		}});
 	}
 	console.log("The 'register' template was just destroyed.");
@@ -401,13 +403,34 @@ Template.players_page.helpers({
 	}
 });
 
+Template.uploadImage.onCreated(function(){
+	
+});
+
+Template.uploadImage.helpers({
+	profBtnLabel: function() {
+		if (Session.get('profBtnLabel') != undefined) {
+			return Session.get('profBtnLabel');
+		}
+		else {
+			return "Update Profile Picture";
+		}
+	}
+});
+
 Template.uploadImage.events({
-	'change .uploadFile': function(event,template){
+    'change .uploadFile': function(event,template){
 	    var files = event.target.files;
 	    console.log("in client");
 	    var file = files[0];
 
-	    console.log(file);
+	    //TODO: check file extension and number of files (only one allowed)
+
+	    var filename = file.name;
+	    console.log("file name is: ");
+	    console.log(filename);
+
+	    Session.set('profBtnLabel', file.name);
 	    AzureFile.upload(
             file,"uploadFile",
             {},
@@ -422,5 +445,5 @@ Template.uploadImage.events({
                 }
             }
         );
-    }
+	}
 })

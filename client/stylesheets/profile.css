@@ -36,3 +36,15 @@ h1.profile-name {
 .match-names p {
 	margin-bottom: 2em;
 }
+.uploadFile {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+	cursor: pointer;
+}
+.uploadFileLabel {
+	cursor: pointer;
+}
