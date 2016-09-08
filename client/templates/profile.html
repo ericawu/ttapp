@@ -2,71 +2,72 @@
 	<div class="col-xs-12 full-height">
 		{{> profile_header}}
 		
-		<div class="form-group row">
-			<form class="start-match">
-				<div class="col-xs-5">
-					<input id="opponent-searchbar" class="form-control" name="opponent" type="text" value="{{oppEntry}}" autocomplete="off" placeholder="Opponent name or email">
-					{{#if showDropdown}}
-						<ul id="opponent-searchbar-dropdown" class="dropdown-menu">
-							{{#each opponentMatch}}
-								{{> opponentEntry}}
-							{{/each}}
-							{{#unless oppNum}}
-								<li><div class="dropdown-entry">No matching players found</div></li>
-							{{/unless}}
-						</ul>
-					{{/if}}
+		{{#if isUser user}}
+			<div class="form-group row">
+				<form class="start-match">
+					<div class="col-xs-5">
+						<input id="opponent-searchbar" class="form-control" name="opponent" type="text" value="{{oppEntry}}" autocomplete="off" placeholder="Opponent name or email">
+						{{#if showDropdown}}
+							<ul id="opponent-searchbar-dropdown" class="dropdown-menu">
+								{{#each opponentMatch}}
+									{{> opponentEntry}}
+								{{/each}}
+								{{#unless oppNum}}
+									<li><div class="dropdown-entry">No matching players found</div></li>
+								{{/unless}}
+							</ul>
+						{{/if}}
 
-				</div>
-				<button type="submit" class="btn btn-primary">Start Match</button>
-			</form>
-			{{> uploadImage}}
+					</div>
+					<button type="submit" class="btn btn-primary">Start Match</button>
+				</form>
 
-		</div>	
+			</div>
+		{{/if}}
 	</div>
 </template>
 
 <template name="profile_header">
-	<div class="row">
+	<div class="profile-header row">
 		<div class="col-xs-3">
-			<img src={{currentUser.profile.profpic}} class="img-responsive profile-pic">
+		    {{#with user}}
+		      	{{> profileImg}}
+		    {{/with}}
+			{{#if isUser user}}
+				{{> uploadImage}}
+			{{/if}}
 		</div>
 		<div class="col-xs-9 ">
 			<div class="profile-header-info">
 				<div class="namedisplay">
 					{{#if editClicked}}
-					<form class="edit-display-name">
-						<div class="col-xs-5">
-							<input class="form-control" name="name" type="text" value="" id="example-text-input">
-						</div>
-						<button type="submit" class="btn btn-primary">Update Name</button>
-					</form>
+						<form class="edit-display-name">
+							<div class="col-xs-5">
+								<input class="form-control" name="name" type="text" value="{{user.profile.displayname}}" placeholder="Display name" id="example-text-input">
+							</div>
+							<button type="submit" class="btn btn-primary">Update Name</button>
+						</form>
 					{{else}}
-					<h1 class=profile-name>{{currentUser.profile.displayname}}</h1>
-					<button type="button" class="btn btn-default editbutton" aria-label="Left Align">
-
-						<!-- Why is this edit button not aligning D: -->
-						<span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit
-					</button>
+						<h1 class=profile-name>{{user.profile.displayname}}</h1>
+						{{#if isUser user}}
+							<button type="button" class="btn btn-default editbutton" aria-label="Left Align">
+								<!-- Why is this edit button not aligning D: -->
+								<span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit
+							</button>
+						{{/if}}
 					{{/if}}
 				</div>
-				<h1 class=profile-rating>Rating: {{currentUser.profile.rating}}</h1> 
+				<h1 class=profile-rating>Rating: {{user.profile.rating}}</h1> 
 			</div>
 		</div>
 	</div>
 </template>
 
 <template name="opponentEntry">
-		<li><div email={{email}} class="dropdown-entry opponentEntry">{{profile.displayname}} ({{email}})</div></li>
+	<li><div email={{email}} class="dropdown-entry opponentEntry">{{profile.displayname}} ({{email}})</div></li>
 </template>
 
 <template name="uploadImage">
-        <!--<div class="panel panel-default">-->
-                <input type="file" name="file" id="file" class="uploadFile" />
-				<label class="uploadFileLabel" for="file">{{profBtnLabel}}</label>
-
-                <!--<form class="form-group">
-                <label class="btn btn-default btn-file">
-                    Change Profile Picture <input type="file" id="uploadFile" class="uploadFile" /> </label>
-                </form>-->
+    <input type="file" name="file" id="file" class="uploadFile"/>
+	<label class="uploadFileLabel" for="file">Update Profile Picture</label>
 </template>

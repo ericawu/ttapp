@@ -27,6 +27,7 @@ Meteor.methods({
     response = file.azureUpload(file.name, "njiang", "autzeQkPG5Tg89rEtH24WWv7b8wgVWCUD3rC0OLvMZzDSxUSXko+rcJ7NT39sQDPNs2C/vXeOAZTGuwfijoFxA==", "profpics");
     //var regex = new RegExp("^https?://");
     //regex.test(response)
+    
     if (response != undefined) {
       console.log(typeof(response));
       console.log(typeof(response.url));

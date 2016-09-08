@@ -5,8 +5,10 @@ function route_page(page_name) {
     var pc = document.getElementById("page_container");
     if (pc) pc.classList.add("page-transition");
     setTimeout(function() {
+      Session.delete('param-id');
       if (pc) pc.classList.remove("page-transition");
       BlazeLayout.render('wrapper', {body: page_name});
+      Session.set('param-id', params._id);
     }, 500)
   }
 }

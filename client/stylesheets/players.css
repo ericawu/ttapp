@@ -23,9 +23,8 @@
 	padding-right: 10px;
 }
 
-.playerBox-container .pro-img-container {
-	width: 30%;
-	max-width: 70px;
+.playerBox-container .link {
+	max-width: 30%;
 }
 
 .playerBox-info {

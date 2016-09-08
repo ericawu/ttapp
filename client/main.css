@@ -60,9 +60,18 @@ hr {
 }
 
 .pro-img-container {
+    display: inline-block;
     position: relative;
     border: 1px solid #999;
-    box-sizing: content-box;
+    box-sizing: border-box;
+}
+
+.link .pro-img-container {
+    transition: all 0.2s;
+}
+
+.link:hover .pro-img-container {
+    border-color: #23527c;
 }
 
 .pro-img {

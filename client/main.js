@@ -3,10 +3,6 @@ import { ReactiveVar } from 'meteor/reactive-var';
 
 import './main.html';
 
-submitForms = function() {
-	console.log("it's working pt 2");
-};
-
 Meteor.subscribe('topUsers');
 Meteor.subscribe('allUsers');
 Meteor.subscribe('allMatches');
@@ -124,6 +120,11 @@ Template.displayPoints.helpers({
 	},
 	'isFirst': function(num) {
 		return num == 1;
+	},
+	'gameFinished': function() {
+		var match = Template.parentData(1);
+		var gameNum = Template.currentData().num;
+		return match.completed || gameNum != match.games.length;
 	}
 });
 
@@ -168,7 +169,7 @@ Template.register.onDestroyed(function(){
 		Meteor.users.update(Meteor.userId(), {$set: {
 			'profile.rating': 200,
 			'profile.displayname': Meteor.user().emails[0].address,
-			'profile.profpic': "/default-img.jpeg"
+			'profile.profpic': "default.jpg"
 
 		}});
 	}
@@ -272,6 +273,13 @@ Template.profile_page.helpers({
 		} else {
 			return false;
 		}
+	},
+	user: function() {
+		var id = Session.get('param-id') || FlowRouter.getParam('_id');
+		return Meteor.users.findOne({_id: id});
+	},
+	isUser: function(user) {
+		return user && user._id && Meteor.userId() == user._id;
 	}
 });
 
@@ -317,17 +325,22 @@ Template.opponentEntry.events({
 	}
 });
 
-
 Template.profile_header.helpers({
 	editClicked: function() {
 		return Session.get('editButtonClicked');
 	},
-
+	user: function() {
+		var id = Session.get('param-id') || FlowRouter.getParam('_id');
+		return Meteor.users.findOne({_id: id});
+	},
+	isUser: function(user) {
+		return user && user._id && Meteor.userId() == user._id;
+	}
 });
 
 Template.profile_header.events({
 	'click .editbutton': function(e) {
-		var flag = Session.set('editButtonClicked', true);		
+		Session.set('editButtonClicked', true);		
 	},
 	'submit .edit-display-name': function(e) {
 		Session.set('editButtonClicked', false);
@@ -403,32 +416,18 @@ Template.players_page.helpers({
 	}
 });
 
-Template.uploadImage.onCreated(function(){
-	
-});
-
 Template.uploadImage.helpers({
-	profBtnLabel: function() {
-		if (Session.get('profBtnLabel') != undefined) {
-			return Session.get('profBtnLabel');
-		}
-		else {
-			return "Update Profile Picture";
-		}
-	}
 });
 
 Template.uploadImage.events({
     'change .uploadFile': function(event,template){
 	    var files = event.target.files;
-	    console.log("in client");
 	    var file = files[0];
 
 	    //TODO: check file extension and number of files (only one allowed)
 
 	    var filename = file.name;
-	    console.log("file name is: ");
-	    console.log(filename);
+	    console.log("file name is: " + filename);
 
 	    Session.set('profBtnLabel', file.name);
 	    AzureFile.upload(

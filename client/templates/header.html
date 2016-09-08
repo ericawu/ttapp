@@ -2,7 +2,13 @@
   <div class="header">
     <div class="header-bg">
       <img src="\RyderCupLogo.png" class="header-logo">
-      <a class="header-img-link" href="{{pathFor 'profile' _id=currentUser._id}}">{{> profileImg}}</a>
+      {{#if currentUser}}
+        {{#with currentUser}}
+          <div class="header-img">{{> profileImgLink}}</div>
+        {{/with}}
+      {{else}}
+        <div class="header-img">{{> profileImgDefault}}</div>
+      {{/if}}
       <div class="header-hello">
         <div class="header-hello-welcome">
           Welcome, <b>{{#if currentUser}}{{currentUser.profile.displayname}}{{else}}Guest{{/if}}!</b>

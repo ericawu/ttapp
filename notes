@@ -7,24 +7,27 @@ Things to do:
         /match/27348572083
 
     Profile first/last name setup upon registration
-    -Only can make an account if you're part of pga? Idk if that can work
+    - Only can make an account if you're part of pga? Idk if that can work
 
-    -Error message if image doesn't upload correctly
-	-Loading animation when uploading picture? It takes a long time
-	-Stats like win %, lose % (Microsoft's PowerBI would be perfect if we can embed)
-	-Separated player profile page for personal profile page you can edit and public page
+    - Crop profile picture to square
 
-	-Picture slideshow! Makes the front page more interesting. Let ppl upload pics of themselves/friends playing and display them on main landing page.
-		-Make new container in azure
-		-Know which container you're uploading to in .js 
-		-Make new images collection, store url's in there and iterate through on main page
-		-Add and delete functionality from profile page? So only can add if you're logged in
+    - Error message if image doesn't upload correctly
+	- Loading animation when uploading picture? It takes a long time
+	- Stats like win %, lose % (Microsoft's PowerBI would be perfect if we can embed)
+	- Separated player profile page for personal profile page you can edit and public page
+
+	- Picture slideshow! Makes the front page more interesting. Let ppl upload pics of themselves/friends playing and display them on main landing page.
+		- Make new container in azure
+		- Know which container you're uploading to in .js 
+		- Make new images collection, store url's in there and iterate through on main page
+		- Add and delete functionality from profile page? So only can add if you're logged in
 
 
-	-Make site more colorful (Microsoft likes colors) (low priority)
+	- Make site more colorful (Microsoft likes colors) (low priority)
 
 
 Things to fix:
     - Current matches highlights greater points even if game is not finished
     - Clicking a link does not reset the link color after clicking
-	-Fix edit username button alignment
+	- Fix edit username button alignment
+    - Routing gets rid of html params before the transition finishes leading to info disappearing during transition (ex: go from profile to any page)

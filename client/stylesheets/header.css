@@ -24,15 +24,10 @@
     padding: 15px;
 }
 
-.header-img-link .pro-img-container {
+.header-img {
     position: fixed;
     top: 10px;
     right: 10px;
-    transition: all 0.2s;
-}
-
-.header-img-link:hover .pro-img-container {
-    border-color: #23527c;
 }
 
 .header-hello {

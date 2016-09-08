@@ -1,6 +1,5 @@
-.profile-pic {
-	display: inline-block;
-	margin: 1%;
+.profile-header .pro-img {
+	max-width: 200px;
 }
 
 h1.profile-name {
@@ -12,14 +11,12 @@ h1.profile-name {
 }
 
 .profile-header-info {
-	vertical-align: middle;
 	width: 100%;
 }
 
 .namedisplay.h1 {
 	display: inline-block;
 }
-
 
 .point-input {
 	display: inline-block;
@@ -28,14 +25,17 @@ h1.profile-name {
 	margin-left: 1em;
 	margin-bottom: 1em;
 }
+
 .match-names {
 	height: 100%;
 	display: inline-block;
 	margin-bottom: 1em;
 }
+
 .match-names p {
 	margin-bottom: 2em;
 }
+
 .uploadFile {
 	width: 0.1px;
 	height: 0.1px;
@@ -45,6 +45,7 @@ h1.profile-name {
 	z-index: -1;
 	cursor: pointer;
 }
+
 .uploadFileLabel {
 	cursor: pointer;
 }
