@@ -78,4 +78,18 @@
     border-bottom: 1px solid #555;
     color: #555;
 }
+.display-match .link {
+    color: #999;
+}
+.display-match a:visited {
+    text-decoration: none;
+}
+
+.display-match a:hover {
+    text-decoration: none;
+}
+
+.display-match a:active {
+    text-decoration: none;
+}
 

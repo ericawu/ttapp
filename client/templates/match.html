@@ -3,7 +3,7 @@
     <div class="col-xs-3 display-match-playerbox {{#if p1win}}win{{/if}}">
       {{#with playerFromId id1}}
         {{> profileImgLink}}
-        <div class="display-match-playerbox-name">{{profile.displayname}}</div>
+        <a class="link display-match-playerbox-name" href="{{pathFor 'profile' _id=_id}}" >{{profile.displayname}}</a>
       {{/with}}
     </div>
     <div class="col-xs-6 display-match-games">
@@ -17,7 +17,7 @@
     <div class="col-xs-3 display-match-playerbox {{#if p2win}}win{{/if}}">
       {{#with playerFromId id2}}
         {{> profileImgLink}}
-        <div class="display-match-playerbox-name">{{profile.displayname}}</div>
+        <a class="link display-match-playerbox-name" href="{{pathFor 'profile' _id=_id}}" >{{profile.displayname}}</a>
       {{/with}}
     </div>
   </div>

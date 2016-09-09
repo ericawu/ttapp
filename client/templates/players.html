@@ -11,7 +11,7 @@
         <span class="playerBox-rank">{{profile.rank}}</span>
         {{> profileImgLink}}
         <span class="playerBox-info">
-            <div>{{profile.displayname}}</div>
+            <a class="link" href="{{pathFor 'profile' _id=_id}}">{{profile.displayname}}</a>
             <div>Rating: {{profile.rating}}</div>
         </span>
     </div>

@@ -134,10 +134,6 @@ Template.register.events({
 	},
 });
 
-Template.register.onCreated(function(){
-	console.log("The 'register' template was just created.");
-});
-
 Template.register.onRendered(function(){
 	console.log("The 'register' template was just rendered.");
 	var validator = $('.register').validate({
@@ -177,9 +173,6 @@ Template.register.onDestroyed(function(){
 	Session.set('createaccount', false);
 });
 
-Template.login.onCreated(function(){
-	console.log("The 'login' template was just created.");
-});
 
 Template.login.onRendered(function(){
 	console.log("The 'login' template was just rendered.");
@@ -223,6 +216,7 @@ Template.profile_page.onCreated(function() {
 	Session.set('oppSelected', false);
 	Session.set('searchLength', 0);
 	Session.set('oppNum', 0);
+	
 });
 
 Template.profile_page.helpers({
@@ -416,11 +410,29 @@ Template.players_page.helpers({
 	}
 });
 
+Template.uploadImage.onCreated(function() {
+	Session.set('updatingImg', false);
+});
+
+//helper function isn't picking up session variable changes for some reason
 Template.uploadImage.helpers({
+	updateImg: function() {
+		if (Session.get('updatingImg')) {
+			//var x = Session.get('updatingImg');
+			return "Updating Profile Picture...";
+		}
+		else {
+			//var x = Session.get('updatingImg');
+			return "Update Profile Picture";
+		}
+	}
 });
 
 Template.uploadImage.events({
     'change .uploadFile': function(event,template){
+
+    	Session.set('updatingImg', true);
+    	console.log(Session.get('updatingImg'));
 	    var files = event.target.files;
 	    var file = files[0];
 
@@ -429,7 +441,7 @@ Template.uploadImage.events({
 	    var filename = file.name;
 	    console.log("file name is: " + filename);
 
-	    Session.set('profBtnLabel', file.name);
+	    
 	    AzureFile.upload(
             file,"uploadFile",
             {},
@@ -444,5 +456,6 @@ Template.uploadImage.events({
                 }
             }
         );
+        Session.set('updatingImg', false);
 	}
 })
