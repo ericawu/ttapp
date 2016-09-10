@@ -21,10 +21,11 @@
 					</div>
 					<button type="submit" class="btn btn-primary">Start Match</button>
 				</form>
-
+				
 			</div>
 		{{/if}}
-		
+<p>Hi</p>
+				{{> playerRecentMatches}}
 	</div>
 </template>
 
@@ -71,4 +72,25 @@
 <template name="uploadImage">
     <input type="file" name="file" id="file" class="uploadFile"/>
 	<label class="uploadFileLabel" for="file">{{updateImg}}</label>
+</template>
+
+<template name="playerRecentMatches">
+ <div class="container-matches">
+      <div class="container-matches-header">
+        <div class="container-matches-title"> Recent Matches </div>
+        <hr>
+      </div>
+      <div class="container-matches-body">
+        <div class="container-matches-list">
+          {{#each recentMatches}}
+            {{> displayScore}}
+          {{/each}}
+          {{#if noRecentMatches}}
+            <div class="noMatch-text">
+              No Recent Matches.
+            </div>
+          {{/if}}
+        </div>
+      </div>
+    </div>
 </template>
