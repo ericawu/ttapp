@@ -10,12 +10,16 @@
 }
 
 .playerBox-container {
-	min-height: 80px;
+	min-height: 90px;
 	height: 10%;
 	width: 100%;
 	display: flex;
 	align-items: center;
 	padding: 5px 10px;
+}
+
+.playerBox-container:hover {
+	background-color: rgba(255,255,255,0.1);
 }
 
 .playerBox-rank {
