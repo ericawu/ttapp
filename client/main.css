@@ -66,11 +66,19 @@ hr {
     box-sizing: border-box;
 }
 
-.link .pro-img-container {
+.profile-link,
+.profile-link * {
+    color: #999;
     transition: all 0.2s;
+    text-decoration: none !important;
 }
 
-.link:hover .pro-img-container {
+.profile-link:hover,
+.profile-link:hover * {
+    color: #23527c !important;
+}
+
+.profile-link:hover .pro-img-container {
     border-color: #23527c;
 }
 

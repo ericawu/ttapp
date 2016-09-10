@@ -4,7 +4,9 @@
       <img src="\RyderCupLogo.png" class="header-logo">
       {{#if currentUser}}
         {{#with currentUser}}
-          <div class="header-img">{{> profileImgLink}}</div>
+          <a class="profile-link" href="{{pathFor 'profile' _id=_id}}">
+            <div class="header-img">{{> profileImg}}</div>
+          </a>
         {{/with}}
       {{else}}
         <div class="header-img">{{> profileImgDefault}}</div>

@@ -7,12 +7,12 @@
 </template>
 
 <template name="playerBox">
-    <div class="playerBox-container">
+    <a class="playerBox-container profile-link" href="{{pathFor 'profile' _id=_id}}">
         <span class="playerBox-rank">{{profile.rank}}</span>
-        {{> profileImgLink}}
+        {{> profileImg}}
         <span class="playerBox-info">
-            <a class="link" href="{{pathFor 'profile' _id=_id}}">{{profile.displayname}}</a>
+            <div>{{profile.displayname}}</div>
             <div>Rating: {{profile.rating}}</div>
         </span>
-    </div>
+    </a>
 </template>

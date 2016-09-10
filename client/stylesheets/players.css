@@ -23,25 +23,6 @@
 	padding-right: 10px;
 }
 
-.playerBox-container .link {
-	max-width: 30%;
-    text-decoration: none;
-    color: #999;
-}
-
-.playerBox-container a:visited {
-    text-decoration: none;
-}
-
-.playerBox-container a:hover {
-    text-decoration: none;
-}
-
-.playerBox-container a:active {
-    text-decoration: none;
-}
-
-
 .playerBox-info {
 	width: 60%;
 	padding-left: 10px;

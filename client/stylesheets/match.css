@@ -17,16 +17,6 @@
     flex-direction: column;
 }
 
-.display-match-playerbox.win {
-    color: #23527c;
-    font-weight: bold;
-}
-
-.display-match-playerbox.win .pro-img-container {
-    /*border-color: #23527c;*/
-    /*border-width: 2px;*/
-}
-
 .display-match-playerbox-name {
     margin-top: 5px;
     max-width: 100%;
@@ -34,6 +24,15 @@
     overflow-x: hidden;
     text-overflow: ellipsis;
     font-size: 0.8em;
+}
+
+.display-match-playerbox.win .pro-img-container {
+    border-color: #237b23;
+}
+
+.display-match-playerbox.win .display-match-playerbox-name {
+    color: #237b23;
+    font-weight: bold;
 }
 
 .display-match-games {
@@ -65,7 +64,7 @@
 
 .display-match-points p.win {
     font-weight: bold;
-    color: #23527c;
+    color: #237b23;
 }
 
 .display-match-points p.filler {
@@ -78,18 +77,3 @@
     border-bottom: 1px solid #555;
     color: #555;
 }
-.display-match .link {
-    color: #999;
-}
-.display-match a:visited {
-    text-decoration: none;
-}
-
-.display-match a:hover {
-    text-decoration: none;
-}
-
-.display-match a:active {
-    text-decoration: none;
-}
-

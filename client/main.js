@@ -76,7 +76,7 @@ Template.displayScore.helpers({
 		return Meteor.users.findOne({_id: id});
 	},
 	'p1win': function() {
-		var match = Template.currentData();
+		var match = Template.parentData(1);
 		if (!match.completed) {
 			return false;
 		}
@@ -92,7 +92,7 @@ Template.displayScore.helpers({
 		return counter > 0;
 	},
 	'p2win': function() {
-		var match = Template.currentData();
+		var match = Template.parentData(1);
 		if (!match.completed) {
 			return false;
 		}

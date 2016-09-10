@@ -1,11 +1,11 @@
 <template name="displayScore">
   <div class="display-match">
-    <div class="col-xs-3 display-match-playerbox {{#if p1win}}win{{/if}}">
-      {{#with playerFromId id1}}
-        {{> profileImgLink}}
-        <a class="link display-match-playerbox-name" href="{{pathFor 'profile' _id=_id}}" >{{profile.displayname}}</a>
-      {{/with}}
-    </div>
+    {{#with playerFromId id1}}
+      <a class="col-xs-3 display-match-playerbox profile-link {{#if p1win}}win{{/if}}" href="{{pathFor 'profile' _id=_id}}">
+        {{> profileImg}}
+        <div class="display-match-playerbox-name">{{profile.displayname}}</div>
+      </a>
+    {{/with}}
     <div class="col-xs-6 display-match-games">
       <div class="display-match-games-breakdown">
         {{#each games}}{{> displayPoints}}{{/each}}
@@ -14,12 +14,12 @@
         {{dateString}}
       </div>
     </div>
-    <div class="col-xs-3 display-match-playerbox {{#if p2win}}win{{/if}}">
-      {{#with playerFromId id2}}
-        {{> profileImgLink}}
-        <a class="link display-match-playerbox-name" href="{{pathFor 'profile' _id=_id}}" >{{profile.displayname}}</a>
-      {{/with}}
-    </div>
+    {{#with playerFromId id2}}
+      <a class="col-xs-3 display-match-playerbox profile-link {{#if p2win}}win{{/if}}" href="{{pathFor 'profile' _id=_id}}">
+        {{> profileImg}}
+        <div class="display-match-playerbox-name">{{profile.displayname}}</div>
+      </a>
+    {{/with}}
   </div>
 </template>
 
