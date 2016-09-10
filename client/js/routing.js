@@ -42,3 +42,7 @@ FlowRouter.route('/newmatch', {
   name: 'newmatch',
   action: route_page('newmatch_page')
 });
+
+FlowRouter.notFound = {
+  action: route_page('notfound_page')
+}
