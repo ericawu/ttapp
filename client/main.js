@@ -463,7 +463,7 @@ Template.uploadImage.events({
 Template.playerRecentMatches.helpers({
 	recentMatches: function() {
 		var id = Session.get('param-id') || FlowRouter.getParam('_id');
-		return Matches.find({$or: [{"id1": id}, {"id2": id}]}, {sort: {date: -1}});
+		return Matches.find({$or: [{"id1": id}, {"id2": id}]}, {sort: {date: -1}, limit: 6});
 	}
 });
 
