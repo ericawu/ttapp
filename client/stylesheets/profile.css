@@ -1,21 +1,29 @@
-.profile-header .pro-img {
-	max-width: 200px;
+.profile-info .pro-img {
+	max-width: 100%;
 }
 
-h1.profile-name {
-	display: inline-block;
-}
-.edit-button {
-	display: inline-block;
-	margin-left: 1em;
+.profile-name-container {
+	margin-bottom: 10px;
 }
 
-.profile-header-info {
+.profile-name {
+	outline: none;
+	border: none;
+    background-color: transparent;
+}
+
+.profile-name:focus {
+	background-color: rgba(255, 255, 255, 0.1);
+}
+
+.profile-info-category {
+	font-size: 0.8em;
+	color: #555;
+}
+
+.profile-info-value {
+	font-size: 1.5em;
 	width: 100%;
-}
-
-.namedisplay.h1 {
-	display: inline-block;
 }
 
 .point-input {
@@ -24,6 +32,10 @@ h1.profile-name {
 	text-align: right;
 	margin-left: 1em;
 	margin-bottom: 1em;
+}
+
+.profile-page .container-matches {
+	height: 100%;
 }
 
 .match-names {

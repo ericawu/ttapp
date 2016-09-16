@@ -15,6 +15,8 @@ Things to do:
 	- Loading animation when uploading picture? It takes a long time
 	- Stats like win %, lose % (Microsoft's PowerBI would be perfect if we can embed)
 
+    - Standardize recent/current match display to a single template
+
 	- Picture slideshow! Makes the front page more interesting. Let ppl upload pics of themselves/friends playing and display them on main landing page.
 		- Make new container in azure
 		- Know which container you're uploading to in .js 

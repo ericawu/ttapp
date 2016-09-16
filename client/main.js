@@ -135,47 +135,57 @@ Template.register.events({
 });
 
 Template.register.onRendered(function(){
-	console.log("The 'register' template was just rendered.");
+	$.validator.addMethod("validName", function(value, element) {
+		var name = value.split(" ");
+		if (name.length != 2 || !name[0].length || !name[1].length) {
+			return false;
+		}
+		return true;
+	}, "Name must be in form 'Firstname Lastname'");
 	var validator = $('.register').validate({
 		submitHandler: function(event) {
 			var email = $('[name=email]').val();
 			var password = $('[name=password]').val();
+			var name = $('[name=name]').val();
+			var splitName = name.split(" ");
 			Accounts.createUser({
 				email: email,
-				password: password
-
+				password: password,
+				profile: {
+					displayname: name,
+					fname: splitName[0],
+					lname: splitName[1],
+					rating: 200,
+					profpic: "default.jpg"
+				}
 			}, function(error){
 				if(error) {
-					if(error.reason == "Email already exists."){
+					if (error.reason == "Email already exists."){
 						validator.showErrors({
 							email: "That email already belongs to a registered user."   
 						});
-					}
-					else {
-
+					} else if (error.reason =="Name must be in form 'Firstname Lastname'") {
+						validator.showErrors({
+							name: error.reason
+						});
+					} else {
+						console.log(error);
 					}
 				};
 			});
+		},
+		rules: {
+			name: {validName: true}
 		}
 	});
 });
 
 Template.register.onDestroyed(function(){
-	if (Meteor.user()) {
-		Meteor.users.update(Meteor.userId(), {$set: {
-			'profile.rating': 200,
-			'profile.displayname': Meteor.user().emails[0].address,
-			'profile.profpic': "default.jpg"
-
-		}});
-	}
-	console.log("The 'register' template was just destroyed.");
 	Session.set('createaccount', false);
 });
 
 
 Template.login.onRendered(function(){
-	console.log("The 'login' template was just rendered.");
 	var validator = $('.login').validate({
 		submitHandler: function(event) {
 			var email = $('[name=email]').val();
@@ -199,7 +209,6 @@ Template.login.onRendered(function(){
 });
 
 Template.login.onDestroyed(function(){
-	console.log("The 'login' template was just destroyed.");
 	Session.set('login', false);
 });
 
@@ -220,6 +229,41 @@ Template.profile_page.onCreated(function() {
 });
 
 Template.profile_page.helpers({
+	user: function() {
+		var id = Session.get('param-id') || FlowRouter.getParam('_id');
+		return Meteor.users.findOne({_id: id});
+	},
+	isUser: function(user) {
+		return user && user._id && Meteor.userId() == user._id;
+	}
+});
+
+Template.profile_info.helpers({
+	user: function() {
+		var id = Session.get('param-id') || FlowRouter.getParam('_id');
+		return Meteor.users.findOne({_id: id});
+	},
+	isUser: function(user) {
+		return user && user._id && Meteor.userId() == user._id;
+	}
+});
+
+Template.profile_info.events({
+	'blur .profile-name': function(e) {
+		var name = e.target.value.split(" ");
+		if (name.length != 2 || !name[0].length || !name[1].length) {
+			e.target.value = Meteor.user().profile.displayname;
+			return false;
+		}
+		Meteor.users.update(Meteor.userId(), {$set:{"profile.displayname": e.target.value, "profile.fname": name[0], "profile.lname": name[1]}});
+		return false;
+	},
+	'change .profile-name': function(e) {
+		e.target.blur();
+	}
+});
+
+Template.newmatchBar.helpers({
 	'opponentMatch': function() {
 	    var key = Session.get('searchKey');
 	    if (key == null || key == "") {
@@ -267,17 +311,10 @@ Template.profile_page.helpers({
 		} else {
 			return false;
 		}
-	},
-	user: function() {
-		var id = Session.get('param-id') || FlowRouter.getParam('_id');
-		return Meteor.users.findOne({_id: id});
-	},
-	isUser: function(user) {
-		return user && user._id && Meteor.userId() == user._id;
 	}
-});
+})
 
-Template.profile_page.events({
+Template.newmatchBar.events({
 	'click #opponent-searchbar': function(e) {
 		if (Session.get('oppSelected')) {
 	    	Session.set('searchKey', undefined);
@@ -306,6 +343,8 @@ Template.profile_page.events({
 			games: [{points1: "0", points2: "0", num: 1, filler: false}],
 		});
 		Session.set('currentMatchId', id);
+    	Session.set('searchKey', undefined);
+		Session.set('searchLength', 0);
 		FlowRouter.go('newmatch');
 		return false;
 	}
@@ -316,30 +355,6 @@ Template.opponentEntry.events({
 		var opp = Meteor.users.findOne({'emails.address': e.target.getAttribute('email')});
 		Session.set('opponent', opp);
 		Session.set('oppSelected', true);
-	}
-});
-
-Template.profile_header.helpers({
-	editClicked: function() {
-		return Session.get('editButtonClicked');
-	},
-	user: function() {
-		var id = Session.get('param-id') || FlowRouter.getParam('_id');
-		return Meteor.users.findOne({_id: id});
-	},
-	isUser: function(user) {
-		return user && user._id && Meteor.userId() == user._id;
-	}
-});
-
-Template.profile_header.events({
-	'click .editbutton': function(e) {
-		Session.set('editButtonClicked', true);		
-	},
-	'submit .edit-display-name': function(e) {
-		Session.set('editButtonClicked', false);
-		Meteor.users.update(Meteor.userId(), {$set:{"profile.displayname": e.target.name.value}});
-		return false;
 	}
 });
 
@@ -378,10 +393,10 @@ Template.scoreInput.events({
 			}
 			Matches.update({_id: Session.get('currentMatchId')}, {$set: {completed: true, games: games}});
 			Meteor.call('calculate-rating', Session.get('currentMatchId'));
-			FlowRouter.go('profile', {_id: Meteor.userId()});
+			FlowRouter.go('home');
 		} else if (e.target.id == "btn-delete") {
 			Matches.remove({_id: Session.get('currentMatchId')});
-			FlowRouter.go('profile', {_id: Meteor.userId()});
+			FlowRouter.go('home');
 		} else if (e.target.id == "btn-add") {
 			var num = Matches.findOne({_id: Session.get('currentMatchId')}).games.length + 1;
 			Matches.upsert({_id: Session.get('currentMatchId')}, {$push: {games: {points1: "0", points2: "0", num: num, filler: false}}});
@@ -440,7 +455,6 @@ Template.uploadImage.events({
 
 	    var filename = file.name;
 	    console.log("file name is: " + filename);
-
 	    
 	    AzureFile.upload(
             file,"uploadFile",

@@ -54,6 +54,7 @@
     min-width: 85px;
 }
 
+.header-hello .window-rel table td input[type="text"],
 .header-hello .window-rel table td input[type="email"],
 .header-hello .window-rel table td input[type="password"] {
     background: transparent !important;

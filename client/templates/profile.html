@@ -1,37 +1,20 @@
 <template name="profile_page">
-	<div class="col-xs-12 full-height">
-		{{> profile_header}}
-		
-		{{#if isUser user}}
-			<div class="form-group row">
-				<form class="start-match">
-					<div class="col-xs-5">
-						<input id="opponent-searchbar" class="form-control" name="opponent" type="text" value="{{oppEntry}}" autocomplete="off" placeholder="Opponent name or email">
-						{{#if showDropdown}}
-							<ul id="opponent-searchbar-dropdown" class="dropdown-menu">
-								{{#each opponentMatch}}
-									{{> opponentEntry}}
-								{{/each}}
-								{{#unless oppNum}}
-									<li><div class="dropdown-entry">No matching players found</div></li>
-								{{/unless}}
-							</ul>
-						{{/if}}
-
-					</div>
-					<button type="submit" class="btn btn-primary">Start Match</button>
-				</form>
-				
-			</div>
-		{{/if}}
-        <p>Hi</p>
-		{{> playerRecentMatches}}
-	</div>
+    <div class="profile-page buffer-vert full-height">
+        <div class="col-xs-6 full-height">
+            {{> profile_info}}
+        </div>
+        <div class="col-xs-6 full-height">
+            {{#if isUser user}}
+                <!-- {{> newmatchBar}} -->
+            {{/if}}
+            {{> playerRecentMatches}}
+        </div>
+    </div>
 </template>
 
-<template name="profile_header">
-	<div class="profile-header row">
-		<div class="col-xs-3">
+<template name="profile_info">
+	<div class="profile-info row">
+		<div class="col-xs-4">
 		    {{#with user}}
 		      	{{> profileImg}}
 		    {{/with}}
@@ -39,58 +22,43 @@
 				{{> uploadImage}}
 			{{/if}}
 		</div>
-		<div class="col-xs-9 ">
-			<div class="profile-header-info">
-				<div class="namedisplay">
-					{{#if editClicked}}
-						<form class="edit-display-name">
-							<div class="col-xs-5">
-								<input class="form-control" name="name" type="text" value="{{user.profile.displayname}}" placeholder="Display name" id="example-text-input">
-							</div>
-							<button type="submit" class="btn btn-primary">Update Name</button>
-						</form>
-					{{else}}
-						<h1 class=profile-name>{{user.profile.displayname}}</h1>
-						{{#if isUser user}}
-							<button type="button" class="btn btn-default editbutton" aria-label="Left Align">
-								<!-- Why is this edit button not aligning D: -->
-								<span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit
-							</button>
-						{{/if}}
-					{{/if}}
-				</div>
-				<h1 class=profile-rating>Rating: {{user.profile.rating}}</h1> 
+		<div class="col-xs-8">
+			<div class="profile-name-container row">
+                <div class="profile-info-category">name:</div>
+                <div class="profile-info-value">
+                    <input class="profile-name" type="text" value="{{user.profile.fname}} {{user.profile.lname}}" placeholder="ex. John Smith">
+                </div>
 			</div>
+            <div class="row">
+                <div class="profile-info-category">rating:</div>
+			    <div class="profile-rating profile-info-value">{{user.profile.rating}}</div> 
+            </div>
 		</div>
 	</div>
 </template>
 
-<template name="opponentEntry">
-	<li><div email={{email}} class="dropdown-entry opponentEntry">{{profile.displayname}} ({{email}})</div></li>
-</template>
-
 <template name="uploadImage">
     <input type="file" name="file" id="file" class="uploadFile"/>
-	<label class="uploadFileLabel" for="file">{{updateImg}}</label>
+    <label class="uploadFileLabel" for="file">{{updateImg}}</label>
 </template>
 
 <template name="playerRecentMatches">
- <div class="container-matches">
-      <div class="container-matches-header">
-        <div class="container-matches-title"> Recent Matches </div>
-        <hr>
-      </div>
-      <div class="container-matches-body">
-        <div class="container-matches-list">
-          {{#each recentMatches}}
-            {{> displayScore}}
-          {{/each}}
-          {{#if noRecentMatches}}
-            <div class="noMatch-text">
-              No Recent Matches.
-            </div>
-          {{/if}}
+    <div class="container-matches">
+        <div class="container-matches-header">
+            <div class="container-matches-title"> Recent Matches </div>
+            <hr>
         </div>
-      </div>
+        <div class="container-matches-body">
+            <div class="container-matches-list">
+                {{#each recentMatches}}
+                    {{> displayScore}}
+                {{/each}}
+                {{#if noRecentMatches}}
+                    <div class="noMatch-text">
+                        No Recent Matches.
+                    </div>
+                {{/if}}
+            </div>
+        </div>
     </div>
 </template>
