@@ -82,11 +82,14 @@ Template.displayScore.helpers({
 		}
 		var games = match.games;
 		var counter = 0;
-		for (var i = 0 ; i < games.length; i++) {
-			if (greater(games[i].points1, games[i].points2)) {
-				counter++;
-			} else if (greater(games[i].points2, games[i].points1)) {
-				counter--;
+		console.log("displayScore.helpers");
+		if (games != null) {
+			for (var i = 0 ; i < games.length; i++) {
+				if (greater(games[i].points1, games[i].points2)) {
+					counter++;
+				} else if (greater(games[i].points2, games[i].points1)) {
+					counter--;
+				}
 			}
 		}
 		return counter > 0;
@@ -98,11 +101,14 @@ Template.displayScore.helpers({
 		}
 		var games = match.games;
 		var counter = 0;
-		for (var i = 0 ; i < games.length; i++) {
-			if (greater(games[i].points1, games[i].points2)) {
-				counter++;
-			} else if (greater(games[i].points2, games[i].points1)) {
-				counter--;
+		console.log("p2win");
+		if (games != null) {
+			for (var i = 0 ; i < games.length; i++) {
+				if (greater(games[i].points1, games[i].points2)) {
+					counter++;
+				} else if (greater(games[i].points2, games[i].points1)) {
+					counter--;
+				}
 			}
 		}
 		return counter < 0;
@@ -122,6 +128,7 @@ Template.displayPoints.helpers({
 		return num == 1;
 	},
 	'gameFinished': function() {
+		console.log("displayPoints.helpers");
 		var match = Template.parentData(1);
 		var gameNum = Template.currentData().num;
 		return match.completed || gameNum != match.games.length;
@@ -136,6 +143,7 @@ Template.register.events({
 
 Template.register.onRendered(function(){
 	$.validator.addMethod("validName", function(value, element) {
+		console.log("register.onRendered");
 		var name = value.split(" ");
 		if (name.length != 2 || !name[0].length || !name[1].length) {
 			return false;
@@ -251,6 +259,7 @@ Template.profile_info.helpers({
 Template.profile_info.events({
 	'blur .profile-name': function(e) {
 		var name = e.target.value.split(" ");
+		console.log("profile_info");
 		if (name.length != 2 || !name[0].length || !name[1].length) {
 			e.target.value = Meteor.user().profile.displayname;
 			return false;
@@ -295,6 +304,7 @@ Template.newmatchBar.helpers({
       			opp.email = opp.emails[0].address;
       			return opp;
       		}));
+	    console.log("newmatchbar");
 		Session.set('oppNum', opponents.length);
 	    return opponents;
 	},
@@ -326,6 +336,7 @@ Template.newmatchBar.events({
 	'keyup #opponent-searchbar': function(e) {
     	Session.set('searchKey', e.target.value);
 		Session.set('opponent', undefined);
+		console.log("newmatchBar");
 		Session.set('searchLength', e.target.value.length);
 		Session.set('oppSelected', false);
 	},
@@ -373,6 +384,7 @@ Template.scoreInput.helpers({
 function boNumFromGames(games) {
 	var counter1 = 0;
 	var counter2 = 0;
+	console.log("boNumFromGames");
 	for (var i = 0; i < games.length; i++) {
 		if (greater(games[i].points1, games[i].points2)) {
 			counter1++;
@@ -383,8 +395,10 @@ function boNumFromGames(games) {
 	return counter1 > counter2 ? counter1 * 2 - 1 : counter2 * 2 - 1;
 }
 
+
 Template.scoreInput.events({
 	'click button[type="submit"]': function(e) {
+		console.log("scoreInput");
 		if (e.target.id == "btn-done") {
 			var games = Matches.findOne({_id: Session.get('currentMatchId')}).games;
 			var fillerNum = boNumFromGames(games) - games.length;
