@@ -40,7 +40,9 @@
       </div>
     </div>
     <div class="col-xs-6 full-height">
-      {{> newmatchBar}}
+      {{#if currentUser}}
+        {{> newmatchBar}}
+      {{/if}}
       <p>RIGHT SIDE STUFF HERE</p>
     </div>
   </div>

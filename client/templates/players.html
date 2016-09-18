@@ -1,9 +1,11 @@
 <template name="players_page">
     <div class="col-xs-12 full-height">
-        {{#each allPlayers}}
-            {{> playerBox}}
-            <hr>
-        {{/each}}
+        <div class="playerList">
+            {{#each allPlayers}}
+                {{> playerBox}}
+                <hr>
+            {{/each}}
+        </div>
     </div>
 </template>
 

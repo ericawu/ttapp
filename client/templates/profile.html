@@ -4,9 +4,6 @@
             {{> profile_info}}
         </div>
         <div class="col-xs-6 full-height">
-            {{#if isUser user}}
-                <!-- {{> newmatchBar}} -->
-            {{/if}}
             {{> playerRecentMatches}}
         </div>
     </div>
@@ -24,13 +21,13 @@
 		</div>
 		<div class="col-xs-8">
 			<div class="profile-name-container row">
-                <div class="profile-info-category">name:</div>
+                <div class="profile-info-category">name</div>
                 <div class="profile-info-value">
                     <input class="profile-name" type="text" value="{{user.profile.fname}} {{user.profile.lname}}" placeholder="ex. John Smith">
                 </div>
 			</div>
             <div class="row">
-                <div class="profile-info-category">rating:</div>
+                <div class="profile-info-category">rating</div>
 			    <div class="profile-rating profile-info-value">{{user.profile.rating}}</div> 
             </div>
 		</div>

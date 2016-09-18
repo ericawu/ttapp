@@ -229,13 +229,6 @@ Template.profile_page.onCreated(function() {
 });
 
 Template.profile_page.helpers({
-	user: function() {
-		var id = Session.get('param-id') || FlowRouter.getParam('_id');
-		return Meteor.users.findOne({_id: id});
-	},
-	isUser: function(user) {
-		return user && user._id && Meteor.userId() == user._id;
-	}
 });
 
 Template.profile_info.helpers({
@@ -343,8 +336,6 @@ Template.newmatchBar.events({
 			games: [{points1: "0", points2: "0", num: 1, filler: false}],
 		});
 		Session.set('currentMatchId', id);
-    	Session.set('searchKey', undefined);
-		Session.set('searchLength', 0);
 		FlowRouter.go('newmatch');
 		return false;
 	}
@@ -393,9 +384,11 @@ Template.scoreInput.events({
 			}
 			Matches.update({_id: Session.get('currentMatchId')}, {$set: {completed: true, games: games}});
 			Meteor.call('calculate-rating', Session.get('currentMatchId'));
+			Session.set('opponent', undefined);
 			FlowRouter.go('home');
 		} else if (e.target.id == "btn-delete") {
 			Matches.remove({_id: Session.get('currentMatchId')});
+			Session.set('opponent', undefined);
 			FlowRouter.go('home');
 		} else if (e.target.id == "btn-add") {
 			var num = Matches.findOne({_id: Session.get('currentMatchId')}).games.length + 1;
@@ -478,6 +471,10 @@ Template.playerRecentMatches.helpers({
 	recentMatches: function() {
 		var id = Session.get('param-id') || FlowRouter.getParam('_id');
 		return Matches.find({$or: [{"id1": id}, {"id2": id}]}, {sort: {date: -1}, limit: 6});
+	},
+	noRecentMatches: function() {
+		var id = Session.get('param-id') || FlowRouter.getParam('_id');
+		return Matches.find({$or: [{"id1": id}, {"id2": id}]}, {sort: {date: -1}, limit: 6}).count() == 0;
 	}
 });
 

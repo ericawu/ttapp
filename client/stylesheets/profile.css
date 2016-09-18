@@ -23,6 +23,9 @@
 
 .profile-info-value {
 	font-size: 1.5em;
+}
+
+.profile-info-value input {
 	width: 100%;
 }
 
