@@ -60,7 +60,7 @@ Template.home_page.helpers({
 		return Matches.find({completed: true}, {sort: {date: -1}}).count() == 0;
 	},
 	topPlayers: function() {		
-		return Meteor.users.find({}, {sort: {"profile.rating": -1}}).map(function(player, index) {
+		return Meteor.users.find({}, {sort: {"profile.rating": -1}, limit: 5}).map(function(player, index) {
 			player.profile.rank = index+1;
 			return player;
 		});
@@ -160,7 +160,6 @@ Template.register.onRendered(function(){
 				email: email,
 				password: password,
 				profile: {
-					displayname: name,
 					fname: splitName[0],
 					lname: splitName[1],
 					rating: 200,
@@ -254,10 +253,10 @@ Template.profile_info.events({
 		var name = e.target.value.split(" ");
 		console.log("profile_info");
 		if (name.length != 2 || !name[0].length || !name[1].length) {
-			e.target.value = Meteor.user().profile.displayname;
+			e.target.value = Meteor.user().profile.fname + " " + Meteor.user().profile.lname;
 			return false;
 		}
-		Meteor.users.update(Meteor.userId(), {$set:{"profile.displayname": e.target.value, "profile.fname": name[0], "profile.lname": name[1]}});
+		Meteor.users.update(Meteor.userId(), {$set:{"profile.fname": name[0], "profile.lname": name[1]}});
 		return false;
 	},
 	'change .profile-name': function(e) {
@@ -275,9 +274,12 @@ Template.newmatchBar.helpers({
 	    var opponents = Meteor.users.find(
       		{$and: [
       			{_id: {$ne: Meteor.userId()}},
-  				{'profile.displayname': query}
+  				{$or: [
+  					{'profile.fname': query},
+  					{'profile.lname': query}
+  				]}
       		]},
-      		{sort: {'profile.displayname': 1}}).map(function(opp) {
+      		{sort: {'profile.fname': 1, 'profile.lname': 1}}).map(function(opp) {
       			opp.email = opp.emails[0].address;
       			return opp;
       		});
@@ -286,14 +288,18 @@ Template.newmatchBar.helpers({
       		{$and: [
       			{_id: {$ne: Meteor.userId()}},
   				{$and: [
-      				{'profile.displayname': {$not: query}},
+	  				{$and: [
+	  					{'profile.fname': {$not: query}},
+	  					{'profile.lname': {$not: query}}
+	  				]},
 	      			{$or: [
-	      				{'profile.displayname': query2},
+	      				{'profile.fname': query2},
+	      				{'profile.lname': query2},
 	      				{'emails.address': query2}
 	      			]}
       			]}
       		]},
-      		{sort: {'profile.displayname': 1}}).map(function(opp) {
+      		{sort: {'profile.fname': 1, 'profile.lname': 1}}).map(function(opp) {
       			opp.email = opp.emails[0].address;
       			return opp;
       		}));
@@ -306,7 +312,7 @@ Template.newmatchBar.helpers({
 	},
 	'oppEntry': function() {
 		var opp = Session.get('opponent');
-		return opp ? opp.profile.displayname + " (" + opp.emails[0].address + ")" : "";
+		return opp ? opp.profile.fname + " " + opp.profile.lname + " (" + opp.emails[0].address + ")" : "";
 	},
 	'showDropdown': function() {
 		if (!Session.get('oppSelected') && Session.get('searchLength') > 0) {
@@ -362,10 +368,10 @@ Template.opponentEntry.events({
 
 Template.scoreInput.helpers({
 	name1: function() {
-		return Meteor.user().profile.displayname;
+		return Meteor.user().profile.fname.charAt(0) + ". " + Meteor.user().profile.lname;
 	},
 	name2: function() {
-		return Session.get('opponent').profile.displayname;
+		return Session.get('opponent').profile.fname.charAt(0) + ". " + Session.get('opponent').profile.lname;
 	},
 	games: function() {
 		return  Matches.findOne({_id: Session.get('currentMatchId')}).games;

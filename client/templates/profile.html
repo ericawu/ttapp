@@ -23,7 +23,11 @@
 			<div class="profile-name-container row">
                 <div class="profile-info-category">name</div>
                 <div class="profile-info-value">
-                    <input class="profile-name" type="text" value="{{user.profile.fname}} {{user.profile.lname}}" placeholder="ex. John Smith">
+                    {{#if isUser user}}
+                        <input class="profile-name" type="text" value="{{user.profile.fname}} {{user.profile.lname}}" placeholder="ex. John Smith">
+                    {{else}}
+                        <div class="profile-name">{{user.profile.fname}} {{user.profile.lname}}</div>
+                    {{/if}}
                 </div>
 			</div>
             <div class="row">

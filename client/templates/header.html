@@ -13,7 +13,7 @@
       {{/if}}
       <div class="header-hello">
         <div class="header-hello-welcome">
-          Welcome, <b>{{#if currentUser}}{{currentUser.profile.displayname}}{{else}}Guest{{/if}}!</b>
+          Welcome, <b>{{#if currentUser}}{{currentUser.profile.fname}} {{currentUser.profile.lname}}{{else}}Guest{{/if}}!</b>
         </div>
         <div class="header-hello-sign">
           {{#if currentUser}}

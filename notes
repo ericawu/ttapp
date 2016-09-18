@@ -1,10 +1,5 @@
 Things to do:
-    Profile page with id:
-        /profile/769108475
-        - Show/hide buttons based on current user matching profile id
-
-    Match information page
-        /match/27348572083
+    - Match information page: /match/27348572083
 
     Profile first/last name setup upon registration
     - Only can make an account if you're part of pga? Idk if that can work
@@ -23,11 +18,7 @@ Things to do:
 		- Make new images collection, store url's in there and iterate through on main page
 		- Add and delete functionality from profile page? So only can add if you're logged in
 
-
 	- Make site more colorful (Microsoft likes colors) (low priority)
 
-
 Things to fix:
-    - Current matches highlights greater points even if game is not finished
-	- Fix edit username button alignment
     - Sometimes a new game will be added in the match display (after game is finished)

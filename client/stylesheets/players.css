@@ -1,7 +1,24 @@
+.playerList-container {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.25);
+}
+
 .playerList {
 	height: 100%;
 	width: 100%;
 	overflow-y: auto;
+}
+
+.playerList-container .playerList {
+    box-sizing: border-box;
+    padding-right: 20px;
+}
+
+.playerList-container .playerBox-container {
+    background-color: rgba(0, 0, 0, 0.3);
 }
 
 .playerList-title {
@@ -25,6 +42,10 @@
 .playerBox-rank {
 	width: 10%;
 	padding-right: 10px;
+}
+
+.playerBox-img {
+    width: 30%;
 }
 
 .playerBox-info {

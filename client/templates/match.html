@@ -1,12 +1,12 @@
 <template name="displayScore">
   <div class="display-match">
     {{#with playerFromId id1}}
-      <a class="col-xs-3 display-match-playerbox profile-link {{#if p1win}}win{{/if}}" href="{{pathFor 'profile' _id=_id}}">
+      <a class="col-xs-3 no-buffer-hori display-match-playerbox profile-link {{#if p1win}}win{{/if}}" href="{{pathFor 'profile' _id=_id}}">
         {{> profileImg}}
-        <div class="display-match-playerbox-name">{{profile.displayname}}</div>
+        <div class="display-match-playerbox-name">{{profile.fname}} {{profile.lname}}</div>
       </a>
     {{/with}}
-    <div class="col-xs-6 display-match-games">
+    <div class="col-xs-6 no-buffer-hori display-match-games">
       <div class="display-match-games-breakdown">
         {{#each games}}{{> displayPoints}}{{/each}}
       </div>
@@ -15,9 +15,9 @@
       </div>
     </div>
     {{#with playerFromId id2}}
-      <a class="col-xs-3 display-match-playerbox profile-link {{#if p2win}}win{{/if}}" href="{{pathFor 'profile' _id=_id}}">
+      <a class="col-xs-3 no-buffer-hori display-match-playerbox profile-link {{#if p2win}}win{{/if}}" href="{{pathFor 'profile' _id=_id}}">
         {{> profileImg}}
-        <div class="display-match-playerbox-name">{{profile.displayname}}</div>
+        <div class="display-match-playerbox-name">{{profile.fname}} {{profile.lname}}</div>
       </a>
     {{/with}}
   </div>

@@ -1,10 +1,12 @@
 <template name="players_page">
-    <div class="col-xs-12 full-height">
-        <div class="playerList">
-            {{#each allPlayers}}
-                {{> playerBox}}
-                <hr>
-            {{/each}}
+    <div class="col-xs-12 full-height buffer-vert">
+        <div class="playerList-container">
+            <div class="playerList">
+                {{#each allPlayers}}
+                    {{> playerBox}}
+                    <hr>
+                {{/each}}
+            </div>
         </div>
     </div>
 </template>
@@ -12,9 +14,11 @@
 <template name="playerBox">
     <a class="playerBox-container profile-link" href="{{pathFor 'profile' _id=_id}}">
         <span class="playerBox-rank">{{profile.rank}}</span>
-        {{> profileImg}}
+        <div class="playerBox-img">
+            {{> profileImg}}
+        </div>
         <span class="playerBox-info">
-            <div>{{profile.displayname}}</div>
+            <div>{{profile.fname}} {{profile.lname}}</div>
             <div>Rating: {{profile.rating}}</div>
         </span>
     </a>
