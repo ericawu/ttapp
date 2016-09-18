@@ -30,3 +30,4 @@ Things to do:
 Things to fix:
     - Current matches highlights greater points even if game is not finished
 	- Fix edit username button alignment
+    - Sometimes a new game will be added in the match display (after game is finished)
