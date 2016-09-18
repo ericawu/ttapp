@@ -45,7 +45,7 @@
       <div class="header-nav">
           <a class="header-nav-item first" href="{{pathFor 'home'}}">Home</a>
           <a class="header-nav-item" href="{{pathFor 'players'}}">Players</a>
-          <a class="header-nav-item">Matches</a>
+          <a class="header-nav-item" href="{{pathFor 'matches'}}">Matches</a>
           {{#if currentUser}}
               <a class="header-nav-item" href="{{pathFor 'profile' _id=currentUser._id}}"> Profile</a>
           {{/if}}

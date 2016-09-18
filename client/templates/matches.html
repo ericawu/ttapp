@@ -1,0 +1,35 @@
+<template name="matches_page">
+  <div class="col-xs-12 buffer-vert full-height">
+    <div class="col-xs-6 full-height">
+      {{> matches_display classes="top" heading="Current Matches" matches=currentMatches}}
+      {{> matches_display classes="" heading="Recent Matches" matches=recentMatches}}
+    </div>
+    <div class="col-xs-6 full-height">
+      {{#if currentUser}}
+        {{> newmatchBar}}
+      {{/if}}
+      <p>RIGHT SIDE STUFF HERE</p>
+    </div>
+  </div>
+</template>
+
+<template name="matches_display">
+  <div class="container-matches {{this.classes}}">
+    <div class="container-matches-header">
+      <div class="container-matches-title title"> {{this.heading}} </div>
+      <hr>
+    </div>
+    <div class="container-matches-body">
+      <div class="container-matches-list">
+        {{#each this.matches}}
+          {{> displayScore}}
+        {{/each}}
+        {{#if noMatches this.matches}}
+          <div class="noMatch-text">
+            No Current Matches.
+          </div>
+        {{/if}}
+      </div>
+    </div>
+  </div>
+</template>

@@ -28,10 +28,10 @@ FlowRouter.route('/players', {
   action: route_page('players_page')
 });
 
-// FlowRouter.route('/matches', {
-//   name: 'matches',
-//  action: route_page('matches_page')
-// });
+FlowRouter.route('/matches', {
+  name: 'matches',
+ action: route_page('matches_page')
+});
 
 // FlowRouter.route('/match/:_id', {
 //   name: 'match',

@@ -15,8 +15,10 @@
 	outline: none;
 	border: none;
     background-color: transparent;
+    transition: all 0.2s;
 }
 
+.profile-name:hover,
 .profile-name:focus {
 	background-color: rgba(255, 255, 255, 0.1);
 }
@@ -68,4 +70,9 @@
 
 .uploadFileLabel {
 	cursor: pointer;
+    transition: all 0.5s;
+}
+
+.uploadFileLabel:hover {
+    color: #23527c !important;
 }
