@@ -1,5 +1,10 @@
+.profile-info .pro-img-container {
+	width: 100%;
+}
+
 .profile-info .pro-img {
 	max-width: 100%;
+	width: 100%;
 }
 
 .profile-name-container {
