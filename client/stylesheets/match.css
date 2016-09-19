@@ -6,7 +6,7 @@
     box-sizing: border-box;
     padding: 10px;
     transition: all 0.5s;
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(0, 0, 0, 0.2);
     margin: 0 auto 15px auto;
     text-decoration: none !important;
 }

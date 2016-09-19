@@ -65,8 +65,8 @@ hr {
 	left: 0;
 	background: url('metal_bg.jpg') center no-repeat;
 	background-size: cover;
-    -webkit-filter: blur(5px);
-    filter: blur(5px);
+    filter: blur(5px) contrast(82%) brightness(82%);
+    -webkit-filter: blur(5px) contrast(82%) brightness(82%);
 }
 
 .title {
@@ -127,26 +127,26 @@ hr {
 }
  
 ::-webkit-scrollbar-track {
-    background: rgba(126, 126, 126, 0.1);
+    background: rgba(64, 64, 64, 0.5);
     box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
 }
  
 ::-webkit-scrollbar-thumb {
-    background: rgba(0,0,0,0.2); 
+    background: rgba(0,0,0,0.3); 
 }
 
 *::-webkit-input-placeholder { /* WebKit, Blink, Edge */
-    color: #555;
+    color: #777;
 }
 *:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-    color: #555;
+    color: #777;
     opacity: 1;
 }
 *::-moz-placeholder { /* Mozilla Firefox 19+ */
-    color: #555;
+    color: #777;
     opacity: 1;
 }
 *:-ms-input-placeholder { /* Internet Explorer 10-11 */
-    color: #555;
+    color: #777;
 }
