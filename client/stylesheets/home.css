@@ -25,12 +25,11 @@
 }
 
 .newmatch-container {
-    height: 100px;
-    min-height: 100px
+    height: 105px;
 }
 
 .news-container {
-    height: calc(98% - 100px);
+    height: calc(98% - 105px);
 }
 
 .news-entry {

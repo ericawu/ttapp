@@ -1,7 +1,7 @@
 <template name="newmatchBar">
     <div class="col-xs-12">
         <form class="start-match">
-            <input class="opponent-searchbar" name="opponent" type="text" value="{{oppEntry}}" autocomplete="off" placeholder="Opponent name or email"><button type="submit" class="start-match-btn">Start Match</button>
+            <input class="opponent-searchbar" name="opponent" type="text" value="{{oppEntry}}" autocomplete="off" placeholder="Opponent name or email"><button type="submit" class="start-match-btn">Start</button>
             {{#if showDropdown}}
                 <ul id="opponent-searchbar-dropdown" class="dropdown-menu">
                     {{#each opponentMatch}}
