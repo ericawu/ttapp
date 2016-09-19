@@ -28,6 +28,10 @@
     height: 105px;
 }
 
+.newmatch-container .container-body-list {
+    overflow-y: visible;
+}
+
 .news-container {
     height: calc(98% - 105px);
 }
