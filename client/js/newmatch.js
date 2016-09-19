@@ -86,6 +86,7 @@ Template.newmatchBar.events({
             filler: []
         });
         Session.set('editMode', true);
+        Session.set('games', Matches.findOne({_id: id}).games);
         FlowRouter.go('match', {_id: id});
         return false;
     }

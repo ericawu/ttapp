@@ -15,3 +15,4 @@ Things to do:
 
 Things to fix:
     - Sometimes a new game will be added in the match display (after game is finished)
+    - Player box link rectangle extends beyond edges of player box visually due to %scaling (col-xs-3)

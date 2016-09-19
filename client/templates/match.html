@@ -4,6 +4,32 @@
   </div>
 </template>
 
+<template name="displayScore">
+  <a class="display-match link" href="{{pathFor 'match' _id=_id}}">
+    {{#with playerFromId id1}}
+      <a class="col-xs-3 no-buffer-hori display-match-playerbox profile-link {{#if p1win}}win{{/if}}" href="{{pathFor 'profile' _id=_id}}">
+        {{> profileImg}}
+        <div class="display-match-playerbox-name">{{profile.fname}} {{profile.lname}}</div>
+      </a>
+    {{/with}}
+    <div class="col-xs-6 no-buffer-hori display-match-games">
+      <div class="display-match-games-breakdown">
+        {{#each games}}{{> displayPoints}}{{/each}}
+        {{#each fillers}}{{> displayPoints_filler}}{{/each}}
+      </div>
+      <div class="display-match-games-date">
+        {{dateString}}
+      </div>
+    </div>
+    {{#with playerFromId id2}}
+      <a class="col-xs-3 no-buffer-hori display-match-playerbox profile-link {{#if p2win}}win{{/if}}" href="{{pathFor 'profile' _id=_id}}">
+        {{> profileImg}}
+        <div class="display-match-playerbox-name">{{profile.fname}} {{profile.lname}}</div>
+      </a>
+    {{/with}}
+  </a>
+</template>
+
 <template name="displayScore_large">
   <div class="display-match large full-height">
     {{#if editable id1 id2}}
@@ -48,32 +74,6 @@
     <input class="point-input" name="p1" type="number" min="0" max="99" value="{{points1}}" placeholder="–">
     <input class="point-input" name="p2" type="number" min="0" max="99" value="{{points2}}" placeholder="–">
   </div>
-</template>
-
-<template name="displayScore">
-  <a class="display-match link" href="{{pathFor 'match' _id=_id}}">
-    {{#with playerFromId id1}}
-      <a class="col-xs-3 no-buffer-hori display-match-playerbox profile-link {{#if p1win}}win{{/if}}" href="{{pathFor 'profile' _id=_id}}">
-        {{> profileImg}}
-        <div class="display-match-playerbox-name">{{profile.fname}} {{profile.lname}}</div>
-      </a>
-    {{/with}}
-    <div class="col-xs-6 no-buffer-hori display-match-games">
-      <div class="display-match-games-breakdown">
-        {{#each games}}{{> displayPoints}}{{/each}}
-        {{#each fillers}}{{> displayPoints_filler}}{{/each}}
-      </div>
-      <div class="display-match-games-date">
-        {{dateString}}
-      </div>
-    </div>
-    {{#with playerFromId id2}}
-      <a class="col-xs-3 no-buffer-hori display-match-playerbox profile-link {{#if p2win}}win{{/if}}" href="{{pathFor 'profile' _id=_id}}">
-        {{> profileImg}}
-        <div class="display-match-playerbox-name">{{profile.fname}} {{profile.lname}}</div>
-      </a>
-    {{/with}}
-  </a>
 </template>
 
 <template name="displayPoints">
