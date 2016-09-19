@@ -13,7 +13,11 @@ Template.profile_page.helpers({
     },
     heading: function() {
         var id = Session.get('param-id') || FlowRouter.getParam('_id');
-        return Meteor.users.findOne({_id: id}).profile.fname + "'s Recent Matches";
+        var user = Meteor.users.findOne({_id: id});
+        if (!user) {
+            return "";
+        }
+        return user.profile.fname + "'s Recent Matches";
     },
 });
 
@@ -30,7 +34,6 @@ Template.profile_info.helpers({
 Template.profile_info.events({
     'blur .profile-name': function(e) {
         var name = e.target.value.split(" ");
-        console.log("profile_info");
         if (name.length != 2 || !name[0].length || !name[1].length) {
             e.target.value = Meteor.user().profile.fname + " " + Meteor.user().profile.lname;
             return false;

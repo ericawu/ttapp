@@ -130,6 +130,7 @@ hr {
 
 .page-transition {
     opacity: 0;
+    filter: blur(2px);
     transform: translateX(-50px);
 }
 
