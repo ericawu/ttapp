@@ -2,42 +2,43 @@
     background: -webkit-linear-gradient(left top, rgba(35, 82, 124, 0.05), rgba(35, 82, 124, 0.25), rgba(35, 82, 124, 0.1));
     background: linear-gradient(left top, rgba(35, 82, 124, 0.05), rgba(35, 82, 124, 0.25), rgba(35, 82, 124, 0.1));
     height: 100%;
-    box-shadow: -10px 0px 50px rgba(0,0,0,0.6);
+    box-shadow: -10px 0px 30px rgba(0,0,0,0.6);
     padding: 20px 0 0 0;
     box-sizing: border-box;
 }
 
-.container-matches {
-    width: 100%;
+.top-title {
+    margin-left: 20px;
+    font-size: 1.2em;
+}
+
+.half {
     height: 49%;
-    box-sizing: border-box;
-    background-color: rgba(0, 0, 0, 0.2);
 }
 
-.container-matches.top {
+.top {
     margin-bottom: 2%;
-}
-
-.container-matches-header {
-    padding: 10px 10px 0 10px;
-    margin-bottom: 10px;
-}
-
-.container-matches-title {
-    font-size: 1.3em;
-    margin-left: 10px;
-}
-
-.container-matches-body {
-    padding: 0 10px 10px 10px;
-    height: calc(100% - 51px); /* HARDCODED TERRIBLENESS (well not that terrible since it works) */
-}
-
-.container-matches-list {
-    height: 100%;
-    overflow-y: auto;
 }
 
 .noMatch-text {
     text-align: center;
+}
+
+.news-container {
+    height: calc(100% - 56px);
+}
+
+.news-entry {
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    width: 90%;
+    margin: 0 auto 15px;
+}
+
+.news-img {
+    max-height: 200px;
+    max-width: 100%;
+    border: 2px solid #999;
+    float: left;
+    margin-right: 10px;
 }

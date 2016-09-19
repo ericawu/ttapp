@@ -1,24 +1,39 @@
 <template name="home_page">
   <div class="col-xs-10 buffer-vert full-height">
     <div class="col-xs-6 full-height">
-      {{> matches_display classes="top" heading="Current Matches" matches=currentMatches}}
-      {{> matches_display classes="" heading="Recent Matches" matches=recentMatches}}
+      {{> matches_display containerClasses="half top" title="Current Matches" matches=currentMatches}}
+      {{> matches_display containerClasses="half" title="Recent Matches" matches=recentMatches}}
     </div>
     <div class="col-xs-6 full-height">
       {{#if currentUser}}
         {{> newmatchBar}}
       {{/if}}
+      {{#container_listWrapper title="News" containerClasses="news-container"}}
+        {{> newsBlock}}
+        {{> newsBlock}}
+        {{> newsBlock}}
+        <!-- {{#each news}}
+          {{> newsBlock}}
+        {{each}} -->
+      {{/container_listWrapper}}
     </div>
   </div>
 
   <div class="col-xs-2 home-right">
-    <div class="playerList">
-      <div class="playerList-title title">The Top 5</div>
+    <div>
+      <div class="top-title">The Top 5</div>
       <hr>
       {{#each topPlayers}}
         {{> playerBox}}
         <hr>
       {{/each}}
     </div>
+  </div>
+</template>
+
+<template name="newsBlock">
+  <div class="news-entry">
+    <img class="news-img" src="default.jpg">
+    <p class="news-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
   </div>
 </template>

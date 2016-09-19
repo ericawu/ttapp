@@ -1,18 +1,10 @@
 <template name="players_page">
     <div class="col-xs-12 full-height buffer-vert">
-        <div class="playerList-container">
-            <div class="container-matches-header">
-              <div class="container-matches-title title"> All Players </div>
-              <hr>
-            </div>
-            <div class="container-matches-body">
-                <div class="playerList">
-                    {{#each allPlayers}}
-                        {{> playerBox}}
-                    {{/each}}
-                </div>
-            </div>
-        </div>
+        {{#container_listWrapper title="All Players" containerClasses="" }}
+            {{#each allPlayers}}
+                {{> playerBox}}
+            {{/each}}
+        {{/container_listWrapper}}
     </div>
 </template>
 

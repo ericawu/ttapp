@@ -1,29 +1,21 @@
 <template name="matches_page">
   <div class="col-xs-6 buffer-vert full-height">
-    {{> matches_display classes="top full-height" heading="Current Matches" matches=currentMatches}}
+    {{> matches_display containerClasses="" title="Current Matches" matches=currentMatches}}
   </div>
   <div class="col-xs-6 buffer-vert full-height">
-    {{> matches_display classes="full-height" heading="Recent Matches" matches=recentMatches}}
+    {{> matches_display containerClasses="" title="Recent Matches" matches=recentMatches}}
   </div>
 </template>
 
 <template name="matches_display">
-  <div class="container-matches {{this.classes}}">
-    <div class="container-matches-header">
-      <div class="container-matches-title title"> {{this.heading}} </div>
-      <hr>
-    </div>
-    <div class="container-matches-body">
-      <div class="container-matches-list">
-        {{#each this.matches}}
-          {{> displayScore}}
-        {{/each}}
-        {{#if noMatches this.matches}}
-          <div class="noMatch-text">
-            No Current Matches.
-          </div>
-        {{/if}}
+  {{#container_listWrapper title=title containerClasses=containerClasses }}
+    {{#each this.matches}}
+      {{> displayScore}}
+    {{/each}}
+    {{#if noMatches this.matches}}
+      <div class="noMatch-text">
+        No Current Matches.
       </div>
-    </div>
-  </div>
+    {{/if}}
+  {{/container_listWrapper}}
 </template>

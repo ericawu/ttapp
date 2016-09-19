@@ -28,3 +28,17 @@
     <div class="pro-img-shadow"></div>
   </div>
 </template>
+
+<template name="container_listWrapper">
+  <div class="container-main {{this.containerClasses}}">
+    <div class="container-header">
+      <div class="container-header-title"> {{this.title}} </div>
+      <hr>
+    </div>
+    <div class="container-body">
+      <div class="container-body-list">
+        {{> UI.contentBlock}}
+      </div>
+    </div>
+  </div>
+</template>

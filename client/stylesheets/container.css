@@ -1,0 +1,26 @@
+.container-main {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.container-header {
+    padding: 10px 10px 0 10px;
+    margin-bottom: 10px;
+}
+
+.container-header-title {
+    font-size: 1.3em;
+    margin-left: 10px;
+}
+
+.container-body {
+    padding: 0 10px 10px 10px;
+    height: calc(100% - 51px); /* HARDCODED TERRIBLENESS (well not that terrible since it works) */
+}
+
+.container-body-list {
+    height: 100%;
+    overflow-y: auto;
+}
