@@ -33,12 +33,20 @@
 <template name="displayScore_large">
   <div class="display-match large full-height">
     {{#if editable id1 id2}}
-      {{#if editMode}}
-        <div id="btn-done" class="display-match-btn"></div>
-      {{else}}
-        <div id="btn-edit" class="display-match-btn"></div>
-      {{/if}}
-      <div id="btn-delete" class="display-match-btn"></div>
+      <div class="display-match-btns">
+        <div id="btn-delete-container" class="display-match-btn-container">
+          <div id="btn-delete" class="display-match-btn"></div><div class="display-match-text">{{#if editMode}}Cancel{{else}}Delete{{/if}}</div>
+        </div>
+        {{#if editMode}}
+          <div id="btn-done-container" class="display-match-btn-container">
+            <div id="btn-done" class="display-match-btn"></div><div class="display-match-text">Done</div>
+          </div>
+        {{else}}
+          <div id="btn-edit-container" class="display-match-btn-container">
+            <div id="btn-edit" class="display-match-btn"></div><div class="display-match-text">Edit</div>
+          </div>
+        {{/if}}
+      </div>
     {{/if}}
     {{#with playerFromId id1}}
       <a class="col-xs-3 no-buffer-hori display-match-playerbox profile-link {{#if p1win}}win{{/if}}" href="{{pathFor 'profile' _id=_id}}">

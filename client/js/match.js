@@ -84,12 +84,17 @@ Template.displayScore_large.events({
         Session.set('editMode', true);
     },
     'click #btn-delete': function(e) {
-        var del = confirm("Are you sure you want to delete this match?");
-        if (del) {
-            var id = Session.get('param-id') || FlowRouter.getParam('_id');
-            Matches.remove({_id: id});
-            Session.set('opponent', undefined);
-            FlowRouter.go('home');
+        if (Session.get('editMode')) {
+            Session.set('games', undefined);
+            Session.set('editMode', false);
+        } else {
+            var del = confirm("Are you sure you want to delete this match?");
+            if (del) {
+                var id = Session.get('param-id') || FlowRouter.getParam('_id');
+                Matches.remove({_id: id});
+                Session.set('opponent', undefined);
+                FlowRouter.go('home');
+            }
         }
     },
 })

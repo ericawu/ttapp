@@ -16,36 +16,74 @@
     position: relative;
 }
 
-.display-match-btn {
-    width: 40px;
-    height: 40px;
+.display-match-btns {
     position: absolute;
     top: 0px;
+    left: 0px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.display-match-btn {
+    float: right;
+    width: 40px;
+    height: 40px;
     background-repeat: no-repeat;
     background-position: center;
     opacity: 0.75;
+}
+
+.display-match-btn-container {
     filter: grayscale(100%);
     transition: all 0.5s;
     cursor: pointer;
 }
 
-.display-match-btn:hover {
+.display-match-btn-container:hover {
     filter: none;
 }
 
 #btn-done {
     background-image: url('glyphicons-ok.png');
-    right: 40px;
 }
 
 #btn-edit {
-    background-image: url('glyphicons-edit.png');
-    right: 40px;
+    background-image: url('glyphicons-pencil.png');
 }
 
 #btn-delete {
     background-image: url('glyphicons-remove.png');
-    right: 0px;
+}
+
+.display-match-text {
+    float: right;
+    width: 0;
+    height: 40px;
+    line-height: 40px;
+    text-align: right;
+    font-size: 0.8em;
+    overflow-x: hidden;
+    opacity: 0;
+    transition: all 0.5s;
+}
+
+#btn-done + .display-match-text {
+    color: #383;
+}
+
+#btn-edit + .display-match-text {
+    color: #968040;
+}
+
+#btn-delete + .display-match-text {
+    color: #a55;
+}
+
+.display-match-btn-container:hover .display-match-text {
+    width: 4em;
+    opacity: 1;
 }
 
 .display-match.large .pro-img-container,
@@ -59,7 +97,6 @@
 }
 
 .display-match-playerbox {
-    /*max-width: 100px;*/
     display: flex;
     align-items: center;
     justify-content: center;
