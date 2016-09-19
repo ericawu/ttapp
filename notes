@@ -4,13 +4,9 @@ Things to do:
     Profile first/last name setup upon registration
     - Only can make an account if you're part of pga? Idk if that can work
 
-    - Crop profile picture to square
-
     - Error message if image doesn't upload correctly
 	- Loading animation when uploading picture? It takes a long time
 	- Stats like win %, lose % (Microsoft's PowerBI would be perfect if we can embed)
-
-    - Standardize recent/current match display to a single template
 
 	- Picture slideshow! Makes the front page more interesting. Let ppl upload pics of themselves/friends playing and display them on main landing page.
 		- Make new container in azure
@@ -19,6 +15,10 @@ Things to do:
 		- Add and delete functionality from profile page? So only can add if you're logged in
 
 	- Make site more colorful (Microsoft likes colors) (low priority)
+
+    - Add search feature to players and matches page
+    - Standardize newmatch/editmatch/view match into one page
+    - Add optional categories like hometown, age, etc. to profile page
 
 Things to fix:
     - Sometimes a new game will be added in the match display (after game is finished)

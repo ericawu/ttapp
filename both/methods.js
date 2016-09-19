@@ -1,29 +1,12 @@
 import { Meteor } from 'meteor/meteor';
 
 Meteor.methods({
-    'matches.update': function(matchId, gameNum, playerNum, value) {
-        value = value ? value : 0;
-        if (playerNum == 1) {
-            Matches.update(
-                {_id: matchId, "games.num": gameNum}, 
-                {$set: {'games.$.points1': value}}
-            );
-        } else if (playerNum == 2) {
-            Matches.update(
-                {_id: matchId, "games.num": gameNum}, 
-                {$set: {'games.$.points2': value}}
-            );
-        } else {
-            alert("Invalid player number");
-        }
-    },
-
-    'calculate-rating': function(matchId) {
+    'calculate-rating': function(matchId, games) {
         var match = Matches.findOne({_id: matchId});
         //if track > 0, p1 won and vice versa
         var track = 0;
-        for (var i = 0; i < match.games.length; i++) {
-            var game = match.games[i];
+        for (var i = 0; i < games.length; i++) {
+            var game = games[i];
             var status = parseInt(game.points1) - parseInt(game.points2);
             if (status > 0) track++;
             else if (status < 0) track--;

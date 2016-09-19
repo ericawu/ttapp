@@ -1,7 +1,8 @@
 <template name="header">
   <div class="header">
     <div class="header-bg">
-      <img src="\RyderCupLogo.png" class="header-logo">
+      <img src="\RyderCupLogo.svg" class="header-logo">
+
       {{#if currentUser}}
         {{#with currentUser}}
           <a class="profile-link" href="{{pathFor 'profile' _id=_id}}">
@@ -11,6 +12,8 @@
       {{else}}
         <div class="header-img">{{> profileImgDefault}}</div>
       {{/if}}
+
+      <!-- Login/Register -->
       <div class="header-hello">
         <div class="header-hello-welcome">
           Welcome, <b>{{#if currentUser}}{{currentUser.profile.fname}} {{currentUser.profile.lname}}{{else}}Guest{{/if}}!</b>
@@ -39,9 +42,11 @@
           {{/if}}
         {{/unless}}
       </div>
+
       <div class="header-title">
         <i>T<span>able </span>T<span>ennis </span>A<span>nd </span>P<span>ing </span>P<span>ong</span></i>
       </div>
+
       <div class="header-nav">
           <a class="header-nav-item first" href="{{pathFor 'home'}}">Home</a>
           <a class="header-nav-item" href="{{pathFor 'players'}}">Players</a>

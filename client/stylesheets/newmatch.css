@@ -1,24 +1,12 @@
-.point-input p {
-    display: inline-block;
-    width: 100%;
-    margin-left: 1em;
-    text-align: center;
-}
-
-.edit-button {
-    display: inline-block;
-}
-
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
--webkit-appearance: none;
-margin: 0;
-}
-
-input[type=number] {-moz-appearance: textfield;}
-
-#opponent-searchbar {
+.opponent-searchbar {
     border-radius: 0;
+    outline: none;
+    border: none;
+    background-color: transparent;
+    background-color: rgba(255, 255, 255, 0.1);
+    transition: all 0.2s;
+    width: 100%;
+    padding: 10px;
 }
 
 #opponent-searchbar-dropdown {

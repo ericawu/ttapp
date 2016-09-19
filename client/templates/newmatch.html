@@ -1,58 +1,17 @@
-<template name="newmatch_page">
-    <div class="col-xs-12 buffer-vert full-height">
-        {{#if currentUser}}
-            {{> scoreInput}}
-        {{else}}
-            <p>TRYIN TO PLAY WITHOUT LOGGING IN?? I GOT MY EYE ON YOU</p>
-        {{/if}}
-    </div>
-</template>
-
-<template name="scoreInput">
-    <form class="score-form">
-        <div class="match-names">
-            <p>{{name1}}</p>
-            <p>{{name2}}</p>
-        </div>
-
-        {{#each games}}
-            {{> pointInput}}
-        {{/each}}
-
-        <!--TODO: add update functionality-->
-        <div>
-            <button type="submit" class="btn btn-primary" id="btn-done">Done</button>
-            <button type="submit" class="btn btn-primary" id="btn-delete">Delete</button>
-            <button type="submit" class="btn btn-primary" id="btn-add">Add Game</button>
-        </div>
-
-    </form>
-</template>
-
-<template name="pointInput">
-    <div class="point-input">
-        <input class="form-control point-input" name="p1" type="number" min="0" max="99" placeholder="0">
-        <input class="form-control point-input" name="p2" type="number"  min="0" max="99" placeholder="0">
-    </div>
-</template>
-
 <template name="newmatchBar">
     <div class="form-group row">
         <form class="start-match">
-            <div class="col-xs-5">
-                <input id="opponent-searchbar" class="form-control" name="opponent" type="text" value="{{oppEntry}}" autocomplete="off" placeholder="Opponent name or email">
-                {{#if showDropdown}}
-                    <ul id="opponent-searchbar-dropdown" class="dropdown-menu">
-                        {{#each opponentMatch}}
-                            {{> opponentEntry}}
-                        {{/each}}
-                        {{#unless oppNum}}
-                            <li><div class="dropdown-entry">No matching players found</div></li>
-                        {{/unless}}
-                    </ul>
-                {{/if}}
-
-            </div>
+            <input class="opponent-searchbar" name="opponent" type="text" value="{{oppEntry}}" autocomplete="off" placeholder="Opponent name or email">
+            {{#if showDropdown}}
+                <ul id="opponent-searchbar-dropdown" class="dropdown-menu">
+                    {{#each opponentMatch}}
+                        {{> opponentEntry}}
+                    {{/each}}
+                    {{#unless oppNum}}
+                        <li><div class="dropdown-entry">No matching players found</div></li>
+                    {{/unless}}
+                </ul>
+            {{/if}}
             <button type="submit" class="btn btn-primary">Start Match</button>
         </form>
     </div>

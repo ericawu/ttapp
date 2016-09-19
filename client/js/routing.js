@@ -33,10 +33,10 @@ FlowRouter.route('/matches', {
  action: route_page('matches_page')
 });
 
-// FlowRouter.route('/match/:_id', {
-//   name: 'match',
-//  action: route_page('match_page')
-// });
+FlowRouter.route('/match/:_id', {
+  name: 'match',
+ action: route_page('match_page')
+});
 
 FlowRouter.route('/newmatch', {
   name: 'newmatch',

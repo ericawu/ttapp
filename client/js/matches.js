@@ -3,7 +3,7 @@ Template.matches_page.helpers({
         return Matches.find({completed: false}, {sort: {date: -1}});
     },
     recentMatches: function() {
-        return Matches.find({completed: true}, {sort: {date: -1}, limit: 6});
+        return Matches.find({completed: true}, {sort: {date: -1}});
     }
 });
 

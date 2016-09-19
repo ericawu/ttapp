@@ -1,15 +1,9 @@
 <template name="matches_page">
-  <div class="col-xs-12 buffer-vert full-height">
-    <div class="col-xs-6 full-height">
-      {{> matches_display classes="top" heading="Current Matches" matches=currentMatches}}
-      {{> matches_display classes="" heading="Recent Matches" matches=recentMatches}}
-    </div>
-    <div class="col-xs-6 full-height">
-      {{#if currentUser}}
-        {{> newmatchBar}}
-      {{/if}}
-      <p>RIGHT SIDE STUFF HERE</p>
-    </div>
+  <div class="col-xs-6 buffer-vert full-height">
+    {{> matches_display classes="top full-height" heading="Current Matches" matches=currentMatches}}
+  </div>
+  <div class="col-xs-6 buffer-vert full-height">
+    {{> matches_display classes="full-height" heading="Recent Matches" matches=recentMatches}}
   </div>
 </template>
 

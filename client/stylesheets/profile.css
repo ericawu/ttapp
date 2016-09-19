@@ -16,6 +16,7 @@
 	border: none;
     background-color: transparent;
     transition: all 0.2s;
+	width: 100%;
 }
 
 .profile-name:hover,
@@ -30,18 +31,6 @@
 
 .profile-info-value {
 	font-size: 1.5em;
-}
-
-.profile-info-value input {
-	width: 100%;
-}
-
-.point-input {
-	display: inline-block;
-	width: 50px;
-	text-align: right;
-	margin-left: 1em;
-	margin-bottom: 1em;
 }
 
 .profile-page .container-matches {

@@ -4,14 +4,17 @@ Template.profile_page.onCreated(function() {
     Session.set('oppSelected', false);
     Session.set('searchLength', 0);
     Session.set('oppNum', 0);
-    
 });
 
 Template.profile_page.helpers({
     recentMatches: function() {
         var id = Session.get('param-id') || FlowRouter.getParam('_id');
         return Matches.find({$or: [{"id1": id}, {"id2": id}]}, {sort: {date: -1}, limit: 6});
-    }
+    },
+    heading: function() {
+        var id = Session.get('param-id') || FlowRouter.getParam('_id');
+        return Meteor.users.findOne({_id: id}).profile.fname + "'s Recent Matches";
+    },
 });
 
 Template.profile_info.helpers({

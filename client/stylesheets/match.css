@@ -5,12 +5,65 @@
     justify-content: space-between;
     box-sizing: border-box;
     padding: 10px;
+    transition: all 0.5s;
     background-color: rgba(0, 0, 0, 0.3);
     margin: 0 auto 15px auto;
+    text-decoration: none !important;
+}
+
+.display-match.large {
+    font-size: 1.5em;
+    position: relative;
+}
+
+#btn-add {
+    width: 40px;
+    height: 40px;
+    background: #ff0;
+    position: absolute;
+    top: 0px;
+    right: 80px;
+}
+
+#btn-done {
+    width: 40px;
+    height: 40px;
+    background: #0f0;
+    position: absolute;
+    top: 0px;
+    right: 40px;
+}
+
+#btn-edit {
+    width: 40px;
+    height: 40px;
+    background: #00f;
+    position: absolute;
+    top: 0px;
+    right: 40px;
+}
+
+#btn-delete {
+    width: 40px;
+    height: 40px;
+    background: #f00;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+
+.display-match.large .pro-img-container,
+.display-match.large .pro-img {
+    max-width: 150px;
+    width: 100%;
+}
+
+.display-match.link:hover {
+    background-color: rgba(128, 128, 128, 0.1);
 }
 
 .display-match-playerbox {
-    max-width: 100px;
+    /*max-width: 100px;*/
     display: flex;
     align-items: center;
     justify-content: center;
@@ -50,30 +103,56 @@
 
 .display-match-games-breakdown{
     font-size: 0.8em;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .display-match-points {
-    display: inline-block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
 
+.display-match-points input,
 .display-match-points p {
     margin: 0;
-    padding: 3px 8px;
+    width: 2em;
+    padding: 3px 0;
     text-align: center;
+    color: #999;
 }
 
-.display-match-points p.win {
+.display-match-points input {
+    border: none;
+    border-radius: 0;
+    outline: none;
+    background: transparent;
+    transition: all 0.2s;
+}
+
+.display-match-points input:hover,
+.display-match-points input:focus {
+   background-color: rgba(255, 255, 255, 0.1);
+}
+
+.display-match-points p.win,
+.display-match-points input.win {
     font-weight: bold;
     color: #237b23;
 }
 
-.display-match-points p.filler {
+.display-match-points p.filler,
+.display-match-points input.filler {
     color: #555;
 }
 
-.display-match-points-gameNum {
+p.display-match-points-gameNum {
     padding: 0 8px !important;
     font-size: 0.8em;
     border-bottom: 1px solid #555;
     color: #555;
+    width: 100%;
+    text-align: center;
 }
