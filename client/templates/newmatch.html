@@ -1,7 +1,7 @@
 <template name="newmatchBar">
     <div class="form-group row">
         <form class="start-match">
-            <input class="opponent-searchbar" name="opponent" type="text" value="{{oppEntry}}" autocomplete="off" placeholder="Opponent name or email">
+            <input class="opponent-searchbar" name="opponent" type="text" value="{{oppEntry}}" autocomplete="off" placeholder="Opponent name or email"><button type="submit" class="start-match-btn">Start Match</button>
             {{#if showDropdown}}
                 <ul id="opponent-searchbar-dropdown" class="dropdown-menu">
                     {{#each opponentMatch}}
@@ -12,7 +12,6 @@
                     {{/unless}}
                 </ul>
             {{/if}}
-            <button type="submit" class="btn btn-primary">Start Match</button>
         </form>
     </div>
 </template>

@@ -1,24 +1,17 @@
 Things to do:
-    - Match information page: /match/27348572083
-
-    Profile first/last name setup upon registration
     - Only can make an account if you're part of pga? Idk if that can work
-
     - Error message if image doesn't upload correctly
 	- Loading animation when uploading picture? It takes a long time
 	- Stats like win %, lose % (Microsoft's PowerBI would be perfect if we can embed)
-
 	- Picture slideshow! Makes the front page more interesting. Let ppl upload pics of themselves/friends playing and display them on main landing page.
 		- Make new container in azure
 		- Know which container you're uploading to in .js 
 		- Make new images collection, store url's in there and iterate through on main page
 		- Add and delete functionality from profile page? So only can add if you're logged in
-
-	- Make site more colorful (Microsoft likes colors) (low priority)
-
     - Add search feature to players and matches page
-    - Standardize newmatch/editmatch/view match into one page
     - Add optional categories like hometown, age, etc. to profile page
+    - Make better confirmation box
+    - Make site more colorful (Microsoft likes colors) (low priority)
 
 Things to fix:
     - Sometimes a new game will be added in the match display (after game is finished)

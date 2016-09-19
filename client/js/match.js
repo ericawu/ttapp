@@ -9,12 +9,6 @@ Template.match_page.helpers({
     }
 });
 
-Template.displayScore_large.onCreated(function() {
-    var id = Session.get('param-id') || FlowRouter.getParam('_id');
-    var games = Matches.findOne({_id: id}).games;
-    Session.set('games', games);
-})
-
 Template.displayScore_large.onDestroyed(function() {
     Session.set('games', undefined);
     Session.set('editMode', false);
@@ -53,15 +47,13 @@ Template.displayScore_large.helpers({
     },
     'games_edit': function() {
         return Session.get('games');
+    },
+    'game_add': function() {
+        return {points1: "", points2: "", num: (Session.get('games').length+1)};
     }
 });
 
 Template.displayScore_large.events({
-    'click #btn-add': function(e) {
-        var games = Session.get('games');
-        games.push({points1: "", points2: "", num: games.length + 1});
-        Session.set('games', games);
-    },
     'click #btn-done': function(e) {
         Session.set('editMode', false);
         var id = Session.get('param-id') || FlowRouter.getParam('_id');
@@ -70,6 +62,9 @@ Template.displayScore_large.events({
             if (games[i].points1 == "" || games[i].points2 == "") {
                 games.splice(i,1);
             }
+        }
+        for (var i = 0; i < games.length; i++) {
+            games[i].num = i+1;
         }
         var fillerNum = boNumFromGames(games) - games.length;
         var filler = [];
@@ -82,13 +77,20 @@ Template.displayScore_large.events({
         Matches.update({_id: id}, {$set: {completed: true, games: games, fillers: filler}});
     },
     'click #btn-edit': function(e) {
+        var id = Session.get('param-id') || FlowRouter.getParam('_id');
+        var games = Matches.findOne({_id: id}).games;
+        games.push({points1: "", points2: "", num: games.length + 1});
+        Session.set('games', games);
         Session.set('editMode', true);
     },
     'click #btn-delete': function(e) {
-        var id = Session.get('param-id') || FlowRouter.getParam('_id');
-        Matches.remove({_id: id});
-        Session.set('opponent', undefined);
-        FlowRouter.go('home');
+        var del = confirm("Are you sure you want to delete this match?");
+        if (del) {
+            var id = Session.get('param-id') || FlowRouter.getParam('_id');
+            Matches.remove({_id: id});
+            Session.set('opponent', undefined);
+            FlowRouter.go('home');
+        }
     },
 })
 
@@ -104,15 +106,16 @@ Template.displayPoints_editable.helpers({
 Template.displayPoints_editable.events({ 
     'change .point-input': function(e) {
         var gameNum = Template.currentData().num - 1;
+        var games = Session.get('games');
         if (e.target.name == "p1") {
-            var games = Session.get('games');
             games[gameNum].points1 = e.target.value;
-            Session.set('games', games);
         } else if (e.target.name == "p2") {
-            var games = Session.get('games');
             games[gameNum].points2 = e.target.value;
-            Session.set('games', games);
         }
+        if (gameNum == games.length - 1) {
+            games.push({points1: "", points2: "", num: games.length + 1});
+        }
+        Session.set('games', games);
     },
 })
 

@@ -16,39 +16,35 @@
     position: relative;
 }
 
-#btn-add {
+.display-match-btn {
     width: 40px;
     height: 40px;
-    background: #ff0;
     position: absolute;
     top: 0px;
-    right: 80px;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.75;
+    filter: grayscale(100%);
+    transition: all 0.5s;
+    cursor: pointer;
+}
+
+.display-match-btn:hover {
+    filter: none;
 }
 
 #btn-done {
-    width: 40px;
-    height: 40px;
-    background: #0f0;
-    position: absolute;
-    top: 0px;
+    background-image: url('glyphicons-ok.png');
     right: 40px;
 }
 
 #btn-edit {
-    width: 40px;
-    height: 40px;
-    background: #00f;
-    position: absolute;
-    top: 0px;
+    background-image: url('glyphicons-edit.png');
     right: 40px;
 }
 
 #btn-delete {
-    width: 40px;
-    height: 40px;
-    background: #f00;
-    position: absolute;
-    top: 0px;
+    background-image: url('glyphicons-remove.png');
     right: 0px;
 }
 

@@ -1,3 +1,7 @@
+.start-match {
+    position: relative;
+}
+
 .opponent-searchbar {
     border-radius: 0;
     outline: none;
@@ -5,24 +9,46 @@
     background-color: transparent;
     background-color: rgba(255, 255, 255, 0.1);
     transition: all 0.2s;
-    width: 66%;
+    width: 73%;
+    margin-right: 2%;
     padding: 10px;
 }
 
+.start-match-btn {
+    height: 40px;
+    width: 25%;
+    outline: none;
+    border: none;
+    background-color: rgba(128, 128, 128, 0.1);
+    transition: all 0.5s; 
+}
+
+.start-match-btn:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.5);
+    color: #23527c;
+}
+
 #opponent-searchbar-dropdown {
-    position: static;
-    width: 100%;
+    position: absolute;
+    width: 73%;
+    max-height: 200px;
+    overflow-y: auto;
     margin: -1px 0 0 0;
     border-radius: 0;
     display: block;
+    background-color: #363636; 
+    /*background-color: rgba(128, 128, 128, 0.1);*/
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.2);
 }
 
 .dropdown-entry {
     padding: 3px 12px;
     box-sizing: border-box;
     cursor: pointer;
+    transition: all 0.2s;
 }
 
 .dropdown-entry:hover {
-    background: #ccc;
+    background-color: rgba(0, 0, 0, 0.3);
 }
