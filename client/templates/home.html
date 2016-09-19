@@ -1,10 +1,14 @@
 <template name="home_page">
   <div class="col-xs-10 buffer-vert full-height">
-    <div class="col-xs-6 full-height">
-      {{> matches_display containerClasses="half top" title="Current Matches" matches=currentMatches}}
-      {{> matches_display containerClasses="half" title="Recent Matches" matches=recentMatches}}
+    <div class="col-xs-5 full-height">
+      {{#if curMatch}}
+        {{> matches_display containerClasses="split top" title="Current Matches" matches=currentMatches}}
+        {{> matches_display containerClasses="split bottom" title="Recent Matches" matches=recentMatches}}
+      {{else}}
+        {{> matches_display containerClasses="" title="Recent Matches" matches=recentMatches}}
+      {{/if}}
     </div>
-    <div class="col-xs-6 full-height">
+    <div class="col-xs-7 full-height no-buffer-left">
       {{#if currentUser}}
         {{#container_listWrapper title="Play Match" containerClasses="newmatch-container top"}}
           {{> newmatchBar}}
@@ -23,7 +27,7 @@
 
   <div class="col-xs-2 home-right">
     <div>
-      <div class="top-title">The Top 5</div>
+      <div class="top-title title">The Top 5</div>
       <hr>
       {{#each topPlayers}}
         {{> playerBox}}
@@ -35,7 +39,10 @@
 
 <template name="newsBlock">
   <div class="news-entry">
-    <img class="news-img" src="default.jpg">
-    <p class="news-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <img class="news-img" src="news_1.jpg">
+    <div class="news-title">Q&amp;A with former Olympian table tennis standout Erica Wu</div>
+    <hr class="news-divider">
+    <p class="news-text">Four years ago, Arcadia resident Erica Wu was competing with the U.S. national table tennis team in the London Olympics.<br><br>Her journey in the sport began at the age of 7 when her mom noticed a newspaper ad for table tennis. At the age of 10, she joined the California Table Tennis Club in Rosemead and started training under table tennis world champion and four-time Olympian Gao Jun. She made the U15 National team at 12.<br><br>Along the way, Wu balanced schoolwork and training with exhibition games and tournaments, not to mention Olympic trials and the games themselves. Wu trained on average 20 hours a week during the school year and 50 hours a week during breaks.<br><br>Shortly after turning 16, she was off to the Olympics where she competed in table tennis doubles alongside her teammate Lily Zhang. Her journey in the games ended after being defeated by Japan.<br><br>Four years since London, the Rio Olympics have come and gone.<br><br>Wu cheered on her former teammate Lily Zhang and the team as they competed in Rio.<br><br>We reached out to Wu and asked her about her experience in London, the Olympic Games in Rio and her thoughts on the future of table tennis in the United States.<br>
+</p>
   </div>
 </template>

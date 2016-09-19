@@ -18,7 +18,7 @@
 
 .container-body {
     padding: 0 10px 10px 10px;
-    height: calc(100% - 51px); /* HARDCODED TERRIBLENESS (well not that terrible since it works) */
+    height: calc(100% - 48px); /* HARDCODED TERRIBLENESS (well not that terrible since it works) */
 }
 
 .container-body-list {

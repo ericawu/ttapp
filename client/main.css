@@ -54,7 +54,11 @@ hr {
 }
 
 .main-page {
-	height: 100%;
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    height: calc(100% - 90px);
+	/*height: 100%;*/
     transition: all 0.5s;
 }
 
@@ -68,6 +72,12 @@ hr {
 	background-size: cover;
     filter: blur(5px) contrast(82%) brightness(82%);
     -webkit-filter: blur(5px) contrast(82%) brightness(82%);
+}
+
+/* Title styling */
+.title {
+    color: #ccc;
+    margin-bottom: 2px;
 }
 
 /* Profile image styling */
