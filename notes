@@ -11,6 +11,10 @@ Things to do:
     - Add search feature to players and matches page
     - Add optional categories like hometown, age, etc. to profile page
     - Make better confirmation box
+    - Animations
+        - Add game in match: slide existing left, fade new in
+        - Remove game in match: slide leftover right, fade removed out
+        - New match completed/started, slide existing games down and slide new in
     - Make site more colorful (Microsoft likes colors) (low priority)
 
 Things to fix:

@@ -19,8 +19,8 @@
 	width: 100%;
 }
 
-.profile-name:hover,
-.profile-name:focus {
+input.profile-name:hover,
+input.profile-name:focus {
 	background-color: rgba(255, 255, 255, 0.1);
 }
 
