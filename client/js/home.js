@@ -10,5 +10,12 @@ Template.home_page.helpers({
             player.profile.rank = index+1;
             return player;
         });
+    },
+    needsShrink: function() {
+        if (Meteor.user()) {
+            return "news-container";
+        } else {
+            return "";
+        }
     }
 });

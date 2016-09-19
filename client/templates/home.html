@@ -6,9 +6,11 @@
     </div>
     <div class="col-xs-6 full-height">
       {{#if currentUser}}
-        {{> newmatchBar}}
+        {{#container_listWrapper title="Quick Match" containerClasses="newmatch-container top"}}
+          {{> newmatchBar}}
+        {{/container_listWrapper}}
       {{/if}}
-      {{#container_listWrapper title="News" containerClasses="news-container"}}
+      {{#container_listWrapper title="News" containerClasses=needsShrink}}
         {{> newsBlock}}
         {{> newsBlock}}
         {{> newsBlock}}

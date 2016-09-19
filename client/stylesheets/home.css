@@ -24,8 +24,13 @@
     text-align: center;
 }
 
+.newmatch-container {
+    height: 100px;
+    min-height: 100px
+}
+
 .news-container {
-    height: calc(100% - 56px);
+    height: calc(98% - 100px);
 }
 
 .news-entry {
