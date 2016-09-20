@@ -65,3 +65,6 @@ input.profile-name:focus {
 .uploadFileLabel:hover {
     color: #23527c !important;
 }
+.modal-content {
+	color: black;
+}
