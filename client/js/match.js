@@ -209,5 +209,8 @@ function boNumFromGames(games) {
             counter2++;
         }
     }
+    if (counter1 == 0 && counter2 == 0) {
+        return 1;
+    }
     return counter1 > counter2 ? counter1 * 2 - 1 : counter2 * 2 - 1;
 }
