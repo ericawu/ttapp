@@ -45,6 +45,7 @@
 }
 
 .dropdown-entry {
+    display: flex;
     padding: 3px 12px;
     box-sizing: border-box;
     cursor: pointer;
@@ -53,4 +54,21 @@
 
 .dropdown-entry:hover {
     background-color: rgba(0, 0, 0, 0.2);
+}
+
+.dropdown-entry .pro-img {
+    width: 34px;
+}
+
+.dropdown-entry .pro-img-container {
+    margin-right: 7px;
+}
+
+.dropdown-entry-text {
+    display: inline-block;
+    height: 36px;
+    line-height: 36px;
+    white-space: nowrap;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
 }
