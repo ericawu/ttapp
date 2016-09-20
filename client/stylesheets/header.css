@@ -33,7 +33,7 @@
 .header-hello {
     position: fixed;
     right: 90px;
-    color: #ccc;
+    color: #fff;
     height: 50px;
     display: flex;
     align-items: flex-end;
@@ -100,7 +100,7 @@ input:-webkit-autofill:active {
     align-items: center;
     font-size: 2.5em;
     letter-spacing: 5px;
-    color: #ccc;
+    color: #fff;
 }
 
 .header-title i {
@@ -127,7 +127,7 @@ input:-webkit-autofill:active {
     margin-left: 5%;
     display: inline-block;
     font-size: 1.5em;
-    color: #ccc;
+    color: #fff;
     text-decoration: none !important;
     transition: all 0.2s;
 }

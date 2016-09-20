@@ -110,7 +110,6 @@ Template.displayPoints_editable.helpers({
 
 Template.displayPoints_editable.events({ 
     'change .point-input': function(e) {
-        console.log(e.target.value);
         var gameNum = Template.currentData().num - 1;
         var games = Session.get('games');
         if (!(new RegExp("^[0-9][0-9]?$")).test(e.target.value)) {
