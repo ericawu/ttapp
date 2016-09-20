@@ -26,7 +26,7 @@ Template.register.onRendered(function(){
                     fname: splitName[0],
                     lname: splitName[1],
                     rating: 200,
-                    profpic: "default.jpg"
+                    profpic: "/default.jpg"
                 }
             }, function(error){
                 if(error) {

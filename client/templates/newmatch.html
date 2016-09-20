@@ -17,5 +17,10 @@
 </template>
 
 <template name="opponentEntry">
-    <li><div email={{email}} class="dropdown-entry opponentEntry">{{profile.fname}} {{profile.lname}} ({{email}})</div></li>
+    <li email={{email}} class="dropdown-entry opponentEntry">
+        {{> profileImg}}
+        <div class="dropdown-entry-text">
+            {{profile.fname}} {{profile.lname}} <!-- ({{email}}) -->
+        </div>
+    </li>
 </template>
