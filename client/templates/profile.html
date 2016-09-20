@@ -17,6 +17,7 @@
 		    {{/with}}
 			{{#if isUser user}}
 				{{> uploadImage}}
+                <button type="button" class="btn btn-danger btn-delete-account">Delete Account (DANGERRRRRR)</button>
 			{{/if}}
 		</div>
 		<div class="col-xs-8">
@@ -36,7 +37,32 @@
             </div>
 		</div>
 	</div>
+    {{> deleteAccountModal}}
+
 </template>
+
+
+<template name="deleteAccountModal">
+    <div class="modal fade" id="deleteAccountModal">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Are you sure?</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to delete your account? After deleting your account you won't be able to recover it.</p>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger confirm-delete-account">Delete</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>   
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+
 
 <template name="uploadImage">
     <input type="file" name="file" id="file" class="uploadFile"/>

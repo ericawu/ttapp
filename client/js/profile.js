@@ -43,5 +43,16 @@ Template.profile_info.events({
     },
     'change .profile-name': function(e) {
         e.target.blur();
+    },
+    'click .btn-delete-account': function(e) {
+        e.preventDefault();
+        $('#deleteAccountModal').modal('show');
+    },
+    'click .confirm-delete-account': function(e) {
+        e.preventDefault();
+        var id = Session.get('param-id') || FlowRouter.getParam('_id');
+        Meteor.call('delete-account', id);
+        $('#deleteAccountModal').modal('hide');
+        FlowRouter.go('home');
     }
 });

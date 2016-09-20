@@ -76,5 +76,8 @@ Meteor.methods({
             }});
         }
         //don't do anything if it's a tie (track == 0), add in point comparisons later
+    },
+    'delete-account': function(id) {
+        Meteor.users.remove(id);
     }
 });
