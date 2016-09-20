@@ -14,7 +14,11 @@
     {{/each}}
     {{#if noMatches this.matches}}
       <div class="noMatch-text">
-        No Current Matches.
+        {{#if this.noMatch}}
+          {{this.noMatch}}
+        {{else}}
+          No {{this.title}}.
+        {{/if}}
       </div>
     {{/if}}
   {{/container_listWrapper}}
