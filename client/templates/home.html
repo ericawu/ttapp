@@ -14,13 +14,8 @@
           {{> newmatchBar}}
         {{/container_listWrapper}}
       {{/if}}
-      {{#container_listWrapper title="News" containerClasses=needsShrink}}
-        {{> newsBlock}}
-        {{> newsBlock}}
-        {{> newsBlock}}
-        <!-- {{#each news}}
-          {{> newsBlock}}
-        {{each}} -->
+      {{#container_listWrapper title="Pictures" containerClasses=needsShrink}}
+        {{> pic_show}}
       {{/container_listWrapper}}
     </div>
   </div>
@@ -37,11 +32,59 @@
   </div>
 </template>
 
-<template name="newsBlock">
-  <div class="news-entry">
-    <img class="news-img" src="news_1.jpg">
-    <div class="news-title">Q&amp;A with former Olympian table tennis standout Erica Wu</div>
-    <hr class="news-divider">
-    <p class="news-text">Four years ago, Arcadia resident Erica Wu was competing with the U.S. national table tennis team in the London Olympics.<br><br>Her journey in the sport began at the age of 7 when her mom noticed a newspaper ad for table tennis. At the age of 10, she joined the California Table Tennis Club in Rosemead and started training under table tennis world champion and four-time Olympian Gao Jun. She made the U15 National team at 12.<br><br>Along the way, Wu balanced schoolwork and training with exhibition games and tournaments, not to mention Olympic trials and the games themselves. Wu trained on average 20 hours a week during the school year and 50 hours a week during breaks.<br><br>Shortly after turning 16, she was off to the Olympics where she competed in table tennis doubles alongside her teammate Lily Zhang. Her journey in the games ended after being defeated by Japan.<br><br>Four years since London, the Rio Olympics have come and gone.<br><br>Wu cheered on her former teammate Lily Zhang and the team as they competed in Rio.<br><br>We reached out to Wu and asked her about her experience in London, the Olympic Games in Rio and her thoughts on the future of table tennis in the United States.</p>
+<template name="pic_show">
+  <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+      <li data-target="#myCarousel" data-slide-to="2"></li>
+      <li data-target="#myCarousel" data-slide-to="3"></li>
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+      <div class="item active">
+        <div class="carousel-img" style="background-image: url('photo1.jpg');"></div>
+        <div class="carousel-caption">
+          <h3>Erica Wu</h3>
+          <p>Wow! Check out that game face!</p>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="carousel-img" style="background-image: url('photo2.jpg');"></div>
+        <div class="carousel-caption">
+          <h3>Kweri Krew</h3>
+          <p>What an attractive group of people!</p>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="carousel-img" style="background-image: url('photo3.jpg');"></div>
+        <div class="carousel-caption">
+          <h3>Kweri Krew Round 2</h3>
+          <p>Back at it again with the bright plans!</p>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="carousel-img" style="background-image: url('photo4.jpg');"></div>
+        <div class="carousel-caption">
+          <h3>Kool Kids</h3>
+          <p>What an attractive group of people... and Jon!</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Left and right controls -->
+    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
   </div>
 </template>

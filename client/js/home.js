@@ -16,7 +16,7 @@ Template.home_page.helpers({
     },
     needsShrink: function() {
         if (Meteor.user()) {
-            return "news-container";
+            return "slideshow-container";
         } else {
             return "";
         }
