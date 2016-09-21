@@ -61,10 +61,12 @@
 }
 
 .dropdown-entry .pro-img-container {
+    pointer-events: none;
     margin-right: 7px;
 }
 
 .dropdown-entry-text {
+    pointer-events: none;
     display: inline-block;
     height: 36px;
     line-height: 36px;

@@ -82,11 +82,11 @@ Template.newmatchBar.events({
             id2: opp._id,
             date: new Date(),
             completed: false,
-            games: [],
-            fillers: [{points1: "", points2: "", num: 1}]
+            games: [{points1: "0", points2: "0", num: 1}],
+            fillers: []
         });
         Session.set('editMode', true);
-        Session.set('games', [{points1: "", points2: "", num: 1}]);
+        Session.set('games', Matches.findOne({_id: id}).games);
         FlowRouter.go('match', {_id: id});
         return false;
     }

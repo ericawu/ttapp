@@ -6,12 +6,17 @@
 
 <template name="displayScore">
   <a class="display-match link" href="{{pathFor 'match' _id=_id}}">
+    <!-- Player 1 -->
     {{#with playerFromId id1}}
-      <a class="col-xs-3 no-buffer-hori display-match-playerbox profile-link {{#if p1win}}win{{/if}}" href="{{pathFor 'profile' _id=_id}}">
-        {{> profileImg}}
-        <div class="display-match-playerbox-name">{{profile.fname}} {{profile.lname}}</div>
-      </a>
+      <div class="col-xs-3 display-match-playerbox-container">
+        <a class="display-match-playerbox profile-link {{#if p1win}}win{{/if}}" href="{{pathFor 'profile' _id=_id}}">
+          {{> profileImg}}
+          <div class="display-match-playerbox-name">{{first profile.fname}}. {{profile.lname}}</div>
+        </a>
+      </div>
     {{/with}}
+
+    <!-- Games -->
     <div class="col-xs-6 no-buffer-hori display-match-games">
       <div class="display-match-games-breakdown">
         {{#each games}}{{> displayPoints}}{{/each}}
@@ -21,17 +26,22 @@
         {{dateString}}
       </div>
     </div>
+
+    <!-- Player 2 -->
     {{#with playerFromId id2}}
-      <a class="col-xs-3 no-buffer-hori display-match-playerbox profile-link {{#if p2win}}win{{/if}}" href="{{pathFor 'profile' _id=_id}}">
-        {{> profileImg}}
-        <div class="display-match-playerbox-name">{{profile.fname}} {{profile.lname}}</div>
-      </a>
+      <div class="col-xs-3 display-match-playerbox-container">
+        <a class="display-match-playerbox profile-link {{#if p2win}}win{{/if}}" href="{{pathFor 'profile' _id=_id}}">
+          {{> profileImg}}
+          <div class="display-match-playerbox-name">{{first profile.fname}}. {{profile.lname}}</div>
+        </a>
+      </div>
     {{/with}}
   </a>
 </template>
 
 <template name="displayScore_large">
   <div class="display-match large full-height">
+    <!-- Edit Buttons -->
     {{#if editable id1 id2}}
       <div class="display-match-btns">
         <div id="btn-delete-container" class="display-match-btn-container">
@@ -41,6 +51,9 @@
           <div id="btn-done-container" class="display-match-btn-container">
             <div id="btn-done" class="display-match-btn"></div><div class="display-match-text">Done</div>
           </div>
+          <div id="btn-done-container" class="display-match-btn-container">
+            <div id="btn-add" class="display-match-btn"></div><div class="display-match-text">Add</div>
+          </div>
         {{else}}
           <div id="btn-edit-container" class="display-match-btn-container">
             <div id="btn-edit" class="display-match-btn"></div><div class="display-match-text">Edit</div>
@@ -48,12 +61,28 @@
         {{/if}}
       </div>
     {{/if}}
+
+    <!-- Player 1 -->
     {{#with playerFromId id1}}
-      <a class="col-xs-3 no-buffer-hori display-match-playerbox profile-link {{#if p1win}}win{{/if}}" href="{{pathFor 'profile' _id=_id}}">
-        {{> profileImg}}
-        <div class="display-match-playerbox-name">{{profile.fname}} {{profile.lname}}</div>
-      </a>
+      {{#if editMode}}
+        <div class="col-xs-3 display-match-playerbox-container">
+          <div class="display-match-playerbox plus-points" pNum=1>
+            <div class="plus-points-text">+1</div>
+            {{> profileImg}}
+            <div class="display-match-playerbox-name">{{profile.fname}} {{profile.lname}}</div>
+          </div>
+        </div>
+      {{else}}
+        <div class="col-xs-3 display-match-playerbox-container">
+          <a class="display-match-playerbox profile-link {{#if p1win}}win{{/if}}" href="{{pathFor 'profile' _id=_id}}">
+            {{> profileImg}}
+            <div class="display-match-playerbox-name">{{profile.fname}} {{profile.lname}}</div>
+          </a>
+        </div>
+      {{/if}}
     {{/with}}
+
+    <!-- Games -->
     <div class="col-xs-6 no-buffer-hori display-match-games">
       <div class="display-match-games-breakdown">
         {{#if editMode}}
@@ -67,17 +96,31 @@
         {{dateString}}
       </div>
     </div>
+
+    <!-- Player 2 -->
     {{#with playerFromId id2}}
-      <a class="col-xs-3 no-buffer-hori display-match-playerbox profile-link {{#if p2win}}win{{/if}}" href="{{pathFor 'profile' _id=_id}}">
-        {{> profileImg}}
-        <div class="display-match-playerbox-name">{{profile.fname}} {{profile.lname}}</div>
-      </a>
+      {{#if editMode}}
+        <div class="col-xs-3 display-match-playerbox-container">
+          <div class="display-match-playerbox plus-points" pNum=2>
+            <div class="plus-points-text">+1</div>
+            {{> profileImg}}
+            <div class="display-match-playerbox-name">{{profile.fname}} {{profile.lname}}</div>
+          </div>
+        </div>
+      {{else}}
+        <div class="col-xs-3 display-match-playerbox-container">
+          <a class="display-match-playerbox profile-link {{#if p2win}}win{{/if}}" href="{{pathFor 'profile' _id=_id}}">
+            {{> profileImg}}
+            <div class="display-match-playerbox-name">{{profile.fname}} {{profile.lname}}</div>
+          </a>
+        </div>
+      {{/if}}
     {{/with}}
   </div>
 </template>
 
 <template name="displayPoints_editable">
-  <div class="display-match-points">
+  <div class="display-match-points {{#if currentGame}}highlight{{/if}}">
     <p class="display-match-points-gameNum">{{num}}</p>
     <input class="point-input" name="p1" type="number" value="{{points1}}" placeholder="–">
     <input class="point-input" name="p2" type="number" value="{{points2}}" placeholder="–">

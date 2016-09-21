@@ -12,7 +12,7 @@
 }
 
 .display-match.large {
-    font-size: 1.5em;
+    font-size: 1.7em;
     position: relative;
 }
 
@@ -43,6 +43,11 @@
 
 .display-match-btn-container:hover {
     filter: none;
+}
+
+#btn-add {
+    background: #fff;
+    /*background-image: url('glyphicons-ok.png');*/
 }
 
 #btn-done {
@@ -88,12 +93,19 @@
 
 .display-match.large .pro-img-container,
 .display-match.large .pro-img {
-    max-width: 150px;
     width: 100%;
 }
 
 .display-match.link:hover {
     background-color: rgba(128, 128, 128, 0.1);
+}
+
+.display-match-playerbox-container {
+    padding: 0;
+}
+
+.display-match.large .display-match-playerbox-container {
+    padding: 4%;
 }
 
 .display-match-playerbox {
@@ -107,6 +119,7 @@
     margin-top: 5px;
     max-width: 100%;
     text-align: center;
+    white-space: nowrap;
     overflow-x: hidden;
     text-overflow: ellipsis;
     font-size: 0.8em;
@@ -119,6 +132,42 @@
 .display-match-playerbox.win .display-match-playerbox-name {
     color: #237b23;
     font-weight: bold;
+}
+
+.plus-points {
+    cursor: pointer;
+}
+
+.plus-points * {
+    pointer-events: none;
+}
+
+.plus-points * {
+    color: #999;
+    transition: all 0.5s;
+    text-decoration: none !important;
+}
+
+.plus-points:hover * {
+    color: #237b23 !important;
+    border-color: #237b23 !important;
+}
+
+.plus-points-text {
+    height: 30px;
+    color: #237b23;
+    margin-bottom: -30px;
+    transform: translateY(-12px);
+    opacity: 0;
+}
+
+.plus-points:hover .plus-points-text {
+    transform: translateY(-32px);
+    opacity: 1;
+}
+
+.plus-points-text.clicked {
+    transform: translateY(-64px) !important;
 }
 
 .display-match-games {
@@ -146,6 +195,10 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
+}
+
+.display-match-points.highlight {
+    background: rgba(128, 128, 128, 0.1);
 }
 
 .display-match-points input,
